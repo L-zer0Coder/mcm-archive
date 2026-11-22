@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>模式卡片 · 2024 ICM E · 队伍 2413552（Soochow University） · MCM/ICM 备赛知识库</title>
+<meta name="description" content="MCM/ICM 备赛知识库 · 模式卡片 · 2024 ICM E · 队伍 2413552（Soochow University）">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%232B5C8A'/%3E%3Ctext x='50' y='70' font-size='52' font-weight='700' text-anchor='middle' fill='%23FDFCF8' font-family='Georgia,serif'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../_vendor/katex/katex.min.css">
+<style>:root{--paper:#F7F4ED;--sheet:#FDFCF8;--ink:#2A251E;--mut:#6E6557;--dim:#786E60;
+--line:#E7E0D1;--line2:#D9D0BD;--acc:#2B5C8A;--acc-d:#1F4470;--acc-soft:rgba(43,92,138,.07);
+--serif:Georgia,'Times New Roman','Source Han Serif SC','Noto Serif SC',serif;
+--sans:'Segoe UI','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+--mono:ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.85}
+a{color:var(--acc);text-decoration:none}
+a:hover{color:var(--acc-d)}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(253,252,248,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar .in{max-width:1060px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:9px 22px}
+.topbar a{color:var(--mut)}
+.brand{display:flex;align-items:center;gap:9px;color:var(--ink);font-weight:600;font-size:13.5px}
+.brand .seal{width:24px;height:24px;border-radius:5px;background:var(--acc);color:#FDFCF8;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:13px;font-weight:700}
+.clock{font-family:var(--mono);font-size:11px;padding:1px 8px;border:1px solid rgba(43,92,138,.28);border-radius:3px;color:var(--acc);background:var(--acc-soft);white-space:nowrap}
+.clock[data-s='live']{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.clock[data-s='post']{color:var(--dim);border-color:var(--line2);background:transparent}
+.wrap{max-width:1060px;margin:0 auto;padding:22px 22px 80px}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:4px;padding:16px 20px}
+.btn{display:inline-flex;align-items:center;height:32px;padding:0 14px;border:1px solid var(--line2);border-radius:3px;font-size:12.5px;color:var(--ink);background:var(--sheet);cursor:pointer;font-family:inherit}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.solid{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.btn.solid:hover{background:var(--acc-d);color:#FDFCF8}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:11.5px;border-bottom:1px solid var(--line2)}
+tbody tr:nth-child(2n) td{background:#F8F5EC}
+pre{background:#F9F6EF;border:1px solid var(--line);border-radius:4px;padding:12px 15px;overflow:auto;font-size:12.5px;line-height:1.8}
+code{font-family:var(--mono)}
+footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</style>
+</head>
+<body>
+<div class="topbar"><div class="in">
+  <a class="brand" href="../../index.html"><span class="seal">M</span>MCM/ICM 备赛知识库</a>
+  <span class="crumb">05_论文拆解</span>
+  <span class="clock" id="clock"></span>
+</div></div>
+<div class="wrap">
+<h1 class="pt">模式卡片 · 2024 ICM E · 队伍 2413552（Soochow University）</h1>
+<blockquote>
+<p><strong>身份验证链</strong>：论文 PDF（队伍自发布于 GitHub，25 页，正文匿名 Team Control Number XXXXX）→ 同仓库附官方证书（队伍号 2413552）→ 官方 Results 册名录（<code>2024_E_Results.pdf</code> p.2）核对：<strong>Soochow University / 顾问 Kui Wang / E 题 Outstanding Winner / INFORMS Award</strong>。三者闭环，2026-11-22 验证。
+<strong>页码纪律</strong>：本卡页码均为 PDF 页码 p.1–25；印刷页码 = PDF − 2。
+<strong>版权纪律</strong>：PDF 存本地学习目录（不进公开仓库）；本页只放本站原创分析与 ≤25 词短引注。
+论文经拆解代理逐页深读 + 站内方法清单（03_统计与机器学习（../02_知识模块/03_统计与机器学习.html）、E_可持续（../03_题型打法/E_可持续.html））交叉对照。</p>
+</blockquote>
+<h2>1. 模式卡片</h2>
+<pre><code class="language-json">{
+  &quot;team&quot;: &quot;2413552（Soochow University，顾问 Kui Wang；E 题 Outstanding Winner + INFORMS Award，官方名录交叉验证；PDF 正文匿名）&quot;,
+  &quot;problem&quot;: &quot;2024-E（Sustainability of Property Insurance）&quot;,
+  &quot;tiers&quot;: {
+    &quot;summary&quot;: {
+      &quot;背景问题&quot;: &quot;全球气候变化下极端天气频发，财产保险业面临可持续性挑战（p.1）&quot;,
+      &quot;任务重述&quot;: &quot;三问：Q1 承保/定价策略，Q2 社区建设与发展策略，Q3 历史地标保护（自由女神像）（p.1；与 §1.2 p.4 对应）&quot;,
+      &quot;方法主线&quot;: &quot;MGWR 整合气候数据+地理位置+保险赔付；熵权法定人文调整系数 HIC；盈利调整因子 P；灰色预测 GM(1,1) 外推 2024-2034（p.1）&quot;,
+      &quot;关键结果数字&quot;: &quot;加州（高风险区）2023 年保险金额 $20.1394M，预计 2034 年增至 $31.0054M；自由女神像保护年投入约 $2.5M（p.1）&quot;,
+      &quot;结论建议&quot;: &quot;为保险公司提供承保决策支持，为社区与遗产保护提供可行策略（p.1）&quot;,
+      &quot;关键词&quot;: &quot;Climate change, property insurance, risk assessment, community development, historical heritage protection, multi-scale geographically weighted regression（p.1）&quot;
+    },
+    &quot;structure&quot;: [
+      &quot;Summary Sheet（p.1）&quot;,
+      &quot;Contents（p.2）&quot;,
+      &quot;1 Introduction：Background / Problem Restatement / Related Work / Our Work（p.3-5）&quot;,
+      &quot;2 Preparation：Assumptions（仅 3 条）/ Notations（p.5-6）&quot;,
+      &quot;3 Introduction（与 §1 重名的过渡小节——O 论文也有结构瑕疵，p.6）&quot;,
+      &quot;4 Insurance Strategy Model：Data / Preprocessing / MGWR / Risk Pricing / Multi-Objective / GM(1,1) / Solution（p.6-13）&quot;,
+      &quot;5 Community Building Protection：Protection Model / Owner Strategies / Solution（p.13-18）&quot;,
+      &quot;6 Historical Landmarks：Adapting to MGWR / Statue of Liberty / A Letter to the Community（p.19-21）&quot;,
+      &quot;7 Sensitivity Analysis（标题拼写为 Senitivity，p.21-22）&quot;,
+      &quot;8 Strengths and Weaknesses + Future Applications（p.22-23）&quot;,
+      &quot;9 Conclusion（p.23）&quot;,
+      &quot;Letter（题面交付物：致社区完整信件，p.24）&quot;,
+      &quot;References + AI Utilization Report（p.25）&quot;
+    ],
+    &quot;models&quot;: [
+      {&quot;name&quot;: &quot;PCA 降维&quot;, &quot;type&quot;: &quot;预处理/降维&quot;, &quot;assumptions&quot;: &quot;线性变换保留主要信息（eq2, p.7）&quot;, &quot;validation&quot;: &quot;报 4 个主成分方差 42.1%/16.6%/13.7%/10.6% 并逐个解释物理含义（p.11）&quot;, &quot;pages&quot;: &quot;eq2 p.7；结果 p.11&quot;},
+      {&quot;name&quot;: &quot;双变量样条插值&quot;, &quot;type&quot;: &quot;空间插值（格点气候→事件经纬度）&quot;, &quot;assumptions&quot;: &quot;格点值可局部逼近（eq3, p.8）&quot;, &quot;validation&quot;: &quot;未报告（诚实留空）&quot;, &quot;pages&quot;: &quot;p.8&quot;},
+      {&quot;name&quot;: &quot;极端天气阈值判别&quot;, &quot;type&quot;: &quot;规则分类（插值环境值&gt;阈值记为极端事件）&quot;, &quot;assumptions&quot;: &quot;阈值 T_extreme 可定义极端条件（eq4, p.8）&quot;, &quot;validation&quot;: &quot;未报告；用于补全官方记录缺失（p.8）&quot;, &quot;pages&quot;: &quot;p.8&quot;},
+      {&quot;name&quot;: &quot;MGWR 主模型&quot;, &quot;type&quot;: &quot;空间回归（各协变量各自带宽的地理加权回归）&quot;, &quot;assumptions&quot;: &quot;极端天气对赔付的影响存在显著空间异质性（假设2, p.5）&quot;, &quot;validation&quot;: &quot;未报告 R²/AICc/带宽等诊断（全 25 页无诊断表，诚实留空）；摘要级结论：高风险区赔付与极端事件概率显著正相关（p.1）&quot;, &quot;pages&quot;: &quot;eq5-6, p.8-9&quot;},
+      {&quot;name&quot;: &quot;风险定价模型&quot;, &quot;type&quot;: &quot;多目标定价公式（保费=基准×风险分×人文系数×盈利因子，eq7-9）&quot;, &quot;assumptions&quot;: &quot;H_i=g(SEF_i), P=HPR+TPM, FP_i=BP(1+θRS_i)H_iP（p.9）&quot;, &quot;validation&quot;: &quot;作为 Q1 策略输出（Table 2 分州预测, p.12）&quot;, &quot;pages&quot;: &quot;p.9&quot;},
+      {&quot;name&quot;: &quot;多目标优化&quot;, &quot;type&quot;: &quot;双目标均衡（人文 HI vs 盈利 PR，eq10）&quot;, &quot;assumptions&quot;: &quot;提及线性规划或遗传算法求解（p.10）&quot;, &quot;validation&quot;: &quot;求解器细节未展示（诚实留空）&quot;, &quot;pages&quot;: &quot;p.10&quot;},
+      {&quot;name&quot;: &quot;灰色预测 GM(1,1)（改进版）&quot;, &quot;type&quot;: &quot;时序外推（AGO+最小二乘）&quot;, &quot;assumptions&quot;: &quot;序列近似指数增长、趋势延续（p.10）&quot;, &quot;validation&quot;: &quot;声明历史回测但未报误差指标（p.10）；输出 Fig3/Table2/Table3（p.12-13）&quot;, &quot;pages&quot;: &quot;eq11-12 p.10&quot;},
+      {&quot;name&quot;: &quot;社区保护模型&quot;, &quot;type&quot;: &quot;MGWR 扩展+损失最小化（加保护因子 P_i；min L=Σ(D_i+λC_i)，eq13-16）&quot;, &quot;assumptions&quot;: &quot;风险承载力与保护投入可量化且成本线性（p.12-13）&quot;, &quot;validation&quot;: &quot;scipy 求解北美数据；解读为保护水平约 70%、成本约 30%（p.16；Fig5 p.17）&quot;, &quot;pages&quot;: &quot;p.12-13, 16-17&quot;},
+      {&quot;name&quot;: &quot;改进熵权法→HIC&quot;, &quot;type&quot;: &quot;综合评价赋权（→线性 g 函数）&quot;, &quot;assumptions&quot;: &quot;社会经济因子与保险需求相关（假设3, p.5）&quot;, &quot;validation&quot;: &quot;以最小化实际-预测保费差训练 a,b（p.16）未给数字；权重表 Table4：healthcare 0.375/GDP 0.250/人口密度 0.250/教育 0.125（p.16）&quot;, &quot;pages&quot;: &quot;eq17-21 p.13-16&quot;},
+      {&quot;name&quot;: &quot;建筑保护 MGWR（Q3）&quot;, &quot;type&quot;: &quot;空间回归改写（因变量=所需保护等级）&quot;, &quot;assumptions&quot;: &quot;建筑规模/年龄/材料/复杂度/区位决定保护需求（p.19）&quot;, &quot;validation&quot;: &quot;自由女神像系数区间解读（p.20-21；Fig8 雷达图 p.21）&quot;, &quot;pages&quot;: &quot;eq22 p.19&quot;}
+    ],
+    &quot;figures&quot;: [
+      {&quot;id&quot;: &quot;Fig 1&quot;, &quot;page&quot;: &quot;p.3&quot;, &quot;claim&quot;: &quot;开场钩子：保险策略是应对极端天气的核心&quot;, &quot;type&quot;: &quot;概念插图（AI 生成）&quot;, &quot;self_evidence&quot;: &quot;低——装饰性&quot;},
+      {&quot;id&quot;: &quot;Fig 2&quot;, &quot;page&quot;: &quot;p.11&quot;, &quot;claim&quot;: &quot;极端天气概率空间分异：西部偏旱、东南偏涝，支撑风险分区定价&quot;, &quot;type&quot;: &quot;地理热力图&quot;, &quot;self_evidence&quot;: &quot;高——单图自足&quot;},
+      {&quot;id&quot;: &quot;Fig 3&quot;, &quot;page&quot;: &quot;p.12&quot;, &quot;claim&quot;: &quot;2000-2023 实测与 2024-2034 GM(1,1) 预测接续：事件数与保险业绩效同步上升&quot;, &quot;type&quot;: &quot;双轴时序预测图&quot;, &quot;self_evidence&quot;: &quot;中&quot;},
+      {&quot;id&quot;: &quot;Fig 4&quot;, &quot;page&quot;: &quot;p.14&quot;, &quot;claim&quot;: &quot;保险不足时业主自力更生（引出 Q2）&quot;, &quot;type&quot;: &quot;概念插图（AI 生成）&quot;, &quot;self_evidence&quot;: &quot;低&quot;},
+      {&quot;id&quot;: &quot;Fig 5&quot;, &quot;page&quot;: &quot;p.17&quot;, &quot;claim&quot;: &quot;各州保护/风险/成本三变量空间分布与正相关（Q2 解）&quot;, &quot;type&quot;: &quot;地图叠加散点&quot;, &quot;self_evidence&quot;: &quot;低-中——三色条并存较难读&quot;},
+      {&quot;id&quot;: &quot;Fig 6&quot;, &quot;page&quot;: &quot;p.18&quot;, &quot;claim&quot;: &quot;NA 与 Asia 双面板、三情景损失对照：干预降低损失增速&quot;, &quot;type&quot;: &quot;分组时序折线&quot;, &quot;self_evidence&quot;: &quot;高——但正文引用数字与图线序疑似矛盾（见瑕疵清单）&quot;},
+      {&quot;id&quot;: &quot;Fig 8&quot;, &quot;page&quot;: &quot;p.21&quot;, &quot;claim&quot;: &quot;自由女神像 MGWR 系数雷达图：保护需求主要由规模与区位驱动&quot;, &quot;type&quot;: &quot;雷达图（5 因子）&quot;, &quot;self_evidence&quot;: &quot;中-高&quot;},
+      {&quot;id&quot;: &quot;Fig 9&quot;, &quot;page&quot;: &quot;p.22&quot;, &quot;claim&quot;: &quot;换熵权系数重跑后损失趋势不变→稳健&quot;, &quot;type&quot;: &quot;与 Fig 6 同构对照双面板&quot;, &quot;self_evidence&quot;: &quot;中——须与 Fig 6 并排对读&quot;}
+    ],
+    &quot;checks&quot;: [
+      &quot;GM(1,1) 历史回测：声明式，无误差指标（p.10）&quot;,
+      &quot;g 函数训练验证：最小化实际-预测保费差，无数字（p.16）&quot;,
+      &quot;敏感度/消融：§7 单独成章——仅对熵权系数做 ablation，换权重重跑三情景（p.21-22；Fig9 p.22）；全文最主要检验&quot;,
+      &quot;跨区域外推复用：同一 MGWR 框架改坐标+人口重拟亚洲六国（Table3, p.13）——可迁移性的间接证据&quot;,
+      &quot;缺项（诚实登记）：MGWR 无 R²/AICc/带宽诊断；无样本外交叉验证；无蒙特卡洛；熵权未与主观赋权组合对照；插值与阈值判别无独立验证（依据：p.8-13 全部方法节无诊断表）&quot;
+    ],
+    &quot;wordsmith&quot;: [
+      {&quot;quote&quot;: &quot;This study presents a comprehensive analytical framework addressing the sustainability of the property insurance sector under extreme weather conditions.&quot;, &quot;page&quot;: &quot;p.1&quot;, &quot;note&quot;: &quot;摘要首句模板：『对象+框架+条件』一句立起全文，19 词无废话&quot;},
+      {&quot;quote&quot;: &quot;our model predicted insurance amounts for California (a high-risk area) to be $20.1394 million in 2023&quot;, &quot;page&quot;: &quot;p.1&quot;, &quot;note&quot;: &quot;摘要必塞『具体地名+精确数字』，证明跑过真数据&quot;},
+      {&quot;quote&quot;: &quot;Unlike GWR, which assumes a single bandwidth for all covariates, MGWR allows for different spatial scales&quot;, &quot;page&quot;: &quot;p.8&quot;, &quot;note&quot;: &quot;对比式方法引入：先立传统方法局限，再给自己的模型留位置&quot;},
+      {&quot;quote&quot;: &quot;This approach not only aligns with actuarial principles but also embeds an element of social responsibility&quot;, &quot;page&quot;: &quot;p.7&quot;, &quot;note&quot;: &quot;双价值收束句：E 题人文维度专用，放模型引入处&quot;},
+      {&quot;quote&quot;: &quot;despite changes in the model's parameters, the trend of losses caused by extreme weather events continues to fluctuate and rise&quot;, &quot;page&quot;: &quot;p.21&quot;, &quot;note&quot;: &quot;敏感度结论句式：『尽管参数变化，趋势不变』——把稳健性写成一句话&quot;}
+    ]
+  },
+  &quot;distinct&quot;: &quot;暂缺——需同题对照（本库尚无 2024 E 其他 O 队卡片，按纪律不得单卡填写）。候选三项待比对：① AI 生成插图贯穿全文并在 AI Utilization Report 合规披露（p.3/14/20/25）；② 一个 MGWR 模型三次改写贯穿三问（定价 p.8-9→加保护因子 p.12→改因变量 p.19）；③ 题面要求的信件以完整独立章节交付（p.24）。&quot;
+}
+</code></pre>
+<h2>2. 可复用的打法提炼（普通队可直接抄的动作）</h2>
+<ol>
+<li><strong>一个核心模型贯穿三问，逐问做"加法改写"</strong>：MGWR 在 Q1 定价（p.8-9）→ Q2 加保护因子（p.12）→ Q3 改因变量（p.19）。主线天然统一，评委不用每次重新理解模型——"一模型+逐问扩展"是最稳的骨架，而不是每问另起炉灶。</li>
+<li><strong>外部数据源三件套并给脚注 URL</strong>：ERA5-Land（96 变量、0.1°×0.1°）、Global Disaster Data Platform、NAIC，脚注直接给可点击链接（p.7）。题面数据不够用时主动补权威源并注明出处——O 队与普通队的常见分野。</li>
+<li><strong>预处理链条每步给公式，降维必报方差贡献</strong>：标准化→PCA→样条插值→阈值判别全公式化（p.7-8），四个主成分方差逐一报出并解释物理含义（p.11）。普通队常只写"用 PCA 降维"一句——工作量小、观感差距大。</li>
+<li><strong>把人文维度参数化，而不是写成口号</strong>：熵权 HIC、定价系数、权重表（p.9, 13-16）——"人道关怀"落进公式和数字里。</li>
+<li><strong>预测做"历史+未来"双段图，配逐年数字表</strong>：Fig3 实测与预测接续（p.12），Table2/3 逐年数值（p.12-13）——摘要的数字可回查到表。</li>
+<li><strong>干预有效性用"三情景对照实验"呈现</strong>：三情景同图、双面板（p.18），一图回答"干预有没有用、谁的作用大"——把"建议"升级为"证据"。</li>
+<li><strong>检验从简但必须存在，且单独成章</strong>：§7 先承认"超参少"，只做消融+重跑（p.21-22）——"小成本、大覆盖"的稳健性叙事；但注意本文除消融外无样本外/收敛检验，<strong>补一个样本外误差即可超过它</strong>。</li>
+<li><strong>交付物形态贴题面 + AI 使用合规披露</strong>：Q3 要 letter 就给完整信件（p.24）；文末 AI Utilization Report 声明 ChatGPT 用于插图与润色（p.25）。题面点名的交付物一个都不能少。</li>
+</ol>
+<h3>瑕疵清单（O 论文也有，反着学）</h3>
+<ul>
+<li>§3 与 §1 重名都叫 "Introduction"（p.6）——章节命名要终检</li>
+<li>§7 标题拼写错误 "Senitivity Analysis"（p.21）</li>
+<li>Table 2 数值与摘要对应但表头未标单位（p.12 vs p.1）——表格必须带单位</li>
+<li>Fig 6 正文引用数字与图上线序疑似矛盾（正文称社区干预 125→275，超出面板 y 轴上限 250；p.18）——"图-文数字一致性"终检必须做（此条为渲染观察，已标注待人工复核原图）</li>
+</ul>
+<h2>3. 升档差值视角</h2>
+<p>本卡是 O 侧第一张卡。升档差值分析（O vs H/M）需要同题 H/M 论文对照后才能做"差值表"——当前可对照的<strong>反向参照</strong>：这篇 O 论文的 5 项检验缺项（无拟合诊断/无样本外/无蒙特卡洛/无组合赋权/插值无验证）说明 <strong>H 档与 O 档的差距未必在检验数量</strong>，而更可能在：数据源的主动扩展（打法 2）、模型链条的贯穿性（打法 1）、人文维度的参数化（打法 4）。待 H/M 卡片入库后逐项验证。</p>
+<h2>4. 自查（代理产出，站长复核通过）</h2>
+<ul>
+<li>字段页码逐条核过（PDF 页码，对照 25 页渲染图）</li>
+<li>无臆测：两处诚实登记（"未报告验证"为缺项记录；Fig 6 矛盾标"疑似待复核"）</li>
+<li>distinct 按纪律填"暂缺——需同题对照"</li>
+</ul>
+</div>
+<footer>MCM/ICM 2027 备赛知识库 · 2027-01-28 开赛 · 数据只存本浏览器</footer>
+<script>window.UPC_UI_ROOT="../../";</script>
+<script defer src="../../_vendor/katex/katex.min.js"></script>
+<script defer src="../../_vendor/katex/contrib/auto-render.min.js"></script>
+<script>window.addEventListener('DOMContentLoaded',function(){
+if(window.renderMathInElement){renderMathInElement(document.body,
+{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});</script>
+<script src="../../global-ui.js" defer></script>
+<script>
+var EV_START=1801173600000,EV_END=1801530000000;
+function p2(n){return n<10?'0'+n:''+n;}
+(function(){
+  var el=document.getElementById('clock');
+  function upd(){var t=Date.now();
+    if(t<EV_START){var ms=EV_START-t,dd=Math.floor(ms/864e5);
+      if(dd>=1){el.textContent='开赛 D-'+dd;el.dataset.s='pre';}
+      else{el.textContent='开赛 '+p2(Math.floor(ms/36e5))+':'+p2(Math.floor(ms%36e5/6e4));el.dataset.s='pre';}}
+    else if(t<EV_END){var u=Math.floor((t-EV_START)/1000);
+      el.textContent='赛中 '+p2(Math.floor(u/3600))+':'+p2(Math.floor(u%3600/60));el.dataset.s='live';}
+    else{el.textContent='已结束';el.dataset.s='post';}}
+  upd();setInterval(upd,30000);
+})();
+
+</script>
+</body>
+</html>
