@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>96h 作战室 · MCM/ICM 备赛知识库</title>
+<meta name="description" content="MCM/ICM 备赛工具：96 小时阶段轴 + 每阶段 checklist，当前时段自动高亮。数据只存本浏览器。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%232B5C8A'/%3E%3Ctext x='50' y='70' font-size='52' font-weight='700' text-anchor='middle' fill='%23FDFCF8' font-family='Georgia,serif'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../_vendor/katex/katex.min.css">
+<style>:root{--paper:#F7F4ED;--sheet:#FDFCF8;--ink:#2A251E;--mut:#6E6557;--dim:#786E60;
+--line:#E7E0D1;--line2:#D9D0BD;--acc:#2B5C8A;--acc-d:#1F4470;--acc-soft:rgba(43,92,138,.07);
+--serif:Georgia,'Times New Roman','Source Han Serif SC','Noto Serif SC',serif;
+--sans:'Segoe UI','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+--mono:ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.85}
+a{color:var(--acc);text-decoration:none}
+a:hover{color:var(--acc-d)}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(253,252,248,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar .in{max-width:1060px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:9px 22px}
+.topbar a{color:var(--mut)}
+.brand{display:flex;align-items:center;gap:9px;color:var(--ink);font-weight:600;font-size:13.5px}
+.brand .seal{width:24px;height:24px;border-radius:5px;background:var(--acc);color:#FDFCF8;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:13px;font-weight:700}
+.clock{font-family:var(--mono);font-size:11px;padding:1px 8px;border:1px solid rgba(43,92,138,.28);border-radius:3px;color:var(--acc);background:var(--acc-soft);white-space:nowrap}
+.clock[data-s='live']{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.clock[data-s='post']{color:var(--dim);border-color:var(--line2);background:transparent}
+.wrap{max-width:1060px;margin:0 auto;padding:22px 22px 80px}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:4px;padding:16px 20px}
+.btn{display:inline-flex;align-items:center;height:32px;padding:0 14px;border:1px solid var(--line2);border-radius:3px;font-size:12.5px;color:var(--ink);background:var(--sheet);cursor:pointer;font-family:inherit}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.solid{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.btn.solid:hover{background:var(--acc-d);color:#FDFCF8}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:11.5px;border-bottom:1px solid var(--line2)}
+tbody tr:nth-child(2n) td{background:#F8F5EC}
+pre{background:#F9F6EF;border:1px solid var(--line);border-radius:4px;padding:12px 15px;overflow:auto;font-size:12.5px;line-height:1.8}
+code{font-family:var(--mono)}
+footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}
+.ph{border:1px solid #D9D0BD;background:#FDFCF8;border-radius:4px;padding:12px 18px;margin-bottom:10px}
+.ph.now{border-color:#2B5C8A;background:#F2F6FA;box-shadow:0 0 0 1px #2B5C8A inset}
+.ph h3{margin:0;font-size:14px}
+.ph .win{font-family:ui-monospace,Consolas,monospace;font-size:11px;color:#6E6557;border:1px solid #D9D0BD;
+         border-radius:3px;padding:1px 6px;margin-left:6px}
+.ph .live{color:#2B5C8A;font-size:11px}
+.chk{list-style:none;margin:8px 0 0;padding:0;font-size:13px;line-height:2}
+.bar{height:10px;border-radius:5px;background:#E7E0D1;position:relative;margin:8px 0}
+.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:5px;background:#2B5C8A}
+.suggest{font-size:13px;color:#6E6557;margin-top:4px}
+
+</style>
+</head>
+<body>
+<div class="topbar"><div class="in">
+  <a class="brand" href="../index.html"><span class="seal">M</span>MCM/ICM 备赛知识库</a>
+  <span class="crumb">赛时工具</span>
+  <span class="clock" id="clock"></span>
+</div></div>
+<div class="wrap">
+<h1 class="pt">96h 作战室</h1>
+<p class="suggest">用途：赛时 96 小时的阶段轴 + 每阶段 checklist，勾选状态存本浏览器。时段按开赛时刻自动推算，赛中当前阶段高亮。口径见 01_COMAP官方/竞赛要点。</p>
+<div id="prog" class="suggest"></div><div class="bar" id="pbar"><i></i></div>
+<div class="ph" id="ph0" data-lo="0" data-hi="2"><h3>T0 读题与选型 <span class="win">0–2h</span></h3><p class="suggest">六题全读，按主场方法族选题</p><ul class="chk"><li><label><input type="checkbox" data-p="0" data-i="0"> 六题全读，每题写三行表（变量/目标/约束）</label></li><li><label><input type="checkbox" data-p="0" data-i="1"> 对照选型助手报告定主攻题 + 备份题</label></li><li><label><input type="checkbox" data-p="0" data-i="2"> 锁定题目后建立 LaTeX 骨架与仓库</label></li><li><label><input type="checkbox" data-p="0" data-i="3"> 约定『Summary 每天写一版』的轮值</label></li></ul></div>
+<div class="ph" id="ph1" data-lo="2" data-hi="10"><h3>T1 文献与数据 <span class="win">2–10h</span></h3><p class="suggest">背景研究、数据获取与清洗（C 题大头）</p><ul class="chk"><li><label><input type="checkbox" data-p="1" data-i="0"> 文献检索一轮（近三年同场景方法）</label></li><li><label><input type="checkbox" data-p="1" data-i="1"> 数据获取 + 清洗留账（C 题）</label></li><li><label><input type="checkbox" data-p="1" data-i="2"> 假设表初稿（编号可追溯）</label></li></ul></div>
+<div class="ph" id="ph2" data-lo="10" data-hi="22"><h3>T2 假设与模型骨架 <span class="win">10–22h</span></h3><p class="suggest">假设编号可追溯、主方程落地</p><ul class="chk"><li><label><input type="checkbox" data-p="2" data-i="0"> 核心机理方程 / 三行翻译表落纸</label></li><li><label><input type="checkbox" data-p="2" data-i="1"> 最小可行模型跑通一条完整路径</label></li><li><label><input type="checkbox" data-p="2" data-i="2"> 扩展方向排序（先易后难）</label></li></ul></div>
+<div class="ph" id="ph3" data-lo="22" data-hi="46"><h3>T3 求解与编程 <span class="win">22–46h</span></h3><p class="suggest">先跑通一条路径再谈扩展</p><ul class="chk"><li><label><input type="checkbox" data-p="3" data-i="0"> 主模型全量跑通（最优值/gap/时间三件套）</label></li><li><label><input type="checkbox" data-p="3" data-i="1"> 收敛性 / 样本外检验落地</label></li><li><label><input type="checkbox" data-p="3" data-i="2"> 扩展模型逐条加、逐条重跑</label></li><li><label><input type="checkbox" data-p="3" data-i="3"> 每 2h 推送一次阶段性结果给全队</label></li></ul></div>
+<div class="ph" id="ph4" data-lo="46" data-hi="58"><h3>T4 检验与灵敏度 <span class="win">46–58h</span></h3><p class="suggest">收敛/极限/灵敏度三件套</p><ul class="chk"><li><label><input type="checkbox" data-p="4" data-i="0"> 关键参数 ±20% 扫描出图</label></li><li><label><input type="checkbox" data-p="4" data-i="1"> 影子价格 / gap 界写进结论</label></li><li><label><input type="checkbox" data-p="4" data-i="2"> 守恒量 / 对账检查</label></li></ul></div>
+<div class="ph" id="ph5" data-lo="58" data-hi="82"><h3>T5 Summary Sheet 与写作 <span class="win">58–82h</span></h3><p class="suggest">摘要最后写但每天写一版</p><ul class="chk"><li><label><input type="checkbox" data-p="5" data-i="0"> Summary 每天迭代一版</label></li><li><label><input type="checkbox" data-p="5" data-i="1"> 图表逐图过『一图一论点』</label></li><li><label><input type="checkbox" data-p="5" data-i="2"> 假设表终版与正文一致</label></li></ul></div>
+<div class="ph" id="ph6" data-lo="82" data-hi="90"><h3>T6 打磨与页数预算 <span class="win">82–90h</span></h3><p class="suggest">25 页硬上限逐节对账</p><ul class="chk"><li><label><input type="checkbox" data-p="6" data-i="0"> 页数预算器逐节对账 25 页</label></li><li><label><input type="checkbox" data-p="6" data-i="1"> 数字三处一致对账（Summary/正文/图表）</label></li><li><label><input type="checkbox" data-p="6" data-i="2"> 图题全部结论化</label></li></ul></div>
+<div class="ph" id="ph7" data-lo="90" data-hi="96"><h3>T7 终检与提交 <span class="win">90–96h</span></h3><p class="suggest">AI 报告 + 提前提交</p><ul class="chk"><li><label><input type="checkbox" data-p="7" data-i="0"> AI 披露核对（完整输出三要素）</label></li><li><label><input type="checkbox" data-p="7" data-i="1"> 提前 2h 提交</label></li><li><label><input type="checkbox" data-p="7" data-i="2"> Summary 最后通读 15 分钟视角</label></li></ul></div>
+</div>
+<footer>MCM/ICM 2027 备赛知识库 · 2027-01-28 开赛 · 数据只存本浏览器</footer>
+<script>window.UPC_UI_ROOT="../";</script>
+<script defer src="../_vendor/katex/katex.min.js"></script>
+<script defer src="../_vendor/katex/contrib/auto-render.min.js"></script>
+<script>window.addEventListener('DOMContentLoaded',function(){
+if(window.renderMathInElement){renderMathInElement(document.body,
+{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});</script>
+<script src="../global-ui.js" defer></script>
+<script>
+var EV_START=1801173600000,EV_END=1801530000000;
+function p2(n){return n<10?'0'+n:''+n;}
+(function(){
+  var el=document.getElementById('clock');
+  function upd(){var t=Date.now();
+    if(t<EV_START){var ms=EV_START-t,dd=Math.floor(ms/864e5);
+      if(dd>=1){el.textContent='开赛 D-'+dd;el.dataset.s='pre';}
+      else{el.textContent='开赛 '+p2(Math.floor(ms/36e5))+':'+p2(Math.floor(ms%36e5/6e4));el.dataset.s='pre';}}
+    else if(t<EV_END){var u=Math.floor((t-EV_START)/1000);
+      el.textContent='赛中 '+p2(Math.floor(u/3600))+':'+p2(Math.floor(u%3600/60));el.dataset.s='live';}
+    else{el.textContent='已结束';el.dataset.s='post';}}
+  upd();setInterval(upd,30000);
+})();
+
+var EVS=1801173600000;
+function load(){ try{ return JSON.parse(localStorage.getItem('mcm-warroom')) || {}; }catch(e){ return {}; } }
+function save(d){ try{ localStorage.setItem('mcm-warroom', JSON.stringify(d)); }catch(e){} }
+function progress(){
+  var all = document.querySelectorAll('input[type=checkbox]');
+  var done = Array.prototype.filter.call(all, function(c){ return c.checked; }).length;
+  var pct = all.length ? Math.round(done/all.length*100) : 0;
+  document.getElementById('prog').innerHTML = '总进度 <b>'+done+'/'+all.length+'</b>（'+pct+'%）';
+  document.querySelector('#pbar i').style.width = pct+'%';
+}
+function markNow(){
+  var t = Date.now(), inContest = t >= EVS;
+  document.querySelectorAll('.ph').forEach(function(el){
+    var lo = +el.dataset.lo, hi = +el.dataset.hi;
+    var on = inContest && t >= EVS + lo*36e5 && t < EVS + hi*36e5;
+    el.classList.toggle('now', on);
+    var head = el.querySelector('h3');
+    var tag = head.querySelector('.live');
+    if (on && !tag) {
+      tag = document.createElement('span'); tag.className='live'; tag.textContent=' ← 当前时段';
+      head.appendChild(tag);
+    } else if (!on && tag) { tag.remove(); }
+  });
+}
+function bind(){
+  var st = load();
+  document.querySelectorAll('input[type=checkbox]').forEach(function(c){
+    var k = c.dataset.p + '-' + c.dataset.i;
+    if (st[k]) c.checked = true;
+    c.addEventListener('change', function(){ st[k] = c.checked; save(st); progress(); });
+  });
+  progress(); markNow();
+  setInterval(markNow, 60000);
+}
+if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', bind); else bind();
+
+</script>
+</body>
+</html>
