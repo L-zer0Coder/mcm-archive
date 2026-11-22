@@ -21,7 +21,7 @@ for dp, dns, fns in os.walk(ROOT):
 
 # docs 与 md 对账
 mds = set()
-for d in ("01_COMAP官方", "02_知识模块", "03_题型打法"):
+for d in ("01_COMAP官方", "02_知识模块", "03_题型打法", "04_语料库"):
     for f in glob.glob(P(d, "**", "*.md"), recursive=True):
         rel = os.path.relpath(f, ROOT).replace(os.sep, "/")
         mds.add(rel.replace(os.sep, "/")[:-3] + ".html")

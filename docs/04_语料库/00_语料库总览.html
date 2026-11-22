@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>语料库总览 · MCM/ICM 备赛知识库</title>
+<meta name="description" content="MCM/ICM 备赛知识库 · 语料库总览">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%232B5C8A'/%3E%3Ctext x='50' y='70' font-size='52' font-weight='700' text-anchor='middle' fill='%23FDFCF8' font-family='Georgia,serif'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../_vendor/katex/katex.min.css">
+<style>:root{--paper:#F7F4ED;--sheet:#FDFCF8;--ink:#2A251E;--mut:#6E6557;--dim:#786E60;
+--line:#E7E0D1;--line2:#D9D0BD;--acc:#2B5C8A;--acc-d:#1F4470;--acc-soft:rgba(43,92,138,.07);
+--serif:Georgia,'Times New Roman','Source Han Serif SC','Noto Serif SC',serif;
+--sans:'Segoe UI','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+--mono:ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.85}
+a{color:var(--acc);text-decoration:none}
+a:hover{color:var(--acc-d)}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(253,252,248,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar .in{max-width:1060px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:9px 22px}
+.topbar a{color:var(--mut)}
+.brand{display:flex;align-items:center;gap:9px;color:var(--ink);font-weight:600;font-size:13.5px}
+.brand .seal{width:24px;height:24px;border-radius:5px;background:var(--acc);color:#FDFCF8;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:13px;font-weight:700}
+.clock{font-family:var(--mono);font-size:11px;padding:1px 8px;border:1px solid rgba(43,92,138,.28);border-radius:3px;color:var(--acc);background:var(--acc-soft);white-space:nowrap}
+.clock[data-s='live']{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.clock[data-s='post']{color:var(--dim);border-color:var(--line2);background:transparent}
+.wrap{max-width:1060px;margin:0 auto;padding:22px 22px 80px}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:4px;padding:16px 20px}
+.btn{display:inline-flex;align-items:center;height:32px;padding:0 14px;border:1px solid var(--line2);border-radius:3px;font-size:12.5px;color:var(--ink);background:var(--sheet);cursor:pointer;font-family:inherit}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.solid{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.btn.solid:hover{background:var(--acc-d);color:#FDFCF8}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:11.5px;border-bottom:1px solid var(--line2)}
+tbody tr:nth-child(2n) td{background:#F8F5EC}
+pre{background:#F9F6EF;border:1px solid var(--line);border-radius:4px;padding:12px 15px;overflow:auto;font-size:12.5px;line-height:1.8}
+code{font-family:var(--mono)}
+footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</style>
+</head>
+<body>
+<div class="topbar"><div class="in">
+  <a class="brand" href="../../index.html"><span class="seal">M</span>MCM/ICM 备赛知识库</a>
+  <span class="crumb">04_语料库</span>
+  <span class="clock" id="clock"></span>
+</div></div>
+<div class="wrap">
+<h1 class="pt">语料库总览</h1>
+<blockquote>
+<p>三梯队语料的定义、官方获取路由与入库清单。所有获取方式核查于 <strong>2026-11-22</strong>（来源：COMAP 官网、mathmodels.org 会员资源页、Results 册实文件）。</p>
+</blockquote>
+<h2>三梯队定义</h2>
+<table>
+<thead>
+<tr>
+<th>梯队</th>
+<th>内容</th>
+<th>官方获取</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>T1</strong></td>
+<td>O/F 奖完整论文</td>
+<td>mathmodels.org 会员资源（<strong>$35/年</strong> 电子订阅，登录后按题目条目下载；2026 各题 3–19 篇不等）</td>
+<td>待订阅入库，SOP 见下</td>
+</tr>
+<tr>
+<td><strong>T2</strong></td>
+<td>H/M 奖论文（升档差值的"对照组"）</td>
+<td>同 T1 渠道，题目条目内含获奖级别标注</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><strong>T3</strong></td>
+<td>官方 Judge Commentary（评述）</td>
+<td>同渠道；<strong>2026 各题评述尚未发布</strong>（会员页 Commentary 均为 No，发布通常滞后结果 2–3 个月）；历史年份评述随订阅获取</td>
+<td>待发布/待订阅</td>
+</tr>
+<tr>
+<td><strong>T0</strong></td>
+<td>官方免费层：题面 + Results 全册</td>
+<td><strong>免费</strong>——题面 PDF 与 Results 册（全参赛队名录+奖项分布）在 contest.comap.com 结果页直接下载</td>
+<td><strong>已入库</strong> ✓</td>
+</tr>
+</tbody>
+</table>
+<p><strong>获取路由结论</strong>（2026-11-22 核）：COMAP 的完整获奖论文与评述在会员墙内（$35/年，参赛队均摊极低）；免费层可完整获取题面与全量参赛统计。本站先把免费层用透（题面事实库 ✓、奖项分布 ✓），订阅后按 SOP 补 T1–T3。</p>
+<h2>已入库清单</h2>
+<h3>T0 官方免费层</h3>
+<ul>
+<li><strong>题面 18 份</strong>（2024–2026 三年 × 六题）：见 <a href="../01_COMAP%E5%AE%98%E6%96%B9/%E7%AB%9E%E8%B5%9B%E8%A6%81%E7%82%B9.html">01_COMAP官方</a> 各题型页引用，2026-11-22 全部从官方 PDF 核实</li>
+<li><strong>Results 全册 6 份</strong>（2026 年六题，共 2,938 页）：<code>04_语料库/官方结果册/</code> 目录（左栏树可跳转 PDF）——每册含全参赛队名录（机构/队伍号/奖项等级），封面含参赛队总数</li>
+<li><strong>奖项分布统计</strong>：从册子行级提取并与封面总数交叉验证，见 <a href="01_2026%E5%A5%96%E9%A1%B9%E5%88%86%E5%B8%83.html">01_2026奖项分布</a></li>
+</ul>
+<h3>T1/T2/T3 入库 SOP（订阅后执行）</h3>
+<ol>
+<li>mathmodels.org 登录 → 会员资源 → 对应题目条目 → 下载学生论文 PDF 与 Commentary PDF</li>
+<li>存入 <code>04_语料库/T1_O奖论文/&lt;年份&gt;_&lt;题字母&gt;/</code>（命名 <code>&lt;队伍号&gt;_&lt;国家&gt;_&lt;奖&gt;.pdf</code>）</li>
+<li>运行 <code>_builder/</code> 的拆解管线（建中）：按 73 篇模式卡片同构方法生成结构卡片 → <code>05_论文拆解/</code></li>
+<li>语料页更新入库清单与核查日期</li>
+</ol>
+<h2>语料使用纪律</h2>
+<ul>
+<li><strong>逐字可溯</strong>：所有从语料提炼的结论要能指回原始 PDF 的页码/队伍号</li>
+<li><strong>奖级口径</strong>：以官方册子与会员页的 designation 为准（Outstanding Winner / Finalist / Meritorious / Honorable Mention / Successful Participant）</li>
+<li><strong>防臆断</strong>：论文没读过的内容不进拆解页——本站 2026-11-22 的拆解页仅覆盖已入库语料</li>
+</ul>
+</div>
+<footer>MCM/ICM 2027 备赛知识库 · 2027-01-28 开赛 · 数据只存本浏览器</footer>
+<script>window.UPC_UI_ROOT="../../";</script>
+<script defer src="../../_vendor/katex/katex.min.js"></script>
+<script defer src="../../_vendor/katex/contrib/auto-render.min.js"></script>
+<script>window.addEventListener('DOMContentLoaded',function(){
+if(window.renderMathInElement){renderMathInElement(document.body,
+{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});</script>
+<script src="../../global-ui.js" defer></script>
+<script>
+var EV_START=1801173600000,EV_END=1801530000000;
+function p2(n){return n<10?'0'+n:''+n;}
+(function(){
+  var el=document.getElementById('clock');
+  function upd(){var t=Date.now();
+    if(t<EV_START){var ms=EV_START-t,dd=Math.floor(ms/864e5);
+      if(dd>=1){el.textContent='开赛 D-'+dd;el.dataset.s='pre';}
+      else{el.textContent='开赛 '+p2(Math.floor(ms/36e5))+':'+p2(Math.floor(ms%36e5/6e4));el.dataset.s='pre';}}
+    else if(t<EV_END){var u=Math.floor((t-EV_START)/1000);
+      el.textContent='赛中 '+p2(Math.floor(u/3600))+':'+p2(Math.floor(u%3600/60));el.dataset.s='live';}
+    else{el.textContent='已结束';el.dataset.s='post';}}
+  upd();setInterval(upd,30000);
+})();
+
+</script>
+</body>
+</html>

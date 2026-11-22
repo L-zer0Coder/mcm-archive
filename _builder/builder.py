@@ -14,7 +14,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 P = lambda *a: os.path.join(ROOT, *a)
 OUT_DOCS = os.path.join(ROOT, "docs")
 
-DOC_ROOTS = ["01_COMAP官方", "02_知识模块", "03_题型打法"]
+DOC_ROOTS = ["01_COMAP官方", "02_知识模块", "03_题型打法", "04_语料库"]
 EV = (EVENT_START_MS, EVENT_END_MS)
 
 
@@ -51,7 +51,7 @@ def render_docs():
                         return "[{}]({}{})".format(
                             label, link_to(os.path.join(OUT_DOCS, *t_rel.split("/"))), frag)
                     return "[{}]({}{})".format(label, link_to(abs_t), frag)
-                return "\\[" + label + "\\](" + tgt + ")"
+                return label + (("（" + tgt + "）") if tgt != label else "")  # 死目标：纯文本，不残留链接语法
             text = re.sub(r"\[([^\]]*)\]\(([^)\s]+)\)", sub, text)
             # 数学隔离：公式先抽走再转 markdown，防 $x_{ij}$ 被斜体/转义破坏（代码围栏不动）
             stash = []
