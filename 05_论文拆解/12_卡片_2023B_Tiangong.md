@@ -1,6 +1,6 @@
-# 模式卡片 · 2023 MCM B · 队伍 2315379（Tiangong University，Outstanding Winner + INFORMS Award）
+# 模式卡片 · 2023 MCM B · 队伍 2315379（Tiangong University，Outstanding Winner + Frank Giordano Award）
 
-> **身份验证链**：论文 PDF 页眉每页自印 "Team#2315379" + Summary Sheet 印 Team Control Number 2315379（p.1）+ 信件落款 "#2315379 2023.2.20"（p.22，符合 2023 年 2 月赛程）→ 官方 2023_B_Results.pdf 交叉验证（本站验证）：**Tiangong University / 顾问 Wang Xiaoyin / 2023 B Outstanding Winner + INFORMS Award**；站内 [00_语料库总览](00_语料库总览.html) 同步记录"2023 B 三 O 全中（清华/天工-INFORMS/杜克-Giordano）"，2026-11-22 核。论文正文匿名（无作者名），身份全部来自 Results 册。
+> **身份验证链**：论文 PDF 页眉每页自印 "Team#2315379" + Summary Sheet 印 Team Control Number 2315379（p.1）+ 信件落款 "#2315379 2023.2.20"（p.22，符合 2023 年 2 月赛程）→ 官方 2023_B_Results.pdf 交叉验证（本站验证）：**Tiangong University / 顾问 Wang Xiaoyin / 2023 B Outstanding Winner + Frank Giordano Award**；站内 [00_语料库总览](00_语料库总览.html) 已按终审纠正为"清华-INFORMS/天工-Giordano/杜克-COMAP Scholarship"（2026-11-23 核）。论文正文匿名（无作者名），身份全部来自 Results 册。
 > **页码纪律**：正文页眉自印 "Page N of 25" 与 PDF 页码一致（25/25 页逐页读）；Summary Sheet 无页眉；非技术信件两页（PDF p.21-22）为羊皮纸装饰版式无页眉页码，位置由前后页眉（Page 20/23 of 25）夹逼确认。卡内页码即 PDF 页码 p.1–25。
 > **版权纪律**：PDF 存本地学习目录（不进公开仓库）；本卡只放本站原创分析与 ≤25 词短引注。
 > **对照基线**：同题清华 O 卡 [05_卡片_2023B_Tsinghua](05_卡片_2023B_Tsinghua.html)（2300136，下称"清华 O"）、同题福州 F 卡 [04_卡片_2023B_Fuzhou](04_卡片_2023B_Fuzhou.html)（2316192，下称"F 卡"）、同题杜克 O（2318300，本卡仅深读其 Summary Sheet p.1 作路线证据，已在自查标注）。站内方法页交叉对照：[05_评价与决策](../02_知识模块/05_评价与决策.html)、[E_可持续](../03_题型打法/E_可持续.html)。
@@ -9,7 +9,7 @@
 
 ```json
 {
-  "team": "2315379（Tiangong University，顾问 Wang Xiaoyin；2023 B Outstanding Winner + INFORMS Award，官方 Results 册交叉验证；PDF 正文匿名，页眉自证队伍号，信件落款 2023.2.20）",
+  "team": "2315379（Tiangong University，顾问 Wang Xiaoyin；2023 B Outstanding Winner + Frank Giordano Award，官方 Results 册交叉验证；PDF 正文匿名，页眉自证队伍号，信件落款 2023.2.20）",
   "problem": "2023-B（Reimagining Maasai Mara：马赛马拉区内区外的资源管理分区、政策排序方法与长期趋势确定性）",
   "tiers": {
     "summary": {
@@ -89,7 +89,7 @@
 
 杜克侧证据仅为其 Summary Sheet p.1（本卡未深读全篇，路线归纳以摘要自述为限）。
 
-1. **问题 1 的求解范式三分**。清华：四 section 评分网络+AHP 定权+24 情景 MATLAB 仿真，政策=参数改写（清华卡 p.8-17）；天工：36 格 0-1 双目标规划，Lingo 求出三套可数整数解（p.11 Table 5）；杜克：六分量 Lotka-Volterra 动力学，政策=扰动模型参数+L-BFGS-B 找最大社会效益参数（杜克 p.1）。**三 O 里唯一"真跑求解器出整数解"的是天工——INFORMS 奖的运筹味落点正在此**：显式目标函数（eq14/15, p.11）、约束逐条带经济含义（游客上限/收入保障, p.10-11）、算法伪代码（Algorithm 2, p.14）、求解器工具链实名（Lingo 17.0, p.25）。
+1. **问题 1 的求解范式三分**。清华：四 section 评分网络+AHP 定权+24 情景 MATLAB 仿真，政策=参数改写（清华卡 p.8-17）；天工：36 格 0-1 双目标规划，Lingo 求出三套可数整数解（p.11 Table 5）；杜克：六分量 Lotka-Volterra 动力学，政策=扰动模型参数+L-BFGS-B 找最大社会效益参数（杜克 p.1）。**三 O 里唯一"真跑求解器出整数解"的是天工——Frank Giordano 奖的运筹味落点正在此**：显式目标函数（eq14/15, p.11）、约束逐条带经济含义（游客上限/收入保障, p.10-11）、算法伪代码（Algorithm 2, p.14）、求解器工具链实名（Lingo 17.0, p.25）。
 2. **排名机制的分歧**。清华用 AHP 综合分数排序（三矩阵+CR 三值, 清华卡 p.15-16）；天工用双判据直比——交互（图最短路）+经济（eq18 直算），两判据在三个情景上同向指向 scenario 2（p.15），**判据同向使其无需任何赋权合成，恰好绕开 05 模块 §1.2 的 AHP/熵权泥潭**；但代价是判据冲突时无仲裁规则（读不出），且交互侧无逐情景数值表（p.13-15 仅图示）。杜克用 utility function 把社会效益折成单值再优化（杜克 p.1）。
 3. **"确定性"交付的武器库不同**。清华：随机残差+α 扫描+CC 区间三层（清华卡 p.11/21/22）；天工：模型选择统计比较（R²/S 对跑, p.16）+**外生冲击 t 检验（p=0.049, p.17）**+四特例权重扰动（p.23）——三家中唯一做统计假设检验的一家；杜克：渐近稳定性+参数扫描长期行为（杜克 p.1）。同题面 "estimates of the certainties"，三家分别用仿真扰动/统计检验/动力学稳定性作答。
 4. **可迁移性交付的深度-厚度反差**。清华 CC 校正系数做成定量检验并自带二次敏感度、报稳定区间（清华卡 p.22）；天工迁移动作最实（可行性对照表 Table 11+两处约束重参数化 eq20-21+五分区图, p.18-20）但输出最薄（重解无任何数字）；杜克仅在摘要声明 extensibility（杜克 p.1）。**清华交付"检验"，天工交付"动作"，杜克交付"声明"。**

@@ -1,6 +1,6 @@
 # 模式卡片 · 2023 MCM B · 队伍 2300136（Tsinghua University，Outstanding Winner）
 
-> **身份验证链**：论文 PDF 页眉自印 "Team # 2300136"（每页）+ Summary Sheet 印队伍号 2300136（p.1）；信件落款 "MCM #2300136, 2023.2.20"（p.3，符合 2023 年 2 月赛程）→ 官方 Results 册交叉验证（本站）（2023_B_Results.pdf p.3-4）：**Tsinghua University / 顾问 Heng Liang / 2023 B 题 Outstanding Winner**，2026-11-22 核。论文正文匿名（无作者名），身份全部来自 Results 册。
+> **身份验证链**：论文 PDF 页眉自印 "Team # 2300136"（每页）+ Summary Sheet 印队伍号 2300136（p.1）；信件落款 "MCM #2300136, 2023.2.20"（p.3，符合 2023 年 2 月赛程）→ 官方 Results 册交叉验证（本站）（2023_B_Results.pdf p.1-2）：**Tsinghua University / 顾问 Heng Liang / 2023 B 题 Outstanding Winner**，2026-11-22 核。论文正文匿名（无作者名），身份全部来自 Results 册。
 > **页码纪律**：本 PDF 页眉自印 "Page N of 25"，印刷页码与 PDF 页码一致；卡内页码即 PDF 页码 p.1–25。代理逐页深读（25/25 页）。
 > **版权纪律**：PDF 存本地学习目录（不进公开仓库）；本卡只放本站原创分析与 ≤25 词短引注。
 > **对照基线**：同题 F 档卡 [04_卡片_2023B_Fuzhou](04_卡片_2023B_Fuzhou.html)（2316192，Finalist，下称 "F 卡"），其 F 档特征 6 条与升档差值候选 5 条为本卡 §2/§3 的对照基线。站内方法页交叉对照：[E_可持续](../03_题型打法/E_可持续.md)、[03_统计与机器学习](../02_知识模块/03_统计与机器学习.md)、[05_评价与决策](../02_知识模块/05_评价与决策.md)。本卡与 F 卡构成全站第一个**同题同年 O-vs-F 升档差值对**。
@@ -119,4 +119,4 @@
 
 - 页码逐条核过：本 PDF 页眉 Page N of 25 与 PDF 页码一致（25/25 页逐页读），卡内 p.1–25 全部对应渲染页核实；F 侧页码均引自 04_卡片_2023B_Fuzhou.md（其页码纪律已核）；题面引句核自官方题面 PDF
 - 无臆测：Table 2 政策百分比为设定值、R²=0.5163 偏低未讨论、ξ~N(0, 0.39879²) 单位读不出、USD$310 与 247.74 未互证、Fig11 轴标为读图值、Score4 的 β/γ 分量未列出——均按"读不出/如实登记"处理；网络耦合结构注记标明为结构性观察
-- 身份 O 档经官方 Results 册交叉验证（Tsinghua University / Heng Liang / Outstanding Winner，2023_B_Results.pdf p.3-4）；distinct 与同题 F 卡对照成立、与同题其他 O 卡对照待补；全部英文引注 ≤25 词；对比用事实陈述，反向亮点单列防一面倒
+- 身份 O 档经官方 Results 册交叉验证（Tsinghua University / Heng Liang / Outstanding Winner，2023_B_Results.pdf p.1-2）；distinct 与同题 F 卡对照成立、与同题其他 O 卡对照待补；全部英文引注 ≤25 词；对比用事实陈述，反向亮点单列防一面倒

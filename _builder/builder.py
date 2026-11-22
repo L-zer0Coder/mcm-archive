@@ -139,7 +139,7 @@ def render_index(built_docs):
                     ("docs/02_知识模块/00_学习路径.html", "学习路径", "68 天计划 · 先读这个"),
                     ("docs/02_知识模块/01_优化方法族.html", "七大方法族", "概念→代码→真题→误用"),
                     ("docs/03_题型打法/A_连续.html", "题型打法 A–F", "方法族→题型的映射"),
-                    ("docs/04_语料库/00_语料库总览.html", "语料库", "三梯队 · 奖项分布三年对比"),
+                    ("docs/04_语料库/00_语料库总览.html", "语料库", "三梯队 · 奖项分布四年对比"),
                     ("docs/04_语料库/02_2026O奖名录.html", "2026 O 奖名录", "41 队 + 学会奖归属"),
                     ("docs/05_论文拆解/00_拆解方法论.html", "论文拆解", "模式卡片方法论"),
                     ("docs/01_COMAP官方/竞赛要点.html", "竞赛要点", "官方规则中文导读"),
@@ -330,7 +330,7 @@ def gen_data():
                    "<li><a href=\"docs/03_题型打法/A_连续.html\">题型打法 A–F</a>：方法族→题型的映射层</li>"
                    "</ul>"
                    "<p><b>语料与拆解：</b></p><ul>"
-                   "<li><a href=\"docs/04_语料库/00_语料库总览.html\">语料库</a>：三梯队路由 + 奖项分布三年对比 + O 奖名录</li>"
+                   "<li><a href=\"docs/04_语料库/00_语料库总览.html\">语料库</a>：三梯队路由 + 奖项分布四年对比 + O 奖名录</li>"
                    "<li><a href=\"docs/05_论文拆解/00_拆解方法论.html\">论文拆解</a>：模式卡片方法论（T1 订阅后逐篇上线）</li>"
                    "</ul>"
                    "<p><b>赛时工具（六件）：</b>选型助手 · 页数预算器 · 96h 作战室 · 闪卡库 · 提示词包 · 论文组装机——"
@@ -359,8 +359,8 @@ def validate():
             idx.setdefault(r.replace(os.sep, "/").lower(), r.replace(os.sep, "/"))
     from urllib.parse import unquote
     bad = []
-    pages = [P("index.html")] + glob.glob(P("docs", "**", "*.html"), recursive=True) \
-        + glob.glob(P("12_赛时工具", "*.html"))
+    pages = ([P("index.html")] + glob.glob(P("docs", "**", "*.html"), recursive=True)
+             + glob.glob(P("06_赛时工具", "*.html")))
     href_re = re.compile(r'(?:href|src)="([^"]+)"')
     dead_re = re.compile(r"\]\([^) ]{1,200}\)")  # 正文里残留的 ](...) 死链接痕迹
     dead_skips = ("<pre", "<code")
