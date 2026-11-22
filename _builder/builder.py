@@ -14,7 +14,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 P = lambda *a: os.path.join(ROOT, *a)
 OUT_DOCS = os.path.join(ROOT, "docs")
 
-DOC_ROOTS = ["01_COMAP官方", "02_知识模块", "03_题型打法", "04_语料库"]
+DOC_ROOTS = ["01_COMAP官方", "02_知识模块", "03_题型打法", "04_语料库", "05_论文拆解"]
 EV = (EVENT_START_MS, EVENT_END_MS)
 
 
