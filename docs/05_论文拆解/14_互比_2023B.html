@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三 O + F 互比 · 2023 MCM B · 同题四队的范式三分岔 · MCM/ICM 备赛知识库</title>
+<meta name="description" content="MCM/ICM 备赛知识库 · 三 O + F 互比 · 2023 MCM B · 同题四队的范式三分岔">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%232B5C8A'/%3E%3Ctext x='50' y='70' font-size='52' font-weight='700' text-anchor='middle' fill='%23FDFCF8' font-family='Georgia,serif'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../_vendor/katex/katex.min.css">
+<style>:root{--paper:#F7F4ED;--sheet:#FDFCF8;--ink:#2A251E;--mut:#6E6557;--dim:#786E60;
+--line:#E7E0D1;--line2:#D9D0BD;--acc:#2B5C8A;--acc-d:#1F4470;--acc-soft:rgba(43,92,138,.07);
+--serif:Georgia,'Times New Roman','Source Han Serif SC','Noto Serif SC',serif;
+--sans:'Segoe UI','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+--mono:ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.85}
+a{color:var(--acc);text-decoration:none}
+a:hover{color:var(--acc-d)}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(253,252,248,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar .in{max-width:1060px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:9px 22px}
+.topbar a{color:var(--mut)}
+.brand{display:flex;align-items:center;gap:9px;color:var(--ink);font-weight:600;font-size:13.5px}
+.brand .seal{width:24px;height:24px;border-radius:5px;background:var(--acc);color:#FDFCF8;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:13px;font-weight:700}
+.clock{font-family:var(--mono);font-size:11px;padding:1px 8px;border:1px solid rgba(43,92,138,.28);border-radius:3px;color:var(--acc);background:var(--acc-soft);white-space:nowrap}
+.clock[data-s='live']{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.clock[data-s='post']{color:var(--dim);border-color:var(--line2);background:transparent}
+.wrap{max-width:1060px;margin:0 auto;padding:22px 22px 80px}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:4px;padding:16px 20px}
+.btn{display:inline-flex;align-items:center;height:32px;padding:0 14px;border:1px solid var(--line2);border-radius:3px;font-size:12.5px;color:var(--ink);background:var(--sheet);cursor:pointer;font-family:inherit}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.solid{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.btn.solid:hover{background:var(--acc-d);color:#FDFCF8}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:11.5px;border-bottom:1px solid var(--line2)}
+tbody tr:nth-child(2n) td{background:#F8F5EC}
+pre{background:#F9F6EF;border:1px solid var(--line);border-radius:4px;padding:12px 15px;overflow:auto;font-size:12.5px;line-height:1.8}
+code{font-family:var(--mono)}
+footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</style>
+</head>
+<body>
+<div class="topbar"><div class="in">
+  <a class="brand" href="../../index.html"><span class="seal">M</span>MCM/ICM 备赛知识库</a>
+  <span class="crumb">05_论文拆解</span>
+  <span class="clock" id="clock"></span>
+</div></div>
+<div class="wrap">
+<h1 class="pt">三 O + F 互比 · 2023 MCM B · 同题四队的范式三分岔</h1>
+<blockquote>
+<p>2023 B《Reshape the Crowning Glory of Maasai Mara》（马赛马拉人地平衡）四张卡：清华 05_卡片_2023B_Tsinghua（05_卡片_2023B_Tsinghua.html）（O）、天工 12_卡片_2023B_Tiangong（12_卡片_2023B_Tiangong.html）（O + INFORMS）、杜克 13_卡片_2023B_Duke（13_卡片_2023B_Duke.html）（O + Frank Giordano）、福州 04_卡片_2023B_Fuzhou（04_卡片_2023B_Fuzhou.html）（F）。全部队伍号经官方 <code>2023_B_Results.pdf</code> 验证（2026-11-22）。升级差值单题对照（清华 vs 福州）见 06_升档差值_2023B（06_升档差值_2023B.html）。</p>
+</blockquote>
+<h2>一、范式三分岔总表</h2>
+<table>
+<thead>
+<tr>
+<th>队（奖）</th>
+<th>核心范式</th>
+<th>政策→模型接口</th>
+<th>检验路线</th>
+<th>摘要策略</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>清华（O）</td>
+<td><strong>评分网络 + AHP 分区定权</strong> + 24 情景 MATLAB 仿真</td>
+<td>Table 2 政策百分比改写模型参数</td>
+<td>CR 三值全报 + CC 迁移检验 + α 扫描 + 随机残差</td>
+<td>工作量计数 + 前置信件 12 处结果数字</td>
+</tr>
+<tr>
+<td>天工（O + INFORMS）</td>
+<td><strong>36 格整数规划（Lingo）</strong> + Dijkstra 最小交互 + COVID t 检验</td>
+<td>0-1 政策组合显式目标函数（经济语义约束）</td>
+<td>Welch t 检验（p=0.049 真算）+ Table 8 闭合 + Yellowstone 迁移</td>
+<td>方法句带参数（8.75km 等）</td>
+</tr>
+<tr>
+<td>杜克（O + Giordano）</td>
+<td><strong>单一 6-ODE 动力系统</strong>（修改 LV + Gordon-Schaefer + 旅游）+ L-BFGS-B 效用优化</td>
+<td>政策=参数：26 参数筛 8 个政府可控 → 效用函数</td>
+<td>零增长线闭式均衡 + Jacobian 稳定性 + 稳定域阈值 I_t&lt;P_t、m&lt;53.77</td>
+<td>Summary 本身 14 处数字</td>
+</tr>
+<tr>
+<td>福州（F）</td>
+<td><strong>三棒接力</strong>（耦合度分类 → AHP+0-1 规划 → Logistic+随机仿真）</td>
+<td>定性规则 + 单网格孤例</td>
+<td>CR 声明式 + 敏感度无 Score 定义 + 加噪鲁棒</td>
+<td>工作量计数（无结果量值）</td>
+</tr>
+</tbody>
+</table>
+<h2>二、跨队事实（四卡对照才能看见的）</h2>
+<ol>
+<li><strong>范式三分岔</strong>：同一道题，三支 O 队给出三种互不相同的骨架——评分网络+仿真（清华）、整数规划+图算法（天工）、动力系统+效用优化（杜克）。<strong>F 队的"三棒接力"其实也是完整链条</strong>——差距不在范式选择，在证据链闭环（见四）。</li>
+<li><strong>INFORMS 奖的运筹味可验证</strong>：天工是唯一真跑求解器出整数解的队（Lingo 实名 + Algorithm 2 伪代码 + 显式目标函数），且 Table 8 与 Welch t 检验双双通过复算闭合——<strong>学会奖的评审倾向与论文方法自称一致</strong>。</li>
+<li><strong>杜克证明"分区不是必做题"</strong>：均匀性假设 M-1 下不做空间分区照样 O——靠 §11.1 泛化四条 consideration 交付适用边界。对照 2026 D 教训（别按题型惯性硬套）：<strong>题面没要求的动作，做了要说明为什么、不做要交付边界</strong>。</li>
+<li><strong>参数账三种风格</strong>：清华"跟随方程+挂文献"、天工"单位值×格数可闭合"、杜克"一页 26 常数三分法"——但杜克的账本自身有断点（见下）。三种风格共同的底线是<strong>每个参数有数值有来源</strong>。</li>
+<li><strong>美国队的母语优势与数据偏好</strong>：杜克句式带习语但并非零笔误（textiBaseline 等）；数据源偏好 NatGeo/safaribookings/US NPS 科普来源+数学期刊，与清华的生态普查文献对照鲜明——<strong>数据来源的"权威距离"是文化差异，不是档次差异</strong>。</li>
+</ol>
+<h2>三、杜克卡独有审计发现（诚实登记）</h2>
+<ul>
+<li><strong>成本账断点 ⚠</strong>：Table 4/5 分项成本加和 ≈466.8m ≠ 总计 ~KSh379m，且 466.8−87.1=379.7 恰差一个 87.1m 项——论文未解释（p.18/23）</li>
+<li>c=5·10⁵ 与 Cost 行隐含乘数 10⁷ 对不上账（p.18）</li>
+<li>"13 policies" 与枚举 14 条不符（p.1 vs p.18-19）；无一张实数据图；[6][17] 疑重复引用</li>
+</ul>
+<h2>四、给备赛者的三句收束</h2>
+<ol>
+<li><strong>范式选择自由度比想象大</strong>：三 O 三种范式都成立——选队内能力画像最匹配的那条，然后把证据链闭环。</li>
+<li><strong>学会奖有方法指纹</strong>：INFORMS→真跑求解器、Giordano→生态数模交叉——投其所好不是投机，是让方法自称与证据一致。</li>
+<li><strong>账本断点不分国籍</strong>：杜克的成本账断点与福州的参数无账同构——<strong>"每个数字有出处、每张表能加和闭合"是跨档位跨语言的通用纪律</strong>。</li>
+</ol>
+</div>
+<footer>MCM/ICM 2027 备赛知识库 · 2027-01-28 开赛 · 数据只存本浏览器</footer>
+<script>window.UPC_UI_ROOT="../../";</script>
+<script defer src="../../_vendor/katex/katex.min.js"></script>
+<script defer src="../../_vendor/katex/contrib/auto-render.min.js"></script>
+<script>window.addEventListener('DOMContentLoaded',function(){
+if(window.renderMathInElement){renderMathInElement(document.body,
+{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});</script>
+<script src="../../global-ui.js" defer></script>
+<script>
+var EV_START=1801173600000,EV_END=1801530000000;
+function p2(n){return n<10?'0'+n:''+n;}
+(function(){
+  var el=document.getElementById('clock');
+  function upd(){var t=Date.now();
+    if(t<EV_START){var ms=EV_START-t,dd=Math.floor(ms/864e5);
+      if(dd>=1){el.textContent='开赛 D-'+dd;el.dataset.s='pre';}
+      else{el.textContent='开赛 '+p2(Math.floor(ms/36e5))+':'+p2(Math.floor(ms%36e5/6e4));el.dataset.s='pre';}}
+    else if(t<EV_END){var u=Math.floor((t-EV_START)/1000);
+      el.textContent='赛中 '+p2(Math.floor(u/3600))+':'+p2(Math.floor(u%3600/60));el.dataset.s='live';}
+    else{el.textContent='已结束';el.dataset.s='post';}}
+  upd();setInterval(upd,30000);
+})();
+
+</script>
+</body>
+</html>
