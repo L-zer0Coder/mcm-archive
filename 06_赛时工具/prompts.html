@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>提示词包 · MCM/ICM 备赛知识库</title>
+<meta name="description" content="MCM/ICM 备赛工具：赛时 AI 协作提示词 12 条（一键复制）。纪律与披露要求随附，数据不联网。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%232B5C8A'/%3E%3Ctext x='50' y='70' font-size='52' font-weight='700' text-anchor='middle' fill='%23FDFCF8' font-family='Georgia,serif'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../_vendor/katex/katex.min.css">
+<style>:root{--paper:#F7F4ED;--sheet:#FDFCF8;--ink:#2A251E;--mut:#6E6557;--dim:#786E60;
+--line:#E7E0D1;--line2:#D9D0BD;--acc:#2B5C8A;--acc-d:#1F4470;--acc-soft:rgba(43,92,138,.07);
+--serif:Georgia,'Times New Roman','Source Han Serif SC','Noto Serif SC',serif;
+--sans:'Segoe UI','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+--mono:ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.85}
+a{color:var(--acc);text-decoration:none}
+a:hover{color:var(--acc-d)}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(253,252,248,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar .in{max-width:1060px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:9px 22px}
+.topbar a{color:var(--mut)}
+.brand{display:flex;align-items:center;gap:9px;color:var(--ink);font-weight:600;font-size:13.5px}
+.brand .seal{width:24px;height:24px;border-radius:5px;background:var(--acc);color:#FDFCF8;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:13px;font-weight:700}
+.clock{font-family:var(--mono);font-size:11px;padding:1px 8px;border:1px solid rgba(43,92,138,.28);border-radius:3px;color:var(--acc);background:var(--acc-soft);white-space:nowrap}
+.clock[data-s='live']{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.clock[data-s='post']{color:var(--dim);border-color:var(--line2);background:transparent}
+.wrap{max-width:1060px;margin:0 auto;padding:22px 22px 80px}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:4px;padding:16px 20px}
+.btn{display:inline-flex;align-items:center;height:32px;padding:0 14px;border:1px solid var(--line2);border-radius:3px;font-size:12.5px;color:var(--ink);background:var(--sheet);cursor:pointer;font-family:inherit}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.solid{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.btn.solid:hover{background:var(--acc-d);color:#FDFCF8}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:11.5px;border-bottom:1px solid var(--line2)}
+tbody tr:nth-child(2n) td{background:#F8F5EC}
+pre{background:#F9F6EF;border:1px solid var(--line);border-radius:4px;padding:12px 15px;overflow:auto;font-size:12.5px;line-height:1.8}
+code{font-family:var(--mono)}
+footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}
+.cats{margin:10px 0}
+.cat{display:inline-block;margin:3px 6px 3px 0;padding:4px 10px;border:1px solid #D9D0BD;border-radius:3px;
+     font-size:12px;cursor:pointer;background:#FDFCF8}
+.cat.on{background:#2B5C8A;border-color:#2B5C8A;color:#FDFCF8}
+.pr{border:1px solid #D9D0BD;background:#FDFCF8;border-radius:4px;padding:14px 18px;margin-bottom:12px}
+.pr h3{margin:0 0 2px;font-size:14px}
+.pr .when{font-size:12px;color:#786E60;margin:2px 0 8px}
+.pr pre{background:#F9F6EF;border:1px solid #E7E0D1;border-radius:4px;padding:10px 14px;
+        font-size:12.5px;line-height:1.8;white-space:pre-wrap;word-break:break-word;margin:8px 0 6px}
+.pr .note{font-size:12.5px;color:#6E6557}
+.pr .btn{height:26px;font-size:11.5px;padding:0 10px}
+.disc{border:1px solid #B04A3A;background:#FBF3F1;border-radius:4px;padding:10px 16px;font-size:12.5px;
+      color:#8A4A3E;margin-top:6px}
+
+</style>
+</head>
+<body>
+<div class="topbar"><div class="in">
+  <a class="brand" href="../index.html"><span class="seal">M</span>MCM/ICM 备赛知识库</a>
+  <span class="crumb">赛时工具</span>
+  <span class="clock" id="clock"></span>
+</div></div>
+<div class="wrap">
+<h1 class="pt">提示词包</h1>
+<p class="suggest">用途：赛时 AI 协作的 12 条提示词，全部锚定 02_知识模块 的方法纪律；【】为需要队伍自己填的槽位，一键复制后粘进对话框。使用前必读页底披露纪律。</p>
+<div class="cats"><span class="cat on" data-c="全部">全部</span><span class="cat" data-c="主控">主控</span><span class="cat" data-c="优化">优化</span><span class="cat" data-c="微分方程">微分方程</span><span class="cat" data-c="统计">统计</span><span class="cat" data-c="图论">图论</span><span class="cat" data-c="评价">评价</span><span class="cat" data-c="写作">写作</span><span class="cat" data-c="披露">披露</span></div>
+<div id="list"></div>
+<div class="disc"><b>AI 使用披露纪律（COMAP 政策 v102025，2026-11-22 核）：</b>每条 AI 使用都要记录原始提问与<b>完整输出</b>（不是摘要）；生成内容必须人工验证后才可进论文；纯翻译类可只附一句声明。报告格式见 <a href="../docs/02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/07_%E5%86%99%E4%BD%9C%E4%B8%8ESummarySheet.html">07_写作与SummarySheet</a> §1.5 与官方 AI Policy。</div>
+<div class="pr" data-c="主控" style="display:none"><h3>0. T0 选题对照：三行翻译压力测试 <span class="cat-tag" style="font-size:11px;color:#786E60">[主控]</span></h3><div class="when">何时用：开赛 2h 内，对候选题各跑一次</div><button class="btn" data-k="0">复制提示词</button><pre id="p0">你是数模竞赛评审教练。以下是我对【题目字母】的三行翻译：
+变量：…
+目标：…
+约束：…
+任务：1) 指出翻译中把『题面要求』漏掉或曲解的地方；2) 指出变量类型（连续/整数）我可能判断错的地方；3) 用三个追问检验我是否真的理解了这道题在问什么。不要替我写模型。</pre><div class="note">纪律：只让它挑毛病，不让它代写——选题阶段的判断必须是自己做的，否则后面整条模型链都在替别人打工。</div></div>
+<div class="pr" data-c="主控" style="display:none"><h3>1. T5 每日摘要迭代：六要素压测 <span class="cat-tag" style="font-size:11px;color:#786E60">[主控]</span></h3><div class="when">何时用：每天写完 Summary 后</div><button class="btn" data-k="1">复制提示词</button><pre id="p1">以下是我们的 Summary Sheet 草稿：
+【粘贴全文】
+按六要素逐槽打勾并指出缺失：①问题与目标是否具体到量 ②方法主线是否体现模型间输入输出关系 ③关键结果句是否全部带数字（数值+单位+对照物）④检验与稳健性是否至少一句 ⑤是否回答了题目要求的每个交付物 ⑥有无『首先…然后…』式流水账。逐条给出修改示例，但不要整段重写。</pre><div class="note">纪律：对应 07_写作模块 六要素骨架。它给示例可以，整段重写不行——Summary 必须留有队伍自己的语言痕迹。</div></div>
+<div class="pr" data-c="优化" style="display:none"><h3>2. MILP 建模体检：big-M 与对称性 <span class="cat-tag" style="font-size:11px;color:#786E60">[优化]</span></h3><div class="when">何时用：模型写完、求解超时或结果反直觉时</div><button class="btn" data-k="2">复制提示词</button><pre id="p2">这是我的 MILP 模型：
+变量：…
+约束（含 big-M 约束请标出）：…
+求解表现：【规模/耗时/是否超时】
+逐条检查：1) 每个大 M 是否能换成数据上界（给出换法）；2) 是否存在对称性（相同对象可互换）导致搜索爆炸，给出破对称约束；3) 决策变量类型有没有多余整数化；4) 建议先跑通的最小可行模型长什么样。</pre><div class="note">纪律：对应 01_优化模块 §1.4/§4.2/§4.3。它给的约束改法要自己验证可行域没被误杀。</div></div>
+<div class="pr" data-c="优化" style="display:none"><h3>3. infeasible 排查三步 <span class="cat-tag" style="font-size:11px;color:#786E60">[优化]</span></h3><div class="when">何时用：求解器报无可行解时</div><button class="btn" data-k="3">复制提示词</button><pre id="p3">我的模型 infeasible：
+约束清单：…
+数据规模与单位：…
+按三步排查：1) 哪两条约束可能直接冲突（指出具体条款）；2) 单位或量纲可疑的地方（吨/千克、小时/分钟）；3) big-M 是否把可行域压死。最后给我一个『显然可行的测试解』构造思路，让我先验证约束系统。</pre><div class="note">纪律：对应 01_优化模块 §4.1。测试解必须真的手工过一遍约束——这是赛时纪律，不是可选项。</div></div>
+<div class="pr" data-c="优化" style="display:none"><h3>4. gap 与求解报告规范 <span class="cat-tag" style="font-size:11px;color:#786E60">[优化]</span></h3><div class="when">何时用：拿到最优解后写结果段前</div><button class="btn" data-k="4">复制提示词</button><pre id="p4">求解器输出：【最优值/gap/运行时间/mip_gap】
+帮我：1) 把这三件事写成论文里规范的一句话报告（数值+对照+含义）；2) 判断我该报告『已证最优』（用求解器 gap）还是『近似够好』（与初始 LP 界的差距）；3) 若是启发式，给出附界证据的报告句式模板。</pre><div class="note">纪律：对应 01_优化模块 §2.2 读法——两个 gap 含义不同，混用是常见硬伤。</div></div>
+<div class="pr" data-c="微分方程" style="display:none"><h3>5. 数值设置审查 <span class="cat-tag" style="font-size:11px;color:#786E60">[微分方程]</span></h3><div class="when">何时用：solve_ivp 跑完准备画图前</div><button class="btn" data-k="5">复制提示词</button><pre id="p5">我的 ODE：
+方程组：…
+初值与参数：…
+当前设置：【rtol/atol/max_step/求解器】
+检查：1) 是否多时间尺度共存（该不该换 BDF/LSODA）；2) rtol 单独使用是否够（atol 要不要补）；3) 有无守恒量可做漂移检查；4) 收敛性检验的具体步骤；5) 平衡点与稳定性分析该怎么做。</pre><div class="note">纪律：对应 02_微分方程模块 §1.2/§1.4 与 §4。它说的每一条都要在自己模型上复现验证，不通过的设置不要采信。</div></div>
+<div class="pr" data-c="统计" style="display:none"><h3>6. 清洗流水线留账 <span class="cat-tag" style="font-size:11px;color:#786E60">[统计]</span></h3><div class="when">何时用：拿到数据第一天</div><button class="btn" data-k="6">复制提示词</button><pre id="p6">我的数据集字段与样本量：【描述】
+帮我设计清洗流水线表：步骤/动作/理由/预计影响行数四列，覆盖缺失、异常、口径、重复四类；并指出哪些操作会泄漏未来信息（时序数据），给出前向填充的替代方案。</pre><div class="note">纪律：对应 03_统计模块 §1.1/§1.5。流水线表直接进论文附录——这是 C 题可复现性的起点。</div></div>
+<div class="pr" data-c="统计" style="display:none"><h3>7. 共线性与样本外纪律 <span class="cat-tag" style="font-size:11px;color:#786E60">[统计]</span></h3><div class="when">何时用：回归结果反直觉时</div><button class="btn" data-k="7">复制提示词</button><pre id="p7">回归结果：系数=【列表】，其中【某系数】符号反直觉。
+帮我：1) 判断这是否多重共线性症状（说明该查什么：相关矩阵/VIF）；2) 给出合并/删特征的候选方案；3) 提醒我样本外检验的正确流程（训练/验证/测试三分，测试集只用一次）。不要直接给『正确系数』。</pre><div class="note">纪律：对应 03_统计模块 §2.1 的活案例——符号翻转是共线性症状，不是『净效应』。</div></div>
+<div class="pr" data-c="图论" style="display:none"><h3>8. 网络定义表审查 <span class="cat-tag" style="font-size:11px;color:#786E60">[图论]</span></h3><div class="when">何时用：画完网络模型图后</div><button class="btn" data-k="8">复制提示词</button><pre id="p8">我的网络定义：节点=…（语义：…）
+边=…（有向/无向，权重及单位：…）
+我要回答的问题：…
+检查：1) 节点/边语义是否与要回答的问题匹配；2) 有向无向选择是否正确；3) 权与目标是否一致（求时间别用距离）；4) 是否该用时变网络（时间展开图），若是给出最小构造。</pre><div class="note">纪律：对应 04_图论模块 §1.1。定义表先过这关，后面算法才有意义。</div></div>
+<div class="pr" data-c="评价" style="display:none"><h3>9. 评价体系体检：逆指标与权重 <span class="cat-tag" style="font-size:11px;color:#786E60">[评价]</span></h3><div class="when">何时用：指标表与权重定稿前</div><button class="btn" data-k="9">复制提示词</button><pre id="p9">我的评价模型：
+指标表：【名称/方向/来源】
+权重方法：【AHP/熵权/组合】
+合成方法：【TOPSIS/加权平均】
+检查：1) 每个成本型指标的逆变换是否做了（含 0 值禁用 1/x）；2) 指标冗余（相关高的双计权重）；3) AHP 的 CR 是否算了、熵权是否与主观法组合；4) 劣解淘汰的硬底线设了没有；5) 权重 ±20% 敏感度怎么做。</pre><div class="note">纪律：对应 05_评价模块 §1 与 §4 全部八条。它列的检查项要逐条落到自己的表上。</div></div>
+<div class="pr" data-c="写作" style="display:none"><h3>10. 中译英两段式润色 <span class="cat-tag" style="font-size:11px;color:#786E60">[写作]</span></h3><div class="when">何时用：任何英文段落定稿前</div><button class="btn" data-k="10">复制提示词</button><pre id="p10">以下是我的论文英文段落：
+【粘贴】
+第一步（机械修订）：只列出冗余表达（In order to / it can be seen that / has the ability to / 名词化臃肿 / obviously 类语气词），给出替换；第二步（语态重写）：指出被动堆叠句，给出主动语态改写，并解释为什么机械替换不够。不要改变我的技术内容与数字。</pre><div class="note">纪律：对应 07_写作模块 §1.4 与 §2——两段式工序：脚本删冗余 → 人工改语态。它的改写要逐句人工复核。</div></div>
+<div class="pr" data-c="披露" style="display:none"><h3>11. AI 使用报告生成 <span class="cat-tag" style="font-size:11px;color:#786E60">[披露]</span></h3><div class="when">何时用：提交前终检</div><button class="btn" data-k="11">复制提示词</button><pre id="p11">本次比赛我们使用了【工具名与版本】。以下是使用记录：
+提问 1：【原始提问逐字】
+输出 1：【完整输出】
+…
+帮我把这些整理成 COMAP AI 政策要求的 Report on Use of AI 格式（每条：Query 原文 + Output 完整原文），并检查：1) 是否每条都有完整输出（不是摘要）；2) 哪些生成内容被我们人工验证/修改过需要标注；3) 纯翻译类使用是否按政策附一句声明即可。</pre><div class="note">纪律：对应 07_写作模块 §1.5 与官方政策 v102025：complete output 是合规线；未验证的输出与未披露同样危险。</div></div>
+</div>
+<footer>MCM/ICM 2027 备赛知识库 · 2027-01-28 开赛 · 数据只存本浏览器</footer>
+<script>window.UPC_UI_ROOT="../";</script>
+<script defer src="../_vendor/katex/katex.min.js"></script>
+<script defer src="../_vendor/katex/contrib/auto-render.min.js"></script>
+<script>window.addEventListener('DOMContentLoaded',function(){
+if(window.renderMathInElement){renderMathInElement(document.body,
+{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});</script>
+<script src="../global-ui.js" defer></script>
+<script>
+var EV_START=1801173600000,EV_END=1801530000000;
+function p2(n){return n<10?'0'+n:''+n;}
+(function(){
+  var el=document.getElementById('clock');
+  function upd(){var t=Date.now();
+    if(t<EV_START){var ms=EV_START-t,dd=Math.floor(ms/864e5);
+      if(dd>=1){el.textContent='开赛 D-'+dd;el.dataset.s='pre';}
+      else{el.textContent='开赛 '+p2(Math.floor(ms/36e5))+':'+p2(Math.floor(ms%36e5/6e4));el.dataset.s='pre';}}
+    else if(t<EV_END){var u=Math.floor((t-EV_START)/1000);
+      el.textContent='赛中 '+p2(Math.floor(u/3600))+':'+p2(Math.floor(u%3600/60));el.dataset.s='live';}
+    else{el.textContent='已结束';el.dataset.s='post';}}
+  upd();setInterval(upd,30000);
+})();
+
+function bind(){
+  document.querySelectorAll('.cat').forEach(function(el){
+    el.addEventListener('click', function(){
+      document.querySelectorAll('.cat').forEach(function(x){x.classList.remove('on');});
+      el.classList.add('on');
+      var c = el.dataset.c;
+      document.querySelectorAll('.pr').forEach(function(p){
+        p.style.display = (c === '全部' || p.dataset.c === c) ? 'block' : 'none';
+      });
+    });
+  });
+  document.querySelectorAll('.pr').forEach(function(p){ p.style.display='block'; });
+  document.querySelectorAll('button[data-k]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var k = b.dataset.k, pre = document.getElementById('p'+k);
+      var txt = pre.textContent;
+      var done = function(){ b.textContent = '已复制 ✓'; setTimeout(function(){ b.textContent='复制提示词'; }, 1500); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(done, function(){ fallback(txt, done); });
+      } else { fallback(txt, done); }
+    });
+  });
+}
+function fallback(txt, done){
+  var ta = document.createElement('textarea');
+  ta.value = txt; document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); done(); } catch(e) {}
+  document.body.removeChild(ta);
+}
+if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', bind); else bind();
+
+</script>
+</body>
+</html>

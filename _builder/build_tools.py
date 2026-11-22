@@ -7,6 +7,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from site_data import EVENT_START_MS, EVENT_END_MS, PHASES
 from page_shell import page
 from flashcards_data import CARDS
+from prompts_data import PROMPTS
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 P = lambda *a: os.path.join(ROOT, *a)
@@ -445,8 +446,93 @@ if (document.readyState==='loading') document.addEventListener('DOMContentLoaded
     _finish("flashcards.html", html, "闪卡库")
 
 
+PROMPTS_CSS = """
+.cats{margin:10px 0}
+.cat{display:inline-block;margin:3px 6px 3px 0;padding:4px 10px;border:1px solid #D9D0BD;border-radius:3px;
+     font-size:12px;cursor:pointer;background:#FDFCF8}
+.cat.on{background:#2B5C8A;border-color:#2B5C8A;color:#FDFCF8}
+.pr{border:1px solid #D9D0BD;background:#FDFCF8;border-radius:4px;padding:14px 18px;margin-bottom:12px}
+.pr h3{margin:0 0 2px;font-size:14px}
+.pr .when{font-size:12px;color:#786E60;margin:2px 0 8px}
+.pr pre{background:#F9F6EF;border:1px solid #E7E0D1;border-radius:4px;padding:10px 14px;
+        font-size:12.5px;line-height:1.8;white-space:pre-wrap;word-break:break-word;margin:8px 0 6px}
+.pr .note{font-size:12.5px;color:#6E6557}
+.pr .btn{height:26px;font-size:11.5px;padding:0 10px}
+.disc{border:1px solid #B04A3A;background:#FBF3F1;border-radius:4px;padding:10px 16px;font-size:12.5px;
+      color:#8A4A3E;margin-top:6px}
+"""
+
+
+def build_prompts():
+    cats = []
+    for c, _, _, _, _ in PROMPTS:
+        if c not in cats:
+            cats.append(c)
+    body = [
+        '<p class="suggest">用途：赛时 AI 协作的 12 条提示词，全部锚定 02_知识模块 的方法纪律；'
+        '【】为需要队伍自己填的槽位，一键复制后粘进对话框。使用前必读页底披露纪律。</p>',
+        '<div class="cats"><span class="cat on" data-c="全部">全部</span>' +
+        "".join('<span class="cat" data-c="{}">{}</span>'.format(c, c) for c in cats) +
+        '</div>',
+        '<div id="list"></div>',
+        '<div class="disc"><b>AI 使用披露纪律（COMAP 政策 v102025，2026-11-22 核）：</b>'
+        '每条 AI 使用都要记录原始提问与<b>完整输出</b>（不是摘要）；生成内容必须人工验证后才可进论文；'
+        '纯翻译类可只附一句声明。报告格式见 <a href="../docs/02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/07_%E5%86%99%E4%BD%9C%E4%B8%8ESummarySheet.html">07_写作与SummarySheet</a> §1.5 与官方 AI Policy。</div>',
+    ]
+    items = []
+    for idx, (c, name, when, text, note) in enumerate(PROMPTS):
+        items.append(
+            '<div class="pr" data-c="{c}" style="display:none">'
+            '<h3>{idx}. {name} <span class="cat-tag" style="font-size:11px;color:#786E60">[{c}]</span></h3>'
+            '<div class="when">何时用：{when}</div>'
+            '<button class="btn" data-k="{idx}">复制提示词</button>'
+            '<pre id="p{idx}">{text}</pre>'
+            '<div class="note">纪律：{note}</div></div>'.format(
+                idx=idx, c=c, name=name, when=when,
+                text=text.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;'),
+                note=note))
+    body.append(chr(10).join(items))
+    script = """
+function bind(){
+  document.querySelectorAll('.cat').forEach(function(el){
+    el.addEventListener('click', function(){
+      document.querySelectorAll('.cat').forEach(function(x){x.classList.remove('on');});
+      el.classList.add('on');
+      var c = el.dataset.c;
+      document.querySelectorAll('.pr').forEach(function(p){
+        p.style.display = (c === '全部' || p.dataset.c === c) ? 'block' : 'none';
+      });
+    });
+  });
+  document.querySelectorAll('.pr').forEach(function(p){ p.style.display='block'; });
+  document.querySelectorAll('button[data-k]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var k = b.dataset.k, pre = document.getElementById('p'+k);
+      var txt = pre.textContent;
+      var done = function(){ b.textContent = '已复制 ✓'; setTimeout(function(){ b.textContent='复制提示词'; }, 1500); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(done, function(){ fallback(txt, done); });
+      } else { fallback(txt, done); }
+    });
+  });
+}
+function fallback(txt, done){
+  var ta = document.createElement('textarea');
+  ta.value = txt; document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); done(); } catch(e) {}
+  document.body.removeChild(ta);
+}
+if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', bind); else bind();
+"""
+    desc = "MCM/ICM 备赛工具：赛时 AI 协作提示词 12 条（一键复制）。纪律与披露要求随附，数据不联网。"
+    html = page("提示词包", "赛时工具", desc, chr(10).join(body), script, uiroot="../", ev=EV)
+    html = html.replace("</style>", PROMPTS_CSS + chr(10) + "</style>", 1)
+    _finish("prompts.html", html, "提示词包")
+
+
 def build():
     build_selector()
     build_budget()
     build_warroom()
     build_flashcards()
+    build_prompts()
