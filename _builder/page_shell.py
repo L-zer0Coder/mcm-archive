@@ -41,7 +41,7 @@ SHELL = r"""<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>__TITLE__ · MCM/ICM 备赛知识库</title>
+<title>__DOCTITLE__</title>
 <meta name="description" content="__DESC__">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%232B5C8A'/%3E%3Ctext x='50' y='70' font-size='52' font-weight='700' text-anchor='middle' fill='%23FDFCF8' font-family='Georgia,serif'%3EM%3C/text%3E%3C/svg%3E">
 <style>__CSS__</style>
@@ -79,9 +79,10 @@ __SCRIPT__
 </html>"""
 
 
-def page(title, crumb, desc, body, script="", uiroot="../", ev=(0, 0)):
+def page(title, crumb, desc, body, script="", uiroot="../", ev=(0, 0), doc_title=None):
     home = uiroot + "index.html"
     return (SHELL.replace("__UIROOT__", uiroot)
+                 .replace("__DOCTITLE__", doc_title or (title + " · MCM/ICM 备赛知识库"))
                  .replace("__TITLE__", title)
                  .replace("__CRUMB__", crumb)
                  .replace("__DESC__", desc)

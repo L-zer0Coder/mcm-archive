@@ -123,7 +123,7 @@ def render_index(built_docs):
 """
     html = page("MCM/ICM 备赛知识库", "首页",
                 "MCM/ICM 2027 备赛知识库：方法族学习、O 奖语料对照、赛时工具。",
-                body, script, uiroot="", ev=EV)
+                body, script, uiroot="", ev=EV, doc_title="首页 · MCM/ICM 备赛知识库")
     with open(P("index.html"), "w", encoding="utf-8", newline="\n") as f:
         f.write(html)
 
