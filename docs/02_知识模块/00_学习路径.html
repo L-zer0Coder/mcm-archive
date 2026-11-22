@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学习路径 —— 68 天备赛计划（11-22 至 1-28） · MCM/ICM 备赛知识库</title>
+<meta name="description" content="MCM/ICM 备赛知识库 · 学习路径 —— 68 天备赛计划（11-22 至 1-28）">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%232B5C8A'/%3E%3Ctext x='50' y='70' font-size='52' font-weight='700' text-anchor='middle' fill='%23FDFCF8' font-family='Georgia,serif'%3EM%3C/text%3E%3C/svg%3E">
+<style>:root{--paper:#F7F4ED;--sheet:#FDFCF8;--ink:#2A251E;--mut:#6E6557;--dim:#786E60;
+--line:#E7E0D1;--line2:#D9D0BD;--acc:#2B5C8A;--acc-d:#1F4470;--acc-soft:rgba(43,92,138,.07);
+--serif:Georgia,'Times New Roman','Source Han Serif SC','Noto Serif SC',serif;
+--sans:'Segoe UI','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+--mono:ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.85}
+a{color:var(--acc);text-decoration:none}
+a:hover{color:var(--acc-d)}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(253,252,248,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar .in{max-width:1060px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:9px 22px}
+.topbar a{color:var(--mut)}
+.brand{display:flex;align-items:center;gap:9px;color:var(--ink);font-weight:600;font-size:13.5px}
+.brand .seal{width:24px;height:24px;border-radius:5px;background:var(--acc);color:#FDFCF8;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:13px;font-weight:700}
+.clock{font-family:var(--mono);font-size:11px;padding:1px 8px;border:1px solid rgba(43,92,138,.28);border-radius:3px;color:var(--acc);background:var(--acc-soft);white-space:nowrap}
+.clock[data-s='live']{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.clock[data-s='post']{color:var(--dim);border-color:var(--line2);background:transparent}
+.wrap{max-width:1060px;margin:0 auto;padding:22px 22px 80px}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:4px;padding:16px 20px}
+.btn{display:inline-flex;align-items:center;height:32px;padding:0 14px;border:1px solid var(--line2);border-radius:3px;font-size:12.5px;color:var(--ink);background:var(--sheet);cursor:pointer;font-family:inherit}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.solid{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.btn.solid:hover{background:var(--acc-d);color:#FDFCF8}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:11.5px;border-bottom:1px solid var(--line2)}
+tbody tr:nth-child(2n) td{background:#F8F5EC}
+pre{background:#F9F6EF;border:1px solid var(--line);border-radius:4px;padding:12px 15px;overflow:auto;font-size:12.5px;line-height:1.8}
+code{font-family:var(--mono)}
+footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</style>
+</head>
+<body>
+<div class="topbar"><div class="in">
+  <a class="brand" href="../../index.html"><span class="seal">M</span>MCM/ICM 备赛知识库</a>
+  <span class="crumb">02_知识模块</span>
+  <span class="clock" id="clock"></span>
+</div></div>
+<div class="wrap">
+<h1 class="pt">学习路径 —— 68 天备赛计划（11-22 至 1-28）</h1>
+<blockquote>
+<p>本页是 mcm-archive 知识模块的学习指南：按周规划你要学什么、练什么、做什么。
+每个模块的正文在对应文件中，跟随 milestones 逐步上线。</p>
+</blockquote>
+<h2>原则</h2>
+<ol>
+<li><strong>边学边建</strong>：知识模块按你需要的顺序上线，写完一篇你学一篇——建站进度 = 备赛进度</li>
+<li><strong>够打就好</strong>：12–15 个方法族覆盖六题型，不求百科全书</li>
+<li><strong>每模块四件套</strong>：概念讲透 → 最小可复现代码 → 在真题中的用法 → 常见误用</li>
+</ol>
+<h2>周计划</h2>
+<table>
+<thead>
+<tr>
+<th>周</th>
+<th>日期</th>
+<th>学什么</th>
+<th>对应模块</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1–2</td>
+<td>11-22 至 12-05</td>
+<td>优化方法族 + 微分方程（A/B 题地基）；LaTeX 模板</td>
+<td>01, 02</td>
+</tr>
+<tr>
+<td>3–4</td>
+<td>12-06 至 12-19</td>
+<td>统计与 ML（C 题地基）；评价方法（E/F 地基）；语料 T1 收录</td>
+<td>03, 05</td>
+</tr>
+<tr>
+<td>5–6</td>
+<td>12-20 至 01-02</td>
+<td>图论与网络（D 题地基）+ 蒙特卡洛（通用）；语料 T2/T3；工具页换装</td>
+<td>04, 06</td>
+</tr>
+<tr>
+<td>7</td>
+<td>01-03 至 01-09</td>
+<td>选型决策树总成 + 模拟赛（真题演练）</td>
+<td>03_题型打法</td>
+</tr>
+<tr>
+<td>8</td>
+<td>01-10 至 01-16</td>
+<td>Summary Sheet 配方精练 + 终检 + AI 报告模板</td>
+<td>07</td>
+</tr>
+<tr>
+<td>9</td>
+<td>01-17 至 01-25</td>
+<td>作战室上线 + 冻结 + 报名确认</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>方法族清单（学习核心）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>方法族</th>
+<th>服务的题型</th>
+<th>核心方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01</td>
+<td>优化方法族</td>
+<td>B、A</td>
+<td>线性规划、整数规划、非线性规划、启发式</td>
+</tr>
+<tr>
+<td>02</td>
+<td>微分方程与动力学</td>
+<td>A</td>
+<td>ODE 建模、数值积分、稳定性分析</td>
+</tr>
+<tr>
+<td>03</td>
+<td>统计与机器学习</td>
+<td>C、E</td>
+<td>回归、分类、时间序列、聚类</td>
+</tr>
+<tr>
+<td>04</td>
+<td>图论与网络</td>
+<td>D、B</td>
+<td>最短路径、网络流、 centrality</td>
+</tr>
+<tr>
+<td>05</td>
+<td>评价与决策</td>
+<td>E、F</td>
+<td>AHP、TOPSIS、熵权法、灰色关联</td>
+</tr>
+<tr>
+<td>06</td>
+<td>蒙特卡洛与模拟</td>
+<td>通用</td>
+<td>蒙特卡洛、离散事件模拟、敏感性分析</td>
+</tr>
+<tr>
+<td>07</td>
+<td>写作与 Summary Sheet</td>
+<td>全部</td>
+<td>Summary 结构、图表规范、AI 披露</td>
+</tr>
+</tbody>
+</table>
+<h2>现在做什么</h2>
+<ol>
+<li><strong>本周学</strong>：01 优化方法族（点上方链接或左栏树）</li>
+<li><strong>开 GitHub 仓库</strong>：建一个空的 <code>mcm-archive</code> 公开仓库，我推上去</li>
+<li><strong>练习</strong>：数值实验台在 M5 阶段上线——届时把当周模块的最小可复现代码跑一遍、改参数观察输出</li>
+</ol>
+</div>
+<footer>MCM/ICM 2027 备赛知识库 · 2027-01-28 开赛 · 数据只存本浏览器</footer>
+<script>window.UPC_UI_ROOT="../../";</script>
+<script src="../../global-ui.js" defer></script>
+<script>
+var EV_START=1801173600000,EV_END=1801530000000;
+function p2(n){return n<10?'0'+n:''+n;}
+(function(){
+  var el=document.getElementById('clock');
+  function upd(){var t=Date.now();
+    if(t<EV_START){var ms=EV_START-t,dd=Math.floor(ms/864e5);
+      if(dd>=1){el.textContent='开赛 D-'+dd;el.dataset.s='pre';}
+      else{el.textContent='开赛 '+p2(Math.floor(ms/36e5))+':'+p2(Math.floor(ms%36e5/6e4));el.dataset.s='pre';}}
+    else if(t<EV_END){var u=Math.floor((t-EV_START)/1000);
+      el.textContent='赛中 '+p2(Math.floor(u/3600))+':'+p2(Math.floor(u%3600/60));el.dataset.s='live';}
+    else{el.textContent='已结束';el.dataset.s='post';}}
+  upd();setInterval(upd,30000);
+})();
+
+</script>
+</body>
+</html>

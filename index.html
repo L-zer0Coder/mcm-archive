@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCM/ICM 备赛知识库 · MCM/ICM 备赛知识库</title>
+<meta name="description" content="MCM/ICM 2027 备赛知识库：方法族学习、O 奖语料对照、赛时工具。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%232B5C8A'/%3E%3Ctext x='50' y='70' font-size='52' font-weight='700' text-anchor='middle' fill='%23FDFCF8' font-family='Georgia,serif'%3EM%3C/text%3E%3C/svg%3E">
+<style>:root{--paper:#F7F4ED;--sheet:#FDFCF8;--ink:#2A251E;--mut:#6E6557;--dim:#786E60;
+--line:#E7E0D1;--line2:#D9D0BD;--acc:#2B5C8A;--acc-d:#1F4470;--acc-soft:rgba(43,92,138,.07);
+--serif:Georgia,'Times New Roman','Source Han Serif SC','Noto Serif SC',serif;
+--sans:'Segoe UI','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+--mono:ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.85}
+a{color:var(--acc);text-decoration:none}
+a:hover{color:var(--acc-d)}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(253,252,248,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar .in{max-width:1060px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:9px 22px}
+.topbar a{color:var(--mut)}
+.brand{display:flex;align-items:center;gap:9px;color:var(--ink);font-weight:600;font-size:13.5px}
+.brand .seal{width:24px;height:24px;border-radius:5px;background:var(--acc);color:#FDFCF8;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:13px;font-weight:700}
+.clock{font-family:var(--mono);font-size:11px;padding:1px 8px;border:1px solid rgba(43,92,138,.28);border-radius:3px;color:var(--acc);background:var(--acc-soft);white-space:nowrap}
+.clock[data-s='live']{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.clock[data-s='post']{color:var(--dim);border-color:var(--line2);background:transparent}
+.wrap{max-width:1060px;margin:0 auto;padding:22px 22px 80px}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:4px;padding:16px 20px}
+.btn{display:inline-flex;align-items:center;height:32px;padding:0 14px;border:1px solid var(--line2);border-radius:3px;font-size:12.5px;color:var(--ink);background:var(--sheet);cursor:pointer;font-family:inherit}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.solid{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.btn.solid:hover{background:var(--acc-d);color:#FDFCF8}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:11.5px;border-bottom:1px solid var(--line2)}
+tbody tr:nth-child(2n) td{background:#F8F5EC}
+pre{background:#F9F6EF;border:1px solid var(--line);border-radius:4px;padding:12px 15px;overflow:auto;font-size:12.5px;line-height:1.8}
+code{font-family:var(--mono)}
+footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</style>
+</head>
+<body>
+<div class="topbar"><div class="in">
+  <a class="brand" href="index.html"><span class="seal">M</span>MCM/ICM 备赛知识库</a>
+  <span class="crumb">首页</span>
+  <span class="clock" id="clock"></span>
+</div></div>
+<div class="wrap">
+<h1 class="pt">MCM/ICM 备赛知识库</h1>
+<div class="card" style="margin-bottom:14px"><b style="font-family:var(--serif);font-size:16px">MCM/ICM 2027 · 2027-01-28 至 02-01（96+ 小时）</b><p style="margin:6px 0;font-size:13px;color:var(--mut)">96 小时 · 3 人一队 · 六题选一 · 25 页英文论文 ·  价值：国际认可 + 保研加分</p><div id="clockrow" style="margin-top:8px"></div></div><h2 style="font-family:var(--serif)">六大题型 · 选对题赢一半</h2><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px"><div class="card" style="margin-bottom:10px"><b style="font-family:var(--serif)">连续</b><span style="color:var(--dim);font-size:12px;margin-left:8px">MCM · A</span><p style="margin:6px 0;font-size:13px;color:var(--mut)">微分方程、动力学、物理场景——需要数值积分与解析分析</p><div style="font-size:12px;color:var(--acc)">方法族：ODE 建模 / 数值积分 / 稳定性分析</div><div style="font-size:12px;color:var(--dim);margin-top:4px">适合：微分方程功底强的队伍</div></div><div class="card" style="margin-bottom:10px"><b style="font-family:var(--serif)">离散</b><span style="color:var(--dim);font-size:12px;margin-left:8px">MCM · B</span><p style="margin:6px 0;font-size:13px;color:var(--mut)">离散优化、排程、组合结构——需要规划与算法设计</p><div style="font-size:12px;color:var(--acc)">方法族：整数规划 / 图论算法 / 启发式</div><div style="font-size:12px;color:var(--dim);margin-top:4px">适合：算法与规划功底强的队伍</div></div><div class="card" style="margin-bottom:10px"><b style="font-family:var(--serif)">数据洞察</b><span style="color:var(--dim);font-size:12px;margin-left:8px">MCM · C</span><p style="margin:6px 0;font-size:13px;color:var(--mut)">真实数据集：清洗→建模→预测→检验</p><div style="font-size:12px;color:var(--acc)">方法族：统计回归 / 机器学习 / 时间序列</div><div style="font-size:12px;color:var(--dim);margin-top:4px">适合：统计与编程功底强的队伍</div></div><div class="card" style="margin-bottom:10px"><b style="font-family:var(--serif)">运筹与网络</b><span style="color:var(--dim);font-size:12px;margin-left:8px">ICM · D</span><p style="margin:6px 0;font-size:13px;color:var(--mut)">网络科学、供应链、排队与调度</p><div style="font-size:12px;color:var(--acc)">方法族：图论网络 / 排队论 / 运筹优化</div><div style="font-size:12px;color:var(--dim);margin-top:4px">适合：运筹学功底强的队伍</div></div><div class="card" style="margin-bottom:10px"><b style="font-family:var(--serif)">可持续</b><span style="color:var(--dim);font-size:12px;margin-left:8px">ICM · E</span><p style="margin:6px 0;font-size:13px;color:var(--mut)">环境/资源政策类——重指标体系与评价</p><div style="font-size:12px;color:var(--acc)">方法族：评价方法 / 系统动力学 / 政策分析</div><div style="font-size:12px;color:var(--dim);margin-top:4px">适合：评价方法扎实的队伍</div></div><div class="card" style="margin-bottom:10px"><b style="font-family:var(--serif)">政策</b><span style="color:var(--dim);font-size:12px;margin-left:8px">ICM · F</span><p style="margin:6px 0;font-size:13px;color:var(--mut)">政策效果评估——重论证与可解释性</p><div style="font-size:12px;color:var(--acc)">方法族：成本效益 / 情景分析 / 论证写作</div><div style="font-size:12px;color:var(--dim);margin-top:4px">适合：写作与逻辑强的队伍</div></div></div><h2 style="font-family:var(--serif);margin-top:26px">方法族模块（学习核心）</h2><table><thead><tr><th>#</th><th>模块</th><th>状态</th><th>入口</th></tr></thead><tbody><tr><td>00</td><td>学习路径</td><td>✓ 就绪</td><td><a href="docs/02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/00_%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84.html">00_学习路径.md</a></td></tr><tr><td>01</td><td>优化方法族</td><td>M01 待写</td><td><span style="color:var(--dim)">01_优化方法族.md（待写）</span></td></tr><tr><td>02</td><td>微分方程与动力学</td><td>M02 待写</td><td><span style="color:var(--dim)">02_微分方程与动力学.md（待写）</span></td></tr><tr><td>03</td><td>统计与机器学习</td><td>M03 待写</td><td><span style="color:var(--dim)">03_统计与机器学习.md（待写）</span></td></tr><tr><td>04</td><td>图论与网络</td><td>M04 待写</td><td><span style="color:var(--dim)">04_图论与网络.md（待写）</span></td></tr><tr><td>05</td><td>评价与决策</td><td>M05 待写</td><td><span style="color:var(--dim)">05_评价与决策.md（待写）</span></td></tr><tr><td>06</td><td>蒙特卡洛与模拟</td><td>M06 待写</td><td><span style="color:var(--dim)">06_蒙特卡洛与模拟.md（待写）</span></td></tr><tr><td>07</td><td>写作与Summary Sheet</td><td>M07 待写</td><td><span style="color:var(--dim)">07_写作与SummarySheet.md（待写）</span></td></tr></tbody></table><h2 style="font-family:var(--serif);margin-top:26px">96 小时作战室阶段表</h2><table><thead><tr><th>阶段</th><th>任务</th><th>要点</th><th>时间</th></tr></thead><tbody><tr><td>T0</td><td>读题与选型</td><td>六题全读，按主场方法族选题</td><td class="num">0–2h</td></tr><tr><td>T1</td><td>文献与数据</td><td>背景研究、数据获取与清洗（C 题大头）</td><td class="num">2–10h</td></tr><tr><td>T2</td><td>假设与模型骨架</td><td>假设编号可追溯、主方程落地</td><td class="num">10–22h</td></tr><tr><td>T3</td><td>求解与编程</td><td>先跑通一条路径再谈扩展</td><td class="num">22–46h</td></tr><tr><td>T4</td><td>检验与灵敏度</td><td>收敛/极限/灵敏度三件套</td><td class="num">46–58h</td></tr><tr><td>T5</td><td>Summary Sheet 与写作</td><td>摘要最后写但每天写一版</td><td class="num">58–82h</td></tr><tr><td>T6</td><td>打磨与页数预算</td><td>25 页硬上限逐节对账</td><td class="num">82–90h</td></tr><tr><td>T7</td><td>终检与提交</td><td>AI 报告 + 提前提交</td><td class="num">90–96h</td></tr></tbody></table><p style="margin-top:14px;font-size:12.5px;color:var(--dim)">本站为 2027 MCM/ICM 备赛知识库 · 构建自 upc-archive 管线 · 官方事实核查于 2026-11-21</p>
+</div>
+<footer>MCM/ICM 2027 备赛知识库 · 2027-01-28 开赛 · 数据只存本浏览器</footer>
+<script>window.UPC_UI_ROOT="";</script>
+<script src="global-ui.js" defer></script>
+<script>
+var EV_START=1801173600000,EV_END=1801530000000;
+function p2(n){return n<10?'0'+n:''+n;}
+(function(){
+  var el=document.getElementById('clock');
+  function upd(){var t=Date.now();
+    if(t<EV_START){var ms=EV_START-t,dd=Math.floor(ms/864e5);
+      if(dd>=1){el.textContent='开赛 D-'+dd;el.dataset.s='pre';}
+      else{el.textContent='开赛 '+p2(Math.floor(ms/36e5))+':'+p2(Math.floor(ms%36e5/6e4));el.dataset.s='pre';}}
+    else if(t<EV_END){var u=Math.floor((t-EV_START)/1000);
+      el.textContent='赛中 '+p2(Math.floor(u/3600))+':'+p2(Math.floor(u%3600/60));el.dataset.s='live';}
+    else{el.textContent='已结束';el.dataset.s='post';}}
+  upd();setInterval(upd,30000);
+})();
+
+(function(){
+  var S=EV_START, E=EV_END, el=document.getElementById('clockrow');
+  function p2(n){return n<10?'0'+n:''+n;}
+  function upd(){var t=Date.now();
+    if(t<S){var ms=S-t,d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5),m=Math.floor(ms%36e5/6e4),s=Math.floor(ms%6e4/1e3);
+      el.innerHTML='<b style="font-family:var(--serif);font-size:22px">开赛倒计时 '+d+' 天 '+p2(h)+':'+p2(m)+':'+p2(s)+
+        '</b> <span style="color:var(--dim);font-size:12px">（'+new Date(S).toLocaleString()+'）</span>';}
+    else if(t<E){var u=Math.floor((t-S)/1000);
+      el.innerHTML='<b style="font-family:var(--serif);font-size:22px;color:var(--acc)">赛中</b> '+
+        p2(Math.floor(u/3600))+':'+p2(Math.floor(u%3600/60))+':'+p2(u%60);}
+    else{el.innerHTML='<b style="font-family:var(--serif);font-size:20px">已结束</b>';}}
+  upd();setInterval(upd,1000);
+})();
+
+</script>
+</body>
+</html>
