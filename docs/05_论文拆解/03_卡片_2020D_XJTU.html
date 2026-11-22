@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>模式卡片 · 2020 ICM D · 队伍 2006782（Xi'an Jiaotong University / INFORMS Award） · MCM/ICM 备赛知识库</title>
+<meta name="description" content="MCM/ICM 备赛知识库 · 模式卡片 · 2020 ICM D · 队伍 2006782（Xi'an Jiaotong University / INFORMS Award）">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%232B5C8A'/%3E%3Ctext x='50' y='70' font-size='52' font-weight='700' text-anchor='middle' fill='%23FDFCF8' font-family='Georgia,serif'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../_vendor/katex/katex.min.css">
+<style>:root{--paper:#F7F4ED;--sheet:#FDFCF8;--ink:#2A251E;--mut:#6E6557;--dim:#786E60;
+--line:#E7E0D1;--line2:#D9D0BD;--acc:#2B5C8A;--acc-d:#1F4470;--acc-soft:rgba(43,92,138,.07);
+--serif:Georgia,'Times New Roman','Source Han Serif SC','Noto Serif SC',serif;
+--sans:'Segoe UI','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+--mono:ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.85}
+a{color:var(--acc);text-decoration:none}
+a:hover{color:var(--acc-d)}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(253,252,248,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar .in{max-width:1060px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:9px 22px}
+.topbar a{color:var(--mut)}
+.brand{display:flex;align-items:center;gap:9px;color:var(--ink);font-weight:600;font-size:13.5px}
+.brand .seal{width:24px;height:24px;border-radius:5px;background:var(--acc);color:#FDFCF8;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:13px;font-weight:700}
+.clock{font-family:var(--mono);font-size:11px;padding:1px 8px;border:1px solid rgba(43,92,138,.28);border-radius:3px;color:var(--acc);background:var(--acc-soft);white-space:nowrap}
+.clock[data-s='live']{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.clock[data-s='post']{color:var(--dim);border-color:var(--line2);background:transparent}
+.wrap{max-width:1060px;margin:0 auto;padding:22px 22px 80px}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:4px;padding:16px 20px}
+.btn{display:inline-flex;align-items:center;height:32px;padding:0 14px;border:1px solid var(--line2);border-radius:3px;font-size:12.5px;color:var(--ink);background:var(--sheet);cursor:pointer;font-family:inherit}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.solid{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.btn.solid:hover{background:var(--acc-d);color:#FDFCF8}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:11.5px;border-bottom:1px solid var(--line2)}
+tbody tr:nth-child(2n) td{background:#F8F5EC}
+pre{background:#F9F6EF;border:1px solid var(--line);border-radius:4px;padding:12px 15px;overflow:auto;font-size:12.5px;line-height:1.8}
+code{font-family:var(--mono)}
+footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</style>
+</head>
+<body>
+<div class="topbar"><div class="in">
+  <a class="brand" href="../../index.html"><span class="seal">M</span>MCM/ICM 备赛知识库</a>
+  <span class="crumb">05_论文拆解</span>
+  <span class="clock" id="clock"></span>
+</div></div>
+<div class="wrap">
+<h1 class="pt">模式卡片 · 2020 ICM D · 队伍 2006782（Xi'an Jiaotong University / INFORMS Award）</h1>
+<blockquote>
+<p>配套：[精读教程暂缺——2020 D 精读待排期] · 同类参照 01_卡片_2024E_Soochow（01_卡片_2024E_Soochow.html）（2024 E O）· D 题打法（../03_题型打法/D_运筹网络.html）</p>
+<p><strong>身份验证链</strong>：论文 PDF 首页 Summary Sheet 印 Problem D + Team Control Number <strong>2006782</strong>（p.1）→ 官方 <code>2020_D_Results.pdf</code> p.2 核对：<strong>Xi'an Jiaotong University / 顾问 Zhang Shengli / 2020 D Outstanding Winner + INFORMS Award</strong>。注意：本地分享文件夹名"西电O奖-2020"与官方记录（西交）不一致，以官方 Results 册为准。
+<strong>页码纪律</strong>：本卡页码均为 PDF 页码 p.1–27；印刷页码（页脚 "Page X of 25"）= PDF − 2。
+<strong>保真纪律（本卡新增标准）</strong>：全部直接引语已对论文的 LaTeX 源码逐句核对；渲染初读的 3 处疑似错误（密度公式 C_n^2、"Gephi" 拼写、赛季战绩数字）经源码核对后撤销，未列入瑕疵清单。
+<strong>年代背景</strong>：2020 年赛制——25 页含附录（本篇恰好压满 "Page 25 of 25"）、无 AI 使用披露要求（全文无 AI report）。价值定位：<strong>网络科学类 O 论文的经典范式</strong>，非 2026 口径范本（对照见 §3）。
+<strong>源材料清单</strong>：论文 PDF + LaTeX 源码 + MATLAB/Python 代码 + 31 个图源（队伍自发布仓库，本地学习目录）；<strong>无题面 PDF、无官方数据文件</strong>——题面四任务以论文 §1.1 的复述清单为准（p.3）。</p>
+</blockquote>
+<h2>1. 模式卡片</h2>
+<pre><code class="language-json">{
+  &quot;team&quot;: &quot;2006782（Xi'an Jiaotong University，顾问 Zhang Shengli；2020 D Outstanding Winner + INFORMS Award，官方 Results 交叉验证；首页印控制号 2006782 ✓）&quot;,
+  &quot;problem&quot;: &quot;2020-D（Teaming Wisdom Coming from Soccer Field：足球传球网络与成功 teamwork 的量化）&quot;,
+  &quot;tiers&quot;: {
+    &quot;summary&quot;: {
+      &quot;背景问题&quot;: &quot;teamwork 的价值远超个体能力之和；要建一个刻画成功 teamwork 的指标模型并泛化到其他领域（p.1）&quot;,
+      &quot;任务重述&quot;: &quot;四问：① 建传球网络并探索时间/区域多尺度；② 识别反映成功 teamwork 的表现指标；③ 用模型给教练建议；④ 如何组建更有效的团队（p.1；任务清单 §1.1 p.3）&quot;,
+      &quot;方法主线&quot;: &quot;传球网络（邻接矩阵）→ 4 个网络参数 → K-means 识别 dyadic/triadic 构型 → 时间/区域尺度 → 静态/动态两层 5 指标 → Adversarial Regression 评价模型（LowestError 定权）→ 防守反击策略 + Italy 对标 → 泛化（p.1）&quot;,
+      &quot;关键结果数字&quot;: &quot;⚠ Summary 全篇零结果数字（年代口径，见 §3 对照 3）。正文关键数字：Match 1 的 L=369、ρ=6.71（p.8）；3 人簇 227 传占 26.7%、簇内 C=7.31 vs 全队 7.62（p.8）；权重 (0.4,0.6,0.2,0.1,0.1)、lowestError=0.071（p.15）；赛季 13 胜 15 负 10 平（p.16）&quot;,
+      &quot;结论建议&quot;: &quot;最有效策略是防守反击；与强队差距主要在 Coordination/Flexibility/Pressing（p.1）；三条建议：灵活阵型 4-1-3-2、核心球员 M2/F1/F2、攻防连贯（p.18）&quot;,
+      &quot;关键词&quot;: &quot;Passing network, Adversarial Regression, Defensive Counterattack（p.1）&quot;
+    },
+    &quot;structure&quot;: [
+      &quot;Summary Sheet（p.1）&quot;,
+      &quot;Contents（p.2）&quot;,
+      &quot;1 Introduction：Problem Background（四任务清单）/ Our work（四步流水）（p.3）&quot;,
+      &quot;2 Preparation：Assumptions（4 条）/ Notations（Table 1，15 符号）（p.3-4）&quot;,
+      &quot;3 TASK 1 Ball Passing Network Model：3.1 网络构建+参数（L/ρ/D/加权聚类系数）→ 3.2 网络模式（阵型 + K-means 构型）→ 3.3 其他结构指标（时间尺度 + 区域尺度）（p.4-10）&quot;,
+      &quot;4 TASK 2 Evaluation of Successful Teamwork：4.1 静态/动态两层指标 → 4.2 Adversarial Regression 模型 → 4.3 应用（33 训练+5 测试）→ 4.4 Discussion（对手反制）（p.11-16）&quot;,
+      &quot;5 TASK 3 Advice on Improving Team Success：5.1 阵型适配 → 5.2 Italy 对标 → 5.3 下赛季三条建议（p.16-19）&quot;,
+      &quot;6 TASK 4 How to Design more Effective Teams：6.1 泛化（信息传递距离）+ 6.2 其他维度（领导力强度/时间协调）（p.19-20）&quot;,
+      &quot;7 Analysis on Model's Sensitivity：7.1 平局判定阈值 ε 扫描 + 7.2 Tempo 指标 N-pass 消融（p.20-22）&quot;,
+      &quot;8 Strengths and Weaknesses（p.22）&quot;,
+      &quot;References（9 条，含 3 篇足球网络分析文献 [2][6][8]）（p.23）&quot;,
+      &quot;Appendix: Code（MATLAB×2 + Python×1，与正文方法一一对应）（p.24-27）&quot;
+    ],
+    &quot;models&quot;: [
+      {&quot;name&quot;: &quot;传球网络&quot;, &quot;type&quot;: &quot;无向带权图（邻接矩阵 w_ij=传球次数，w_ij=w_ji，eq1）&quot;, &quot;assumptions&quot;: &quot;网络是无向图（假设 1，p.3；正文重申 p.5）&quot;, &quot;validation&quot;: &quot;Gephi 可视化 Fig1（p.5）；Match 1 数值 L=369、ρ=6.71（p.8）&quot;, &quot;pages&quot;: &quot;p.4-5&quot;},
+      {&quot;name&quot;: &quot;网络参数组&quot;, &quot;type&quot;: &quot;图统计量：Total Links L（eq2）/Network Density ρ（eq3）/Diameter D（拓扑距离 d_ij=1/w_ij 取最大，eq4-5）/加权聚类系数 C（eq6-7）&quot;, &quot;assumptions&quot;: &quot;拓扑距离=权重倒数（p.6）；每参数附足球语义（degree 高=参与进攻多、直径小=传球分散）&quot;, &quot;validation&quot;: &quot;Match 1 全参数数值 + 拓扑距离矩阵热图 Fig2（p.7）&quot;, &quot;pages&quot;: &quot;p.5-6&quot;},
+      {&quot;name&quot;: &quot;阵型识别&quot;, &quot;type&quot;: &quot;规则映射（球员 ID→位置→4-3-3/5-3-2/4-4-2）&quot;, &quot;assumptions&quot;: &quot;换人不改变阵型（假设 2，p.3；正文 p.7）&quot;, &quot;validation&quot;: &quot;未报告（描述性规则）&quot;, &quot;pages&quot;: &quot;p.7&quot;},
+      {&quot;name&quot;: &quot;K-means 构型聚类&quot;, &quot;type&quot;: &quot;聚类（对拓扑距离矩阵聚类，识别 dyadic/triadic configurations）&quot;, &quot;assumptions&quot;: &quot;拓扑距离小的节点成簇（'higher similarity (distance) cluster'，p.8）&quot;, &quot;validation&quot;: &quot;Fig3 场地摆位图（p.8）+ 定量复核：3 人簇 227 传占 26.7%、簇内 C=7.31 vs 全队 7.62（p.8）&quot;, &quot;pages&quot;: &quot;p.7-8&quot;},
+      {&quot;name&quot;: &quot;时间尺度指标&quot;, &quot;type&quot;: &quot;时序网络统计（10-min 传球数，t=600s 权衡取值；整场/整季网络快照）&quot;, &quot;assumptions&quot;: &quot;单位时间传球数反映 tempo 控制力（p.9）&quot;, &quot;validation&quot;: &quot;Fig4 换人事件标注解读节奏（30min 提速、末段保守归因体能，p.9）；6 场赛季快照叙事'季初不稳→渐稳'（Fig5 p.10）&quot;, &quot;pages&quot;: &quot;p.8-10&quot;},
+      {&quot;name&quot;: &quot;区域尺度指标&quot;, &quot;type&quot;: &quot;空间热图（场地 8 等分，传球位置分布）&quot;, &quot;assumptions&quot;: &quot;传球位置分布反映攻防倾向&quot;, &quot;validation&quot;: &quot;Fig6：后场传球最多、防线连通高于锋线、边路利用不足（p.10）&quot;, &quot;pages&quot;: &quot;p.10&quot;},
+      {&quot;name&quot;: &quot;五表现指标体系&quot;, &quot;type&quot;: &quot;指标构造：静态层 Coordination γ（=聚类系数 C）+ Distribution φ（=f·d，f=进球/射门 eq8，d=防守/(失位+1) eq9，φ eq10）；动态层 Tempo t_b（50-pass time，出自文献[6]）+ Flexibility σ_y（eq11）+ Pressing x̄（eq12，阈值 50）&quot;, &quot;assumptions&quot;: &quot;指标与成功 teamwork 相关（p.13 'observe a correlation'）；部分指标有文献依据（[2] p.6、[6] p.12）&quot;, &quot;validation&quot;: &quot;Fig7 两场 σ_y 对比（33.70 vs 26.66，p.12）；x̄=50 阈值语义（p.12）&quot;, &quot;pages&quot;: &quot;p.11-12&quot;},
+      {&quot;name&quot;: &quot;Adversarial Regression 评价模型（主模型）&quot;, &quot;type&quot;: &quot;约束搜索式线性评分：S_i=Σβ_i x_i（eq13）；Step1-4 流程（p.13）：两队各算 S → 胜 S1&gt;S2 / 负 S1&lt;S2 / 平 |S1-S2|&lt;1 → 收集全部可行权重 → 取 33 场得分方差最小（LowestError）者为回归方程&quot;, &quot;assumptions&quot;: &quot;对手因素必须进入评价体系（4.4：策略非普遍有效，受对手反制影响，p.15-16）&quot;, &quot;validation&quot;: &quot;训练 33 场（31/33 人工调整、32 剔除、零均值单位方差标准化，Table 2 脚注 p.14）/测试末 5 场'the model is valid'（无正确率数字，p.14-15）；权重网格步长 0.1 穷举（代码 p.27；正文称 Greedy Algorithm，p.14）&quot;, &quot;pages&quot;: &quot;p.13-15；代码 p.24-27&quot;},
+      {&quot;name&quot;: &quot;阵型适配分析&quot;, &quot;type&quot;: &quot;多指标评价（Table 3：三阵型 × Coordination/Flexibility/Pressing）→ 5-3-2 最适（防守型）&quot;, &quot;assumptions&quot;: &quot;三指标可判定阵型适配度（p.16）&quot;, &quot;validation&quot;: &quot;未报告（直接列表解读：5-3-2 协调 7.5032/压迫 49.67 最高但灵活性 23.50 最低）&quot;, &quot;pages&quot;: &quot;p.16&quot;},
+      {&quot;name&quot;: &quot;泛化模型（TASK 4）&quot;, &quot;type&quot;: &quot;概念映射：信息传递距离 d（Fig13）/领导力强度 I=Σ1/d_N（eq16）/有效协调 E=Σt_work/t_total（eq17）&quot;, &quot;assumptions&quot;: &quot;足球指标可类比到一般 teamwork（p.19-20）&quot;, &quot;validation&quot;: &quot;未报告——作者自认'泛化模型指标难以量化，说服力低'（p.22 Weaknesses）&quot;, &quot;pages&quot;: &quot;p.19-20&quot;}
+    ],
+    &quot;figures&quot;: [
+      {&quot;id&quot;: &quot;Fig 1&quot;, &quot;page&quot;: &quot;p.5&quot;, &quot;claim&quot;: &quot;传球网络示例：节点按位置着色（G1/D/M/F）、边宽∝传球次数、节点大小∝传球量&quot;, &quot;type&quot;: &quot;力导向网络图（Gephi）&quot;, &quot;self_evidence&quot;: &quot;中——例示性&quot;},
+      {&quot;id&quot;: &quot;Fig 2&quot;, &quot;page&quot;: &quot;p.7&quot;, &quot;claim&quot;: &quot;拓扑距离矩阵热图：红框标出小距离节点对=候选簇，∞=无传球&quot;, &quot;type&quot;: &quot;矩阵热图&quot;, &quot;self_evidence&quot;: &quot;中-高——需 eq4 语境&quot;},
+      {&quot;id&quot;: &quot;Fig 3&quot;, &quot;page&quot;: &quot;p.8&quot;, &quot;claim&quot;: &quot;K-means 在场地上识别 1 个 dyad + 2 个 triad（D1,D2,D3)/(D1,M1,F2)/(M2,M3)&quot;, &quot;type&quot;: &quot;场地示意+聚类着色&quot;, &quot;self_evidence&quot;: &quot;高&quot;},
+      {&quot;id&quot;: &quot;Fig 4&quot;, &quot;page&quot;: &quot;p.9&quot;, &quot;claim&quot;: &quot;10-min 传球数节奏平稳、~30min 提速、末段保守（三次换人事件标注在时间轴）&quot;, &quot;type&quot;: &quot;时序面积图+事件标注&quot;, &quot;self_evidence&quot;: &quot;高&quot;},
+      {&quot;id&quot;: &quot;Fig 5&quot;, &quot;page&quot;: &quot;p.10&quot;, &quot;claim&quot;: &quot;六场赛季快照（各标 L 值 180-369）：季初不稳定→连通性渐强&quot;, &quot;type&quot;: &quot;网络快照阵列&quot;, &quot;self_evidence&quot;: &quot;中&quot;},
+      {&quot;id&quot;: &quot;Fig 6&quot;, &quot;page&quot;: &quot;p.10&quot;, &quot;claim&quot;: &quot;传球热区集中于后场、边路浅色区利用不足→给建议留钩子&quot;, &quot;type&quot;: &quot;空间热图&quot;, &quot;self_evidence&quot;: &quot;高&quot;},
+      {&quot;id&quot;: &quot;Fig 7&quot;, &quot;page&quot;: &quot;p.12&quot;, &quot;claim&quot;: &quot;σ_y 高的场次（33.70）进攻路线多向、σ_y 低（26.66）单一中路&quot;, &quot;type&quot;: &quot;双面板散点+箭头示意&quot;, &quot;self_evidence&quot;: &quot;中&quot;},
+      {&quot;id&quot;: &quot;Fig 8&quot;, &quot;page&quot;: &quot;p.13&quot;, &quot;claim&quot;: &quot;gegenpressing 场景三档示意（x̄&gt;50 的物理图景）&quot;, &quot;type&quot;: &quot;概念示意图&quot;, &quot;self_evidence&quot;: &quot;中&quot;},
+      {&quot;id&quot;: &quot;Fig 9&quot;, &quot;page&quot;: &quot;p.14&quot;, &quot;claim&quot;: &quot;20 组可行权重的 LowestError 折线：图内标注 (0.4,0.6,0.2,0.1,0.1) 与 0.071 为最优&quot;, &quot;type&quot;: &quot;散点折线&quot;, &quot;self_evidence&quot;: &quot;中——需正文补权重向量序&quot;},
+      {&quot;id&quot;: &quot;Fig 10&quot;, &quot;page&quot;: &quot;p.15&quot;, &quot;claim&quot;: &quot;9 场对手 pressing 全程高于 Huskies→指标受对手策略影响&quot;, &quot;type&quot;: &quot;双线折线&quot;, &quot;self_evidence&quot;: &quot;中&quot;},
+      {&quot;id&quot;: &quot;Fig 11&quot;, &quot;page&quot;: &quot;p.17&quot;, &quot;claim&quot;: &quot;Italy vs Huskies 八项指标差距（协调 14.39 vs 5.37、控球 43.8% vs 27.4% 等）&quot;, &quot;type&quot;: &quot;对比条形图&quot;, &quot;self_evidence&quot;: &quot;高&quot;},
+      {&quot;id&quot;: &quot;Fig 12&quot;, &quot;page&quot;: &quot;p.18&quot;, &quot;claim&quot;: &quot;防守反击战术板：4-1-3-2 可变阵 5-3-2/4-3-3，白虚线跑位/红实线进攻传球/黄实线防守传球/桶标回位点与进攻发起位&quot;, &quot;type&quot;: &quot;战术板示意图（图例在正文非图内）&quot;, &quot;self_evidence&quot;: &quot;中-高&quot;},
+      {&quot;id&quot;: &quot;Fig 13&quot;, &quot;page&quot;: &quot;p.19&quot;, &quot;claim&quot;: &quot;泛化：信息传递链 A→B→C→D 的距离定义=协同度量&quot;, &quot;type&quot;: &quot;概念小图&quot;, &quot;self_evidence&quot;: &quot;中&quot;},
+      {&quot;id&quot;: &quot;Fig 14&quot;, &quot;page&quot;: &quot;p.21&quot;, &quot;claim&quot;: &quot;ε&lt;1 时五指标权重混沌、ε≥1 稳定→模型对平局情形敏感&quot;, &quot;type&quot;: &quot;双轴多线图（5 权重+LowestError vs ε）&quot;, &quot;self_evidence&quot;: &quot;中-高&quot;},
+      {&quot;id&quot;: &quot;Fig 15&quot;, &quot;page&quot;: &quot;p.22&quot;, &quot;claim&quot;: &quot;30/50/70-pass 时间曲线中 50-pass 最平滑→tempo 取 50 最合理&quot;, &quot;type&quot;: &quot;三线时序&quot;, &quot;self_evidence&quot;: &quot;高&quot;}
+    ],
+    &quot;checks&quot;: [
+      &quot;样本外测试：末 5 场进测试集，'we can conclude that the model is valid'——无正确率/误差数字（p.14-15）&quot;,
+      &quot;训练收敛：权重网格（步长 0.1）穷举→20 组满足赛果约束→取得分方差最小（Fig 9 p.14；代码 p.27）&quot;,
+      &quot;敏感度 1：平局判定阈值 ε∈[0,2] 扫描→ε&lt;1 权重混沌、ε≥1 稳定、ε=1/1.5/1.8 合理（Fig 14 p.21）——自曝'model is more sensitive to the situation of a draw'&quot;,
+      &quot;敏感度 2：tempo 指标 N-pass 参数消融（10/30/50/70/90-pass）→30-pass 锯齿、70-pass 平坦、50-pass 最合理（Fig 15 p.21-22）&quot;,
+      &quot;数据清洗披露：31/33 场人工调整（斜体标注）、32 场剔除、零均值单位方差标准化（Table 2 脚注 p.14；正文 p.14）&quot;,
+      &quot;缺项（诚实登记）：5 场测试无准确率数字；权重无交叉验证；泛化模型（I/E）无量化验证（作者自认 p.22）；网络指标除赛果外无外部基准对照&quot;
+    ],
+    &quot;wordsmith&quot;: [
+      {&quot;quote&quot;: &quot;Team success is much more than the sum of the abilities of individual players.&quot;, &quot;page&quot;: &quot;p.1&quot;, &quot;note&quot;: &quot;摘要开场立论句：先立命题（teamwork&gt;个体和）再给模型，14 词&quot;},
+      {&quot;quote&quot;: &quot;we choose the weight with LowestError as the regression equation&quot;, &quot;page&quot;: &quot;p.1&quot;, &quot;note&quot;: &quot;自定义机制起专名（LowestError），摘要-正文-代码三处一致贯通&quot;},
+      {&quot;quote&quot;: &quot;introduce the opponent's confrontation factors, which makes the model more fair in evaluation&quot;, &quot;page&quot;: &quot;p.13&quot;, &quot;note&quot;: &quot;模型命名卖点句：adversarial 一词把'对手'写进方法名&quot;},
+      {&quot;quote&quot;: &quot;gap with the strong teams is mainly reflected in Coordination, Flexibility and Pressing&quot;, &quot;page&quot;: &quot;p.1&quot;, &quot;note&quot;: &quot;对标结论句式：差距落在具体指标名上，任何对标分析可直接抄&quot;},
+      {&quot;quote&quot;: &quot;at the beginning of the season, the teamwork performance is unstable&quot;, &quot;page&quot;: &quot;p.9&quot;, &quot;note&quot;: &quot;网络快照→赛季叙事的解读句式（时序网络分析通用）&quot;}
+    ]
+  },
+  &quot;distinct&quot;: &quot;暂缺——需同题对照（本库尚无 2020 D 其他 O 队卡片，按纪律不得单卡填写）。候选三项待比对：① Adversarial Regression——把赛果约束（胜/负/平 |S1-S2|&lt;1）写进权重搜索可行域、以两队得分方差最小定权的自定义评价框架，且命名贯穿摘要-正文-代码（p.1/13-15/24-27）；② 双敏感度均瞄准'人为设定的自由参数'（平局阈值 ε p.21、tempo 的 N-pass 球数 p.21-22）而非常规权重扰动；③ 战术板示意图作为建议交付物（Fig 12 p.18，四色线+正文图例）&quot;
+}
+</code></pre>
+<h2>2. 打法提炼（网络科学题"从题面走向图模型"的通用路径）</h2>
+<ol>
+<li><strong>题面动词→边定义表，图语义写进假设层</strong>（p.3-5）：题面 "create a network for the ball passing" 翻译成"节点=球员、边=传球事件、权=传球次数 w_ij"只用半页（p.4-5），而方向性选择（无向 w_ij=w_ji）写进假设第 1 条（p.3）。网络题开局 2 小时的产出就是这张定义表+方向性声明——<strong>图的语义选择本身就是建模</strong>，与 04_图论与网络（../02_知识模块/04_图论与网络.html） §1.1 心法一致。</li>
+<li><strong>参数组全给定义式 + 足球语义翻译</strong>（p.5-6）：L/ρ/D/加权聚类系数逐个给公式（eq2-7），每个参数后接一句领域解读（"degree 高=更多参与进攻"、"小直径=传球分散"）。多指标互证 + 语义翻译，是 04 模块 §1.4"多指标互证不单报"的 O 级执行。</li>
+<li><strong>结构发现三段式：目视→算法→定量复核</strong>（p.7-8）：拓扑距离矩阵热图目视找小值（Fig2 p.7）→ K-means 正式聚类并画回场地（Fig3 p.8）→ 用 227 传/26.7%、簇内 C=7.31 vs 全队 7.62 复核簇的紧密度。三段式让聚类从黑箱变成可验证的发现。</li>
+<li><strong>题面每个状语对应一节一图</strong>（p.3, 8-10）：题面 "explore multiple scales such as regions and time" 被拆成时间尺度（10-min/整场/整季，Fig4-5）与区域尺度（8 区域热图，Fig6）两节——题面任务清单逐项对账，每项有公式、有图、有结论，交付物一个不漏。</li>
+<li><strong>图统计量直升指标体系骨架</strong>（p.11-12）：Task 1 的聚类系数 C 直接升格为 Task 2 的 coordination 指标 γ；非图量（进球率/防守率/坐标统计量）补成静态/动态两层。<strong>指标体系从网络模型里"长"出来而非另起炉灶</strong>——这是网络题从 Task 1 走向 Task 2 的最短路径。</li>
+<li><strong>把约束写进搜索可行域，再给方法起专名</strong>（p.13-15, 24-27）：两队赛果（胜/负/平）变成权重搜索硬约束，在可行域里取得分方差最小的一组；整套流程命名 "Adversarial Regression + LowestError" 并在摘要-正文-代码三处一致。自定义方法的命名记忆点 + 五步流程框，是可复用的写作动作。</li>
+<li><strong>敏感度瞄准"人为设定的自由参数"</strong>（p.21-22）：两个敏感度都不是常规权重扰动，而是模型里两个"拍脑袋"参数——平局判定阈值 ε 和 tempo 的 N-pass 球数。对自由参数扫描直接回应"结论是不是参数巧合"，比泛泛扰动更让评委信服。</li>
+<li><strong>建议层三件套：数字表+对标图+战术板</strong>（p.16-19）：每条建议有支撑——阵型适配数字表（Table 3 p.16）、强队对标条形图（Fig 11 p.17，自补 Italy 2012 欧洲杯数据并引文献[7]）、战术板示意图（Fig 12 p.18）。"官方数据不够就自补外部对标数据"与 2024 E 卡（01_卡片_2024E_Soochow.html） 打法 2 同构，跨年代稳定。</li>
+</ol>
+<h3>瑕疵清单（O 论文也有，反着学；均经 .tex 源码核对）</h3>
+<ul>
+<li>eq(11) σ_y 公式漏了平方与开方（tex L492：σ_y=(1/n)Σ(y_j−ȳ)；Fig 7 的 33.70/26.66 表明实算为标准差）（p.12）</li>
+<li>正文称 "Greedy Algorithm"，代码实为五重循环步长 0.1 的穷举网格搜索（p.14 vs p.27）</li>
+<li>正文称 lowestError 为 "standard deviation"，代码 <code>lowestError()</code> 返回 <code>np.var</code>（方差）（p.14 vs p.26）</li>
+<li>"we add one to the denominator of f"——+1 实际在 d 的分母（ν_loss+1），f 无 +1（p.11，tex L468）</li>
+<li>n=11 是球员数（节点数），正文写作 "the number of edges n=11"（p.6，tex L267；公式 C_n^2 与代码 pho=2L/(n(n-1)) 计算正确）</li>
+<li>拼写乱码 "K-means agAlgorithmm"（p.3，tex L101）；§5.3 标题 "Advise on next Season" 应为 Advice（p.18，tex L749）</li>
+<li>Summary 零结果数字（年代口径而非该队独有，见 §3 对照 3）</li>
+</ul>
+<h2>3. 与 2026 D（财务建模主导）的时代对照</h2>
+<ol>
+<li><strong>图论原生 → 财务主导的范式漂移</strong>：2020 D 题面第一个任务就是建网络（p.3 §1.1 复述），全篇以图模型为骨架；2026 D《Managing Sports for Success》主体是球员估值/薪资帽的财务建模，图论只在联盟结构/赛程的支线进场（D_运筹网络（../03_题型打法/D_运筹网络.html） 题型画像表）。同一"D 题"壳，方法重心从"关系数据上的网络科学"漂到"经营数据上的动态决策"——D 题备赛不能按图论惯性硬套（该页"常见死法"第 2 条）。</li>
+<li><strong>评价层技术路线的变化，但 O 的分野不变</strong>：2020 这篇的评价模型是"约束搜索+方差最小定权"（无 ML 术语，p.13-15）；2026 语境下同类任务（球员表现估值）预计以回归/ML+财务约束为主流。但本篇证明 O 的分野不在算法新颖度，而在<strong>约束设计与指标语义</strong>（打法 6、5）——这条 2026 依然成立，只是约束从"赛果"换成"薪资帽/竞争平衡"。</li>
+<li><strong>Summary 数字口径的年代差</strong>：本篇 Summary 全篇零结果数字（p.1），按 07_写作与SummarySheet（../02_知识模块/07_写作与SummarySheet.html） §1.2"数字优先"标准是明显缺口——这是 2020 年普遍口径而非该队失误。读老 O 论文要分辨"时代允许的瑕疵"与"今日可抄的动作"：其任务对账结构、专名命名、5 场测试只报 "valid" 不报准确率（p.14-15）的做法，数字密度与检验报告强度都应按 2026 标准加码执行。</li>
+</ol>
+<h2>4. 自查（代理产出）</h2>
+<ul>
+<li>页码：全部为 PDF 页码（印刷页 = PDF−2），逐条对照 27 页渲染图；直接引语与疑似笔误均对 <code>2006782.tex</code> 行号核验（撤销 3 处渲染误读：C_n^2、Gephi、赛季战绩）</li>
+<li>无臆测：验证缺项、代码-正文不一致登记于 checks/瑕疵清单并标"未报告"；distinct 按纪律填"暂缺——需同题对照"，候选项标"待比对"</li>
+<li>引用：5 条 wordsmith 均 ≤25 词且经 tex 核对；年代口径差异（Summary 数字密度、无 AI 披露）单独标注不与 2026 标准混写</li>
+</ul>
+</div>
+<footer>MCM/ICM 2027 备赛知识库 · 2027-01-28 开赛 · 数据只存本浏览器</footer>
+<script>window.UPC_UI_ROOT="../../";</script>
+<script defer src="../../_vendor/katex/katex.min.js"></script>
+<script defer src="../../_vendor/katex/contrib/auto-render.min.js"></script>
+<script>window.addEventListener('DOMContentLoaded',function(){
+if(window.renderMathInElement){renderMathInElement(document.body,
+{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});</script>
+<script src="../../global-ui.js" defer></script>
+<script>
+var EV_START=1801173600000,EV_END=1801530000000;
+function p2(n){return n<10?'0'+n:''+n;}
+(function(){
+  var el=document.getElementById('clock');
+  function upd(){var t=Date.now();
+    if(t<EV_START){var ms=EV_START-t,dd=Math.floor(ms/864e5);
+      if(dd>=1){el.textContent='开赛 D-'+dd;el.dataset.s='pre';}
+      else{el.textContent='开赛 '+p2(Math.floor(ms/36e5))+':'+p2(Math.floor(ms%36e5/6e4));el.dataset.s='pre';}}
+    else if(t<EV_END){var u=Math.floor((t-EV_START)/1000);
+      el.textContent='赛中 '+p2(Math.floor(u/3600))+':'+p2(Math.floor(u%3600/60));el.dataset.s='live';}
+    else{el.textContent='已结束';el.dataset.s='post';}}
+  upd();setInterval(upd,30000);
+})();
+
+</script>
+</body>
+</html>
