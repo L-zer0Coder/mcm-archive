@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>模式卡片 · 2022 MCM C · 队伍 2200688（South China University of Technology，O + INFORMS） · MCM/ICM 备赛知识库</title>
+<meta name="description" content="MCM/ICM 备赛知识库 · 模式卡片 · 2022 MCM C · 队伍 2200688（South China University of Technology，O + INFORMS）">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%232B5C8A'/%3E%3Ctext x='50' y='70' font-size='52' font-weight='700' text-anchor='middle' fill='%23FDFCF8' font-family='Georgia,serif'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../_vendor/katex/katex.min.css">
+<style>:root{--paper:#F7F4ED;--sheet:#FDFCF8;--ink:#2A251E;--mut:#6E6557;--dim:#786E60;
+--line:#E7E0D1;--line2:#D9D0BD;--acc:#2B5C8A;--acc-d:#1F4470;--acc-soft:rgba(43,92,138,.07);
+--serif:Georgia,'Times New Roman','Source Han Serif SC','Noto Serif SC',serif;
+--sans:'Segoe UI','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+--mono:ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.85}
+a{color:var(--acc);text-decoration:none}
+a:hover{color:var(--acc-d)}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(253,252,248,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar .in{max-width:1060px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:9px 22px}
+.topbar a{color:var(--mut)}
+.brand{display:flex;align-items:center;gap:9px;color:var(--ink);font-weight:600;font-size:13.5px}
+.brand .seal{width:24px;height:24px;border-radius:5px;background:var(--acc);color:#FDFCF8;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:13px;font-weight:700}
+.clock{font-family:var(--mono);font-size:11px;padding:1px 8px;border:1px solid rgba(43,92,138,.28);border-radius:3px;color:var(--acc);background:var(--acc-soft);white-space:nowrap}
+.clock[data-s='live']{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.clock[data-s='post']{color:var(--dim);border-color:var(--line2);background:transparent}
+.wrap{max-width:1060px;margin:0 auto;padding:22px 22px 80px}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:4px;padding:16px 20px}
+.btn{display:inline-flex;align-items:center;height:32px;padding:0 14px;border:1px solid var(--line2);border-radius:3px;font-size:12.5px;color:var(--ink);background:var(--sheet);cursor:pointer;font-family:inherit}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.solid{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.btn.solid:hover{background:var(--acc-d);color:#FDFCF8}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:11.5px;border-bottom:1px solid var(--line2)}
+tbody tr:nth-child(2n) td{background:#F8F5EC}
+pre{background:#F9F6EF;border:1px solid var(--line);border-radius:4px;padding:12px 15px;overflow:auto;font-size:12.5px;line-height:1.8}
+code{font-family:var(--mono)}
+footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</style>
+</head>
+<body>
+<div class="topbar"><div class="in">
+  <a class="brand" href="../../index.html"><span class="seal">M</span>MCM/ICM 备赛知识库</a>
+  <span class="crumb">05_论文拆解</span>
+  <span class="clock" id="clock"></span>
+</div></div>
+<div class="wrap">
+<h1 class="pt">模式卡片 · 2022 MCM C · 队伍 2200688（South China University of Technology，O + INFORMS）</h1>
+<blockquote>
+<p><strong>身份验证链</strong>：论文 PDF 匿名（仅 p.1 Summary Sheet 印 Team Control Number 2200688、页眉 "Team 2200688"、p.22 memo 署 Team# 2200688）→ 站长本地官方 Results 册一手抽文本核验（<code>04_语料库/官方结果册/2022_C_Results.pdf</code> p.2）："South China University of Technology 2200688 China Caibin Zeng C Outstanding Winner INFORMS Award"。二者闭环，2026-11-23 本卡拆解代理复验通过。<strong>本卡是全站 C 题型（数据洞察）第一张 O 卡。</strong>
+<strong>页码纪律</strong>：本 PDF 印刷页码与 PDF 页码一致（p.1–24），卡内页码即 PDF 页码。
+<strong>版权纪律</strong>：PDF 存本地学习目录（不进公开仓库）；本卡只放本站原创分析与 ≤25 词短引注。
+论文经拆解代理逐页深读（24/24 页），与站内方法页（<a href="../03_%E9%A2%98%E5%9E%8B%E6%89%93%E6%B3%95/C_%E6%95%B0%E6%8D%AE%E6%B4%9E%E5%AF%9F.html">C_数据洞察</a>、<a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/03_%E7%BB%9F%E8%AE%A1%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html">03_统计与机器学习</a>、<a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/07_%E5%86%99%E4%BD%9C%E4%B8%8ESummarySheet.html">07_写作与SummarySheet</a>）交叉对照；档位信号对照 <a href="04_%E5%8D%A1%E7%89%87_2023B_Fuzhou.html">04_卡片_2023B_Fuzhou</a>（F 档）与 <a href="01_%E5%8D%A1%E7%89%87_2024E_Soochow.html">01_卡片_2024E_Soochow</a>（O 惯例）。</p>
+</blockquote>
+<h2>1. 模式卡片</h2>
+<pre><code class="language-json">{
+  &quot;team&quot;: &quot;2200688（South China University of Technology，顾问 Caibin Zeng；2022 C Outstanding Winner + INFORMS Award，官方 2022_C_Results.pdf p.2 一手验证；PDF 本身匿名仅署队号）&quot;,
+  &quot;problem&quot;: &quot;2022-C（Trading Strategies：金+比特币交易策略——仅用历史日价格决定每日买/持/卖；比特币每交易日可交易、金仅市场开市日可交易；评估初始 $1000 至 2021-09-10 的终值，题目数据 LBMA-GOLD.csv / BCHAIN-MKPRU.csv）&quot;,
+  &quot;tiers&quot;: {
+    &quot;summary&quot;: {
+      &quot;背景问题&quot;: &quot;金与比特币均为高波动资产，交易者需频繁买卖以最大化总回报；量化投资政策对抵抗风险与获利意义重大（p.1）&quot;,
+      &quot;任务重述&quot;: &quot;四任务：每日最优交易策略模型+初始 $1000 在 2021-09-10 的价值 / 给出模型最优的证据 / 交易成本敏感度 / ≤2 页 memo（p.1 摘要；§1.2 p.4 逐条编号）&quot;,
+      &quot;方法主线&quot;: &quot;PADRRI 双模块：预测模型（对比 LSTM/ARIMA 后选 Prophet，改进为 X-Prophet=Prophet+XGBoost 置信组合）+ Sliding Window Mechanism（window=90，只用最近一季数据）；决策模型=预测结果+5-day SMA Principle 生成每日买卖策略（p.1）&quot;,
+      &quot;关键结果数字&quot;: &quot;摘要 0 个结果数字——结果句为定性表述（p.1）；头条数字 $285,647（本金 $1000、δ=2%）只出现在正文 §5.3（p.16）与 memo（p.22），两处一致&quot;,
+      &quot;结论建议&quot;: &quot;证据章证明模型给出最优决策且考虑风险；交易成本敏感度证明鲁棒；strengths/weaknesses 总结；memo 向交易者交付（p.1）&quot;,
+      &quot;关键词&quot;: &quot;Forecasting, Prophet, Sliding Window Mechanism, 5-day SMA（p.1）&quot;
+    },
+    &quot;structure&quot;: [
+      &quot;Summary Sheet（p.1；标题缩写 PADRRI 自带卖点：Best Return And Risk With High Interpretability）&quot;,
+      &quot;Contents（p.2）&quot;,
+      &quot;1 Introduction：Background（The Street 比特币民意调查 Fig1，1,005 名受访者）/ Restatement / Our work（Fig2 总结构图+四项工作清单）（p.3-4）&quot;,
+      &quot;2 Assumptions：仅 3 条假设，逐条一句 justification（p.5）&quot;,
+      &quot;3 Abbreviation and Definitions（Notations 表 10 项：a(t)/b(t)/c(t)/ε/H(t)/k/θ/m/β/t，p.5）&quot;,
+      &quot;4 Model：4.1 Prediction Model（4.1.1 Model Selection 排除 ARIMA/LSTM 定性论证 / 4.1.2 Prophet eq1-16 / 4.1.3 X-Prophet eq17-22+Fig4）（p.5-10）；4.2 Decision Model（4.2.1 5-day SMA 决策规则 / 4.2.2 自适应 N 日决策：6 类趋势形态+α=1.1/β=0.9 缩放）（p.10-11）&quot;,
+      &quot;5 Implementation：5.1 Data Preprocessing and Testing（5.1.1 Min-Max 归一化 eq23 / 5.1.2 Stability Testing Fig5 / 5.1.3 Pure Randomness Testing Fig6）（p.11-13）；5.2 Prediction using X-Prophet（5.2.1 Single Period Prediction Fig7 / 5.2.2 Global Forecast window=90，Fig8-9）（p.13-15）；5.3 Get Best Profit by Decision Model（δ 扫描 Fig10 → δ=2%、$285,647）（p.16）&quot;,
+      &quot;6 Evidence of model optimality：6.1 Final Profit Calculation Procedure（符号定义+eq24-26+Algorithm 1 伪代码）/ 6.2 Gives Optimal Decision / 6.3 Considers About Risks（Fig11 月度持币金比）（p.16-19）&quot;,
+      &quot;7 Sensitive Analysis（gold 成本 0.00005-0.0030 / bitcoin 0.0001-0.0030；最大波动 4.86%/0.35%；Fig12 三维曲面）（p.19-20）&quot;,
+      &quot;8 Strengths and weaknesses：4 条 Strengths / 2 条 Weaknesses / Further Improvements（p.20-21）&quot;,
+      &quot;9 Conclusion + References（6 条，其中 [2][4][5] 为中文文献/知乎/全国统计建模竞赛文集）（p.21）&quot;,
+      &quot;10 Memorandum（To: Market trader，日期 2022-02-22；复述方法+$285,647+风险提示）（p.22）&quot;,
+      &quot;Appendix 1：Python 代码 85 行（five_days_sma / gold_decision / bitcoin_decision）（p.23-24）&quot;
+    ],
+    &quot;models&quot;: [
+      {&quot;name&quot;: &quot;Prophet 可加时序模型&quot;, &quot;type&quot;: &quot;时序预测（趋势+周期+节假日+误差四项分解）&quot;, &quot;assumptions&quot;: &quot;当前价格与历史价格强相关、仅历史日价格影响未来（假设2/3, p.5）；趋势可用 logistic 或分段线性（eq2/eq6, p.6-7）；周期用 Fourier 级数（eq7-12, 年周期 p=365.25/I=10，周周期 p=7/I=3, p.8）；变点用 Laplace 先验（eq16, p.8）&quot;, &quot;validation&quot;: &quot;单步可视化含置信带与周/年周期分量（Fig7, p.14）+ 全程 Actual vs Predicted 叠图（Fig9, p.15）；无量化误差指标（诚实留空）&quot;, &quot;pages&quot;: &quot;eq1-16, p.6-8&quot;},
+      {&quot;name&quot;: &quot;X-Prophet（Prophet+XGBoost 加权组合）&quot;, &quot;type&quot;: &quot;模型集成&quot;, &quot;assumptions&quot;: &quot;XGBoost 强分类器可挖掘节假日等特殊时点特征、正则项防过拟合（p.9；思路据文献 [2] 电耗预测的改进 Prophet）&quot;, &quot;validation&quot;: &quot;组合式 W(t)=w1·p(t)+w2·ŷ_t，仅给约束 w1+w2=1（eq22, p.10）——w1/w2 具体数值未报告（诚实登记）&quot;, &quot;pages&quot;: &quot;p.9-10, Fig4 p.9&quot;},
+      {&quot;name&quot;: &quot;Sliding Window Mechanism&quot;, &quot;type&quot;: &quot;预测机制改造（逐日重训，只用最近 90 天）&quot;, &quot;assumptions&quot;: &quot;比特币快变，'previous season' 的数据更能代表未来，与经济学专家预测直觉一致（p.14）&quot;, &quot;validation&quot;: &quot;声明 sliding window 'significantly outperforms models that use full-window data'（p.14）但无对比数字（诚实登记）；不足一窗时用全部历史；window=90（p.14）；全文逐日训练一个模型（p.13）&quot;, &quot;pages&quot;: &quot;p.13-15, Fig8 p.15&quot;},
+      {&quot;name&quot;: &quot;5-day SMA 决策规则&quot;, &quot;type&quot;: &quot;规则决策/技术分析修正项&quot;, &quot;assumptions&quot;: &quot;5 日均线是近期行情良好指标（据文献 [3] 东财 SMA 方法）；价高于 5 日均线且偏离不过大→买，偏离过大→回落概率高→卖；低于均线→卖（p.10）&quot;, &quot;validation&quot;: &quot;未单独验证——定位为预测修正项：数据量少时偏好按 5-day SMA 决策，数据多时按未来 N 天预测决策（p.16）&quot;, &quot;pages&quot;: &quot;§4.2.1 p.10；§5.3 p.16&quot;},
+      {&quot;name&quot;: &quot;自适应 N 日预测决策&quot;, &quot;type&quot;: &quot;规则决策/自适应参数机制&quot;, &quot;assumptions&quot;: &quot;理想 N=预测窗内只出现一个峰或谷；N 初值 15（p.11）&quot;, &quot;validation&quot;: &quot;6 类趋势形态分类规则：单峰买（已买则忽略）/单谷卖；无峰谷 N×α=1.1；多峰谷 N×β=0.9；附录代码与正文规则一致（Appendix 1, p.23-24）&quot;, &quot;pages&quot;: &quot;§4.2.2 p.11&quot;},
+      {&quot;name&quot;: &quot;Min-Max 归一化&quot;, &quot;type&quot;: &quot;预处理&quot;, &quot;assumptions&quot;: &quot;官方数据'相对干净完整'无需去噪（p.12——一句明示声明）&quot;, &quot;validation&quot;: &quot;未报告（诚实留空）&quot;, &quot;pages&quot;: &quot;eq23, p.12&quot;},
+      {&quot;name&quot;: &quot;纯随机性/平稳性检验（数据合法性）&quot;, &quot;type&quot;: &quot;统计检验（建模前证据）&quot;, &quot;assumptions&quot;: &quot;序列非白噪声才可预测：Q 统计量（大样本）/LB 统计量（小样本）（p.13）&quot;, &quot;validation&quot;: &quot;Fig6 两资产 P 值曲线，'most of the P values are significantly less than 0.05' → 非纯随机序列 → 为预测提供依据（p.13）；平稳性图检验=时序图+自相关图（Fig5, p.12-13）；单位根检验提及未报结果（p.12）&quot;, &quot;pages&quot;: &quot;p.12-13&quot;},
+      {&quot;name&quot;: &quot;最终利润回测算法&quot;, &quot;type&quot;: &quot;回测/策略评估框架&quot;, &quot;assumptions&quot;: &quot;交易成本按比例 c_g/c_b 扣除；金非交易日取最近交易日价格（p.17）；初始按 δ 比例分仓金/比特币（p.16）；目标 Policy=argmax P_lastday（eq24-25）&quot;, &quot;validation&quot;: &quot;δ∈[0,100]% 全扫描 → δ=2 最优（Fig10, p.16，峰值 28.56(10k$) 与 $285,647 自洽）；交易成本二维敏感度（最大波动 4.86%/0.35%，Fig12, p.19-20）；月度持币金比行为迹（Fig11, p.17）；伪代码 Algorithm 1 完整可复算（p.18）&quot;, &quot;pages&quot;: &quot;eq24-26+Algorithm 1, p.16-18&quot;}
+    ],
+    &quot;figures&quot;: [
+      {&quot;id&quot;: &quot;Fig 1&quot;, &quot;page&quot;: &quot;p.3&quot;, &quot;claim&quot;: &quot;The Street 比特币民意调查信息图：背景钩子&quot;, &quot;type&quot;: &quot;引用信息图（[6]）&quot;, &quot;self_evidence&quot;: &quot;低（装饰性）&quot;},
+      {&quot;id&quot;: &quot;Fig 2&quot;, &quot;page&quot;: &quot;p.4&quot;, &quot;claim&quot;: &quot;PADRRI 总结构：预测模块→决策模块→金/比特币→下一周期循环&quot;, &quot;type&quot;: &quot;总流程图&quot;, &quot;self_evidence&quot;: &quot;中&quot;},
+      {&quot;id&quot;: &quot;Fig 3&quot;, &quot;page&quot;: &quot;p.7&quot;, &quot;claim&quot;: &quot;analyst-in-the-loop 预测闭环（Modeling→Forecast Evaluation→Surface Problems→Visually Inspect）&quot;, &quot;type&quot;: &quot;引用示意（[1] Prophet 原论文）&quot;, &quot;self_evidence&quot;: &quot;低-中&quot;},
+      {&quot;id&quot;: &quot;Fig 4&quot;, &quot;page&quot;: &quot;p.9&quot;, &quot;claim&quot;: &quot;X-Prophet 结构：Prophet→置信水平（w1）+XGBoost（w2）→w1+w2→最终预测值&quot;, &quot;type&quot;: &quot;结构框图&quot;, &quot;self_evidence&quot;: &quot;中&quot;},
+      {&quot;id&quot;: &quot;Fig 5&quot;, &quot;page&quot;: &quot;p.12&quot;, &quot;claim&quot;: &quot;金价/比特币价时序+两资产自相关图：平稳性图检验素材，结论 'relatively stable sequence'&quot;, &quot;type&quot;: &quot;四面板 EDA 图&quot;, &quot;self_evidence&quot;: &quot;中（自相关近零的读法留给读者，未报统计量）&quot;},
+      {&quot;id&quot;: &quot;Fig 6&quot;, &quot;page&quot;: &quot;p.13&quot;, &quot;claim&quot;: &quot;纯随机性检验 P 值曲线（gold 首段 0.4 量级速降至 0；bitcoin 峰值 0.0025 量级）：非白噪声→预测合法性&quot;, &quot;type&quot;: &quot;检验统计量折线&quot;, &quot;self_evidence&quot;: &quot;中-高&quot;},
+      {&quot;id&quot;: &quot;Fig 7&quot;, &quot;page&quot;: &quot;p.14&quot;, &quot;claim&quot;: &quot;单步预测可视化：预测+置信带+周周期+年周期分量分解&quot;, &quot;type&quot;: &quot;Prophet 组件图&quot;, &quot;self_evidence&quot;: &quot;中-高&quot;},
+      {&quot;id&quot;: &quot;Fig 8&quot;, &quot;page&quot;: &quot;p.15&quot;, &quot;claim&quot;: &quot;滑动窗口机制图解：传统全窗 vs 滑窗只用最近一段&quot;, &quot;type&quot;: &quot;概念图解&quot;, &quot;self_evidence&quot;: &quot;高（机制一眼可懂）&quot;},
+      {&quot;id&quot;: &quot;Fig 9&quot;, &quot;page&quot;: &quot;p.15&quot;, &quot;claim&quot;: &quot;X-Prophet 全程预测 vs 实际（金/比特币双面板）：拟合视觉证据&quot;, &quot;type&quot;: &quot;Actual-Predicted 叠图&quot;, &quot;self_evidence&quot;: &quot;中（无误差数字）&quot;},
+      {&quot;id&quot;: &quot;Fig 10&quot;, &quot;page&quot;: &quot;p.16&quot;, &quot;claim&quot;: &quot;末日利润随 δ（金仓位比）变化曲线：δ=2% 最优 → $285,647&quot;, &quot;type&quot;: &quot;参数扫描折线&quot;, &quot;self_evidence&quot;: &quot;高&quot;},
+      {&quot;id&quot;: &quot;Fig 11&quot;, &quot;page&quot;: &quot;p.17&quot;, &quot;claim&quot;: &quot;60 个月持币/持金比变化：策略行为迹（大部分&lt;3，偶发尖峰至 20）&quot;, &quot;type&quot;: &quot;行为时序图&quot;, &quot;self_evidence&quot;: &quot;中&quot;},
+      {&quot;id&quot;: &quot;Fig 12&quot;, &quot;page&quot;: &quot;p.20&quot;, &quot;claim&quot;: &quot;最终利润对金/比特币交易成本的二维敏感度曲面（272k-290k）&quot;, &quot;type&quot;: &quot;3D 敏感度曲面&quot;, &quot;self_evidence&quot;: &quot;中（3D 读数难，趋势可见）&quot;}
+    ],
+    &quot;checks&quot;: [
+      &quot;平稳性图检验：时序图+自相关图（Fig5, p.12-13）——报图不报统计量&quot;,
+      &quot;纯随机性检验：Q（大样本）/LB（小样本）统计量（p.13），Fig6 P 值曲线 + 'most of the P values are significantly less than 0.05'（p.13）——'先证可预测再建模'的示范动作&quot;,
+      &quot;单位根检验：p.12 提及 'the graph test and the unit root test'，全文只兑现图检验——提及未兑现（诚实登记）&quot;,
+      &quot;δ 参数扫描：δ∈[0,100]% → δ=2 最优（Fig10, p.16）；图峰值 28.56(10k$) 与文本 $285,647 自洽&quot;,
+      &quot;交易成本敏感度：gold 0.00005-0.0030 / bitcoin 0.0001-0.0030（上限 0.3% 对应券商规则, p.19）；最大波动 4.86%（gold）/0.35%（bitcoin）（p.19）；Fig12 二维曲面（p.20）&quot;,
+      &quot;回测内嵌口径：成本按比例扣除+金非交易日取最近交易日价写进 Algorithm 1 与符号定义（p.17-18）——口径进算法而非事后说明&quot;,
+      &quot;策略行为迹：月度持币/金比（Fig11, p.17）——回测之外给策略画像&quot;,
+      &quot;内部张力 ⚠：§7 先断言 'bitcoin is more sensitive to transaction cost than gold'（p.19），随后报出 gold 波动 4.86% &gt; bitcoin 0.35%（p.19）——方向相反且未解释（如实登记）&quot;,
+      &quot;缺项（诚实登记）：全文无 MAPE/RMSE/MAE 等预测误差指标；摘要称 'With comparison and experiments'（p.1）但正文无选型对比实验数字（§4.1.1 p.6 为定性论证）；sliding window 'significantly outperforms'（p.14）无数字；无 buy-and-hold/空仓基线对照；w1/w2 数值未报（eq22 仅约束, p.10）；主回测基线交易成本值未报（只有敏感度区间, p.19）；印刷瑕疵：p.10 公式交叉引用整体错位一号（正文引 (16)-(18)/(19)/(20)/(21) 实为 (17)-(19)/(20)/(21)/(22)）；§6.3 引 'fig.5.3' 实为 Figure 10（p.19）；多处笔误（Radomness / 'radio of buying gold' / 'weakly period' / principle-principal 混用）&quot;
+    ],
+    &quot;wordsmith&quot;: [
+      {&quot;quote&quot;: &quot;PADRRI: Prediction And Decision Models For Best Return And Risk With High Interpretability&quot;, &quot;page&quot;: &quot;p.1&quot;, &quot;note&quot;: &quot;标题级命名：缩写把四个卖点焊进题目——可命名性是 O 论文的记忆装置&quot;},
+      {&quot;quote&quot;: &quot;Using our prediction model and decision model, with a principal of $1000, the final total assets will be $285,647.&quot;, &quot;page&quot;: &quot;p.16&quot;, &quot;note&quot;: &quot;头条结果句式：本金→终值一句闭环，memo（p.22）原样复述——数字两处一致&quot;},
+      {&quot;quote&quot;: &quot;the maximum fluctuation amount of final profit is 4.86%&quot;, &quot;page&quot;: &quot;p.19&quot;, &quot;note&quot;: &quot;敏感度报数句式：把'鲁棒'翻译成最大波动幅度百分比&quot;},
+      {&quot;quote&quot;: &quot;we innovatively propose a Prophet model based on a sliding window mechanism&quot;, &quot;page&quot;: &quot;p.14&quot;, &quot;note&quot;: &quot;机制创新命名句：innovatively propose+命名机制，创新声明与 Fig8 图解绑定&quot;},
+      {&quot;quote&quot;: &quot;Based on the sliding-window mechanism, the accuracy of the prediction model for our predictions significantly outperforms models that use full-window data for prediction.&quot;, &quot;page&quot;: &quot;p.14&quot;, &quot;note&quot;: &quot;反例句：强声明无数字——O 论文也有证据断点，抄句式须补上实验数字&quot;},
+      {&quot;quote&quot;: &quot;Investment has risks, and enter the market need to be careful. Good luck with your risk aversion and gains!&quot;, &quot;page&quot;: &quot;p.22&quot;, &quot;note&quot;: &quot;memo 收尾：风险提示+祝语——交付物的人格化触点&quot;}
+    ]
+  },
+  &quot;distinct&quot;: &quot;暂缺——需同题对照（本库尚无 2022 C 其他卡片，按纪律不得单卡填写）。候选五项待比对：① Sliding Window Mechanism（逐日重训+只训最近一季, p.13-15, Fig8）；② X-Prophet=Prophet+XGBoost 置信组合 W(t)=w1·p(t)+w2·ŷ_t（eq17-22, p.9-10，思路迁移自中文文献 [2]）；③ 专设 'Evidence of model optimality' 章（§6, p.16-19）回应题面 'present evidence'；④ 纯随机性检验前置证明可预测性（§5.1.3, p.13, Fig6）；⑤ 自适应 N 机制（6 类趋势形态+α=1.1/β=0.9, p.11）&quot;
+}
+</code></pre>
+<h2>2. 三条档位信号对照（对照 <a href="04_%E5%8D%A1%E7%89%87_2023B_Fuzhou.html">04_卡片_2023B_Fuzhou</a> F 卡）</h2>
+<table>
+<thead>
+<tr>
+<th>F 卡信号</th>
+<th>Fuzhou F（2023 B）</th>
+<th>本 O（2022 C, 2200688）</th>
+<th>判读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>摘要数字密度</td>
+<td>6+ 个工作量计数、0 个结果量值（F 卡 p.1）</td>
+<td><strong>0 个结果数字</strong>（p.1 "achieve a pretty good result" 式定性句）——O 摘要同样没塞数字；头条数字 $285,647 在正文 p.16 与 memo p.22 双落点</td>
+<td><strong>信号证伪</strong>："O 摘要必塞数字"只是 Soochow 卡的习惯观察（该卡摘要 3 个美元量值），不是必要条件。本 O 靠结构命名+机制名+专设证据章补足</td>
+</tr>
+<tr>
+<td>检验报数率</td>
+<td>CR 只写 "&lt;0.1" 无数值；80/20 分割声明未兑现（F 卡 p.7/p.14）</td>
+<td>高报数率：δ=2、$285,647、4.86%/0.35%、window=90、α=1.1/β=0.9、P&lt;0.05 全部落数；仅 3 处声明未兑现（精度指标/选型实验/滑窗对比）</td>
+<td><strong>信号成立</strong>：检验报数率是跨题稳定档位信号；O 允许少量"声明未兑现"藏在定量火力之下</td>
+</tr>
+<tr>
+<td>参数无账</td>
+<td>r/x_m/E、Q_j、z1-z3 全无数值无来源（F 卡 p.17-18）</td>
+<td>账本约 90% 齐：window=90、N=15、α/β、Fourier I=10/3、prior scale 10、changepoint 0.8/25 默认值全有出处；仅 2 缺口（w1/w2、基线交易成本）</td>
+<td><strong>信号成立</strong>：参数落账率差异最刺眼——F 是"整段参数失明"，O 是"个别参数漏账"</td>
+</tr>
+</tbody>
+</table>
+<p>小结：三条信号中"摘要数字密度"在本 O 被证伪为非必要条件；真正跨档稳定的是<strong>检验报数率</strong>与<strong>参数落账率</strong>。备赛时火力压这两条，摘要可走"结构化命名"路线（前提是正文有可回查的头条数字）。</p>
+<h2>3. 打法提炼（C 题数据洞察的 O 级动作）</h2>
+<ol>
+<li><strong>先证"可预测"，再上模型</strong>（§5.1.2-5.1.3, p.12-13, Fig5-6）。平稳性图检验（时序图+自相关图）+ 纯随机性检验（Q/LB 统计量）前置，P&lt;0.05 拒绝白噪声，给整个预测环节拿到统计合法性。C 题"先定义、先检验"路线的正面示范：任何"预测/动量/趋势"结论之前，先给"数据里存在可利用结构"的证据。</li>
+<li><strong>清洗可以薄，账必须清</strong>（§5.1.1, p.12；§6.1, p.17）。三步全留痕："数据相对干净完整→无需去噪"一句明示判断；Min-Max 归一化公式化（eq23）；金非交易日取最近交易日价写进回测符号定义（p.17）。对照 03 模块 §1.1 四类处理：账清不在动作多，在每步有声明、有公式、有落点。</li>
+<li><strong>回测框架写成可复算的算法</strong>（§5.3-§6.1, p.16-18）。专节定义符号（money=$1000/δ/b_i/g_i/op_{j,g}/c_g/c_b）→ 目标函数 Policy=argmax P_lastday（eq24-25）→ 资产演化方程（eq26）→ Algorithm 1 伪代码逐行（买入全仓切换、成本比例扣除）。"交易策略评估怎么写"的模板段：成本口径+资产演化+伪代码，评委可逐行复算。</li>
+<li><strong>一个可回查的头条数字 + 扫描证据</strong>（§5.3, p.16, Fig10）。$1000→$285,647（δ=2%）；δ∈[0,100]% 全扫描曲线证明 2% 是优化出来而非拍脑袋；Fig10 峰值 28.56(10k$) 与文本数字自洽。结果数字在正文与 memo（p.22）两处一致——对账纪律的示范。</li>
+<li><strong>专设 "Evidence of model optimality" 章逐题交付</strong>（§6, p.16-19）。题面 Task 2 "present evidence" → 整章回应：最优性两论证（§6.2）+ 风险考量（§6.3 分仓折中）。题目四问 ↔ §5.3/§6/§7/§10 一一映射到章节级；INFORMS 奖（决策科学学会奖）的决策清晰度大概率是这一章挣的。</li>
+<li><strong>机制命名学：Sliding Window / X-Prophet / 5-day SMA Principle</strong>（p.9, 14-15, Fig4/8）。每个机制=名字+结构图+参数落账（window=90, α=1.1, β=0.9）；"X-Prophet" 的改进思路明引中文文献 [2] 而非冒充原创——借方法+改名+给图解，比"我们用了 Prophet"高一个记忆档位。</li>
+<li><strong>敏感度报数到"最大波动幅度"</strong>（§7, p.19-20, Fig12）。交易成本二维扫描（gold 0.00005-0.0030 / bitcoin 0.0001-0.0030）+ 两个极差数字收口（4.86%/0.35%）+ 三维曲面图——把"鲁棒"翻译成可复核的量。</li>
+<li><strong>O 论文的证据也有暗角：火力分配问题</strong>（p.1, 14, 19）。本 O 三处"声明未兑现"（预测精度无 MAPE/RMSE 数字、模型选型对比无实验数字、滑窗优势无数字）与两处参数漏账（w1/w2、基线交易成本）都真实存在，但被"头条终值+参数扫描+敏感度极差+证据章"的定量火力覆盖。教训：报数要报在决定胜负的位置；§7 的"bitcoin 更敏感 vs gold 波动 4.86%&gt;0.35%"方向矛盾（p.19）也提醒——检查自己的敏感度结论方向是否与自己的数字一致。</li>
+</ol>
+<h2>4. 自查（代理产出，待站长复核）</h2>
+<ul>
+<li>页码逐条核过：本 PDF 印刷页码与 PDF 页码一致，24/24 页全读，卡内锚点全部对应渲染页；身份经官方 2022_C_Results.pdf p.2 一手抽文本复验（O + INFORMS Award）</li>
+<li>无臆测：预测精度无指标/w1w2 未报/基线成本未报/滑窗对比无数字均按"读不出"登记；§7 张力与 p.10 公式引用错位为如实观察并标 ⚠；distinct 按纪律填"暂缺——需同题对照"（附 5 候选）</li>
+<li>引用 6 条均 ≤25 词；三条档位信号对照完成（摘要数字密度在本 O 被证伪为非必要条件，检验报数率与参数落账率两信号成立）</li>
+</ul>
+</div>
+<footer>MCM/ICM 2027 备赛知识库 · 2027-01-28 开赛 · 数据只存本浏览器</footer>
+<script>window.UPC_UI_ROOT="../../";</script>
+<script defer src="../../_vendor/katex/katex.min.js"></script>
+<script defer src="../../_vendor/katex/contrib/auto-render.min.js"></script>
+<script>window.addEventListener('DOMContentLoaded',function(){
+if(window.renderMathInElement){renderMathInElement(document.body,
+{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});</script>
+<script src="../../global-ui.js" defer></script>
+<script>
+var EV_START=1801173600000,EV_END=1801530000000;
+function p2(n){return n<10?'0'+n:''+n;}
+(function(){
+  var el=document.getElementById('clock');
+  function upd(){var t=Date.now();
+    if(t<EV_START){var ms=EV_START-t,dd=Math.floor(ms/864e5);
+      if(dd>=1){el.textContent='开赛 D-'+dd;el.dataset.s='pre';}
+      else{el.textContent='开赛 '+p2(Math.floor(ms/36e5))+':'+p2(Math.floor(ms%36e5/6e4));el.dataset.s='pre';}}
+    else if(t<EV_END){var u=Math.floor((t-EV_START)/1000);
+      el.textContent='赛中 '+p2(Math.floor(u/3600))+':'+p2(Math.floor(u%3600/60));el.dataset.s='live';}
+    else{el.textContent='已结束';el.dataset.s='post';}}
+  upd();setInterval(upd,30000);
+})();
+
+</script>
+</body>
+</html>
