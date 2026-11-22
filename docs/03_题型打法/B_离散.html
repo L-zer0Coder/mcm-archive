@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B 题 · 离散型打法 · MCM/ICM 备赛知识库</title>
+<meta name="description" content="MCM/ICM 备赛知识库 · B 题 · 离散型打法">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%232B5C8A'/%3E%3Ctext x='50' y='70' font-size='52' font-weight='700' text-anchor='middle' fill='%23FDFCF8' font-family='Georgia,serif'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../_vendor/katex/katex.min.css">
+<style>:root{--paper:#F7F4ED;--sheet:#FDFCF8;--ink:#2A251E;--mut:#6E6557;--dim:#786E60;
+--line:#E7E0D1;--line2:#D9D0BD;--acc:#2B5C8A;--acc-d:#1F4470;--acc-soft:rgba(43,92,138,.07);
+--serif:Georgia,'Times New Roman','Source Han Serif SC','Noto Serif SC',serif;
+--sans:'Segoe UI','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+--mono:ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.85}
+a{color:var(--acc);text-decoration:none}
+a:hover{color:var(--acc-d)}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(253,252,248,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar .in{max-width:1060px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:9px 22px}
+.topbar a{color:var(--mut)}
+.brand{display:flex;align-items:center;gap:9px;color:var(--ink);font-weight:600;font-size:13.5px}
+.brand .seal{width:24px;height:24px;border-radius:5px;background:var(--acc);color:#FDFCF8;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:13px;font-weight:700}
+.clock{font-family:var(--mono);font-size:11px;padding:1px 8px;border:1px solid rgba(43,92,138,.28);border-radius:3px;color:var(--acc);background:var(--acc-soft);white-space:nowrap}
+.clock[data-s='live']{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.clock[data-s='post']{color:var(--dim);border-color:var(--line2);background:transparent}
+.wrap{max-width:1060px;margin:0 auto;padding:22px 22px 80px}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:4px;padding:16px 20px}
+.btn{display:inline-flex;align-items:center;height:32px;padding:0 14px;border:1px solid var(--line2);border-radius:3px;font-size:12.5px;color:var(--ink);background:var(--sheet);cursor:pointer;font-family:inherit}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.solid{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.btn.solid:hover{background:var(--acc-d);color:#FDFCF8}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:11.5px;border-bottom:1px solid var(--line2)}
+tbody tr:nth-child(2n) td{background:#F8F5EC}
+pre{background:#F9F6EF;border:1px solid var(--line);border-radius:4px;padding:12px 15px;overflow:auto;font-size:12.5px;line-height:1.8}
+code{font-family:var(--mono)}
+footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</style>
+</head>
+<body>
+<div class="topbar"><div class="in">
+  <a class="brand" href="../../index.html"><span class="seal">M</span>MCM/ICM 备赛知识库</a>
+  <span class="crumb">03_题型打法</span>
+  <span class="clock" id="clock"></span>
+</div></div>
+<div class="wrap">
+<h1 class="pt">B 题 · 离散型打法</h1>
+<blockquote>
+<p>MCM B 题：离散类——优化、调度、物流、组合。方法深度见 <a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/01_%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95%E6%97%8F.html">01_优化方法族</a> 与 <a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/04_%E5%9B%BE%E8%AE%BA%E4%B8%8E%E7%BD%91%E7%BB%9C.html">04_图论与网络</a>；本页是题型层的选型与打法。
+真题事实核查日期 2026-11-22（来源：COMAP 官方题面 PDF）。</p>
+</blockquote>
+<h2>题型画像：近三年 B 题考了什么</h2>
+<table>
+<thead>
+<tr>
+<th>年份</th>
+<th>题目</th>
+<th>离散范式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026</td>
+<td>《Creating a Moon Colony Using a Space Elevator System》太空电梯月球殖民</td>
+<td>地月运输系统下的访问/建设场景（物流与运营规划）</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>《Managing Sustainable Tourism》可持续旅游</td>
+<td>容量约束下的游客流量管理（分流/调度）</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>《Searching for Submersibles》潜水器搜救</td>
+<td>搜索努力分配：预算换探测概率（2024 B 官方语境为观光潜水器搜救）</td>
+</tr>
+</tbody>
+</table>
+<p>三年画像：<strong>"在一堆约束下把有限资源安排好"</strong>——变量天然带整数/选/不选性质。注意 B 题常有连续内核（流量、概率），典型解法是 MILP 或"模拟产生分布 + 优化做决策"的混合（2024 B 即模拟采样 × 努力分配）。</p>
+<h2>方法族映射：选型决策</h2>
+<table>
+<thead>
+<tr>
+<th>你面对的子问题</th>
+<th>首选</th>
+<th>依据模块</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选/不选、排量、指派</td>
+<td>MILP（scipy.milp / PuLP）</td>
+<td><a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/01_%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95%E6%97%8F.html">01_优化方法族</a> §2.2–2.3</td>
+</tr>
+<tr>
+<td>路线、瓶颈、管道</td>
+<td>最短路/最大流</td>
+<td><a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/04_%E5%9B%BE%E8%AE%BA%E4%B8%8E%E7%BD%91%E7%BB%9C.html">04_图论与网络</a> §1.2–1.3</td>
+</tr>
+<tr>
+<td>排程带逻辑约束（要么…要么…）</td>
+<td>MILP big-M（M 取数据上界）或 CP-SAT</td>
+<td>01 模块 §1.4</td>
+</tr>
+<tr>
+<td>需求/位置不确定</td>
+<td>蒙特卡洛 + 场景</td>
+<td><a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/06_%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E4%B8%8E%E6%A8%A1%E6%8B%9F.html">06_蒙特卡洛与模拟</a></td>
+</tr>
+<tr>
+<td>方案多指标比选</td>
+<td>AHP×熵权 + TOPSIS</td>
+<td><a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/05_%E8%AF%84%E4%BB%B7%E4%B8%8E%E5%86%B3%E7%AD%96.html">05_评价与决策</a></td>
+</tr>
+</tbody>
+</table>
+<p>决策主线：<strong>三行翻译（变量/目标/约束）→ 先跑通最小精确模型 → 规模大了再谈启发式 → 每个解报 gap</strong>。离散题最值钱的一句话是"我的解离最优最多差多少"（gap 界）。</p>
+<h2>打法骨架</h2>
+<ol>
+<li><strong>开题 2h</strong>：把题面翻译成三行表 + 变量类型表（哪些 0-1、哪些整数、哪些连续）</li>
+<li><strong>最小模型 6h</strong>：砍掉次要约束先跑通（一个可行最优解 &gt; 完整模型的报错墙）</li>
+<li><strong>逐条加约束 10h</strong>：每加一条重跑一次、看目标值变化——出 infeasible 立刻定位（01 模块 §4.1 三步排查）</li>
+<li><strong>规模处理 10h</strong>：超时则对称破缺、聚合、启发式 + 界对照</li>
+<li><strong>场景与敏感度 8h</strong>：关键参数扫描；不确定输入用蒙特卡洛出分布</li>
+<li><strong>写作贯穿</strong>：模型公式先于代码出现；gap 与运行时间进结果表</li>
+</ol>
+<h2>常见死法</h2>
+<ol>
+<li>0-1 变量对称性爆炸（20 个相同设备互换 → 分支定界搜排列；01 模块 §4.2）</li>
+<li>big-M 无脑 1e6（松弛无区分度，01 模块 §4.3）</li>
+<li>启发式裸报不附界（§1.4 的教训：说服力只有一半）</li>
+<li>infeasible 摊手不排查（先让"显然可行"解过一遍约束）</li>
+<li>需求/位置当确定值——题目说"可能""估计"就要上分布</li>
+</ol>
+</div>
+<footer>MCM/ICM 2027 备赛知识库 · 2027-01-28 开赛 · 数据只存本浏览器</footer>
+<script>window.UPC_UI_ROOT="../../";</script>
+<script defer src="../../_vendor/katex/katex.min.js"></script>
+<script defer src="../../_vendor/katex/contrib/auto-render.min.js"></script>
+<script>window.addEventListener('DOMContentLoaded',function(){
+if(window.renderMathInElement){renderMathInElement(document.body,
+{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});</script>
+<script src="../../global-ui.js" defer></script>
+<script>
+var EV_START=1801173600000,EV_END=1801530000000;
+function p2(n){return n<10?'0'+n:''+n;}
+(function(){
+  var el=document.getElementById('clock');
+  function upd(){var t=Date.now();
+    if(t<EV_START){var ms=EV_START-t,dd=Math.floor(ms/864e5);
+      if(dd>=1){el.textContent='开赛 D-'+dd;el.dataset.s='pre';}
+      else{el.textContent='开赛 '+p2(Math.floor(ms/36e5))+':'+p2(Math.floor(ms%36e5/6e4));el.dataset.s='pre';}}
+    else if(t<EV_END){var u=Math.floor((t-EV_START)/1000);
+      el.textContent='赛中 '+p2(Math.floor(u/3600))+':'+p2(Math.floor(u%3600/60));el.dataset.s='live';}
+    else{el.textContent='已结束';el.dataset.s='post';}}
+  upd();setInterval(upd,30000);
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D 题 · 运筹网络型打法 · MCM/ICM 备赛知识库</title>
+<meta name="description" content="MCM/ICM 备赛知识库 · D 题 · 运筹网络型打法">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%232B5C8A'/%3E%3Ctext x='50' y='70' font-size='52' font-weight='700' text-anchor='middle' fill='%23FDFCF8' font-family='Georgia,serif'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../_vendor/katex/katex.min.css">
+<style>:root{--paper:#F7F4ED;--sheet:#FDFCF8;--ink:#2A251E;--mut:#6E6557;--dim:#786E60;
+--line:#E7E0D1;--line2:#D9D0BD;--acc:#2B5C8A;--acc-d:#1F4470;--acc-soft:rgba(43,92,138,.07);
+--serif:Georgia,'Times New Roman','Source Han Serif SC','Noto Serif SC',serif;
+--sans:'Segoe UI','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+--mono:ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.85}
+a{color:var(--acc);text-decoration:none}
+a:hover{color:var(--acc-d)}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(253,252,248,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar .in{max-width:1060px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:9px 22px}
+.topbar a{color:var(--mut)}
+.brand{display:flex;align-items:center;gap:9px;color:var(--ink);font-weight:600;font-size:13.5px}
+.brand .seal{width:24px;height:24px;border-radius:5px;background:var(--acc);color:#FDFCF8;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:13px;font-weight:700}
+.clock{font-family:var(--mono);font-size:11px;padding:1px 8px;border:1px solid rgba(43,92,138,.28);border-radius:3px;color:var(--acc);background:var(--acc-soft);white-space:nowrap}
+.clock[data-s='live']{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.clock[data-s='post']{color:var(--dim);border-color:var(--line2);background:transparent}
+.wrap{max-width:1060px;margin:0 auto;padding:22px 22px 80px}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:4px;padding:16px 20px}
+.btn{display:inline-flex;align-items:center;height:32px;padding:0 14px;border:1px solid var(--line2);border-radius:3px;font-size:12.5px;color:var(--ink);background:var(--sheet);cursor:pointer;font-family:inherit}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.solid{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.btn.solid:hover{background:var(--acc-d);color:#FDFCF8}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:11.5px;border-bottom:1px solid var(--line2)}
+tbody tr:nth-child(2n) td{background:#F8F5EC}
+pre{background:#F9F6EF;border:1px solid var(--line);border-radius:4px;padding:12px 15px;overflow:auto;font-size:12.5px;line-height:1.8}
+code{font-family:var(--mono)}
+footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</style>
+</head>
+<body>
+<div class="topbar"><div class="in">
+  <a class="brand" href="../../index.html"><span class="seal">M</span>MCM/ICM 备赛知识库</a>
+  <span class="crumb">03_题型打法</span>
+  <span class="clock" id="clock"></span>
+</div></div>
+<div class="wrap">
+<h1 class="pt">D 题 · 运筹网络型打法</h1>
+<blockquote>
+<p>ICM D 题：运筹/网络科学——关系结构上的决策。方法深度见 <a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/04_%E5%9B%BE%E8%AE%BA%E4%B8%8E%E7%BD%91%E7%BB%9C.html">04_图论与网络</a> 与 <a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/01_%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95%E6%97%8F.html">01_优化方法族</a>；本页是题型层的选型与打法。
+真题事实核查日期 2026-11-22（来源：COMAP 官方题面 PDF）。</p>
+</blockquote>
+<h2>题型画像：近三年 D 题考了什么</h2>
+<table>
+<thead>
+<tr>
+<th>年份</th>
+<th>题目</th>
+<th>运筹/网络范式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026</td>
+<td>《Managing Sports for Success》体育管理</td>
+<td>球队经营与竞技的动态决策（球员估值/薪资帽/财务杠杆为主；联盟结构与赛程重构是可选项之一——图论切入是支线）</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>《A Roadmap to a Better City》城市路书</td>
+<td>交通网络建模 + 桥梁失效影响的删边实验</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>《Great Lakes Water Problem》五大湖水量</td>
+<td>多主体（两国多州）共享水资源的协调与分配</td>
+</tr>
+</tbody>
+</table>
+<p>三年画像：<strong>"在一张关系/网络/多主体图景上做决策"</strong>。重要教训（2026 D）：<strong>别按题型惯性硬套</strong>——D 题不一定图论原生，2026 D 主体是财务建模，图论只在支线进场；方法组合贴着题面任务走（04 模块 §3）。</p>
+<h2>方法族映射：选型决策</h2>
+<table>
+<thead>
+<tr>
+<th>你面对的子问题</th>
+<th>首选</th>
+<th>依据模块</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>谁重要/瓶颈在哪</td>
+<td>中心性三指标 + 最小割</td>
+<td><a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/04_%E5%9B%BE%E8%AE%BA%E4%B8%8E%E7%BD%91%E7%BB%9C.html">04_图论与网络</a> §1.4、§2.2</td>
+</tr>
+<tr>
+<td>改造/失效的影响评估</td>
+<td>删点/删边实验 + 鲁棒性曲线</td>
+<td>04 模块 §1.5</td>
+</tr>
+<tr>
+<td>流量与运力分配</td>
+<td>最大流 / MILP</td>
+<td>04 模块 §1.3、<a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/01_%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95%E6%97%8F.html">01_优化方法族</a></td>
+</tr>
+<tr>
+<td>多主体利益协调</td>
+<td>博弈直觉 + 评价法（利益相关方加权）</td>
+<td><a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/05_%E8%AF%84%E4%BB%B7%E4%B8%8E%E5%86%B3%E7%AD%96.html">05_评价与决策</a></td>
+</tr>
+<tr>
+<td>财务/动态决策类（2026 D 型）</td>
+<td>动力学演化 + 情景模拟</td>
+<td><a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/02_%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E4%B8%8E%E5%8A%A8%E5%8A%9B%E5%AD%A6.html">02_微分方程与动力学</a>、<a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/06_%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E4%B8%8E%E6%A8%A1%E6%8B%9F.html">06_蒙特卡洛与模拟</a></td>
+</tr>
+</tbody>
+</table>
+<p>决策主线：<strong>先立节点边定义表（语义决定一切）→ 小图验证算法 → 全网跑指标 → 鲁棒性/瓶颈实验给决策依据</strong>。2024 D 型多主体问题的核心是"给每个主体的利益建模、再找妥协解"——评价法的利益相关方加权正好落地。</p>
+<h2>打法骨架</h2>
+<ol>
+<li><strong>开题 2h</strong>：画出系统的关系图景；写节点/边/权定义表（语义逐条可查）</li>
+<li><strong>数据结构化 4h</strong>：题面给的关系信息变成邻接结构（无官方数据时构造代表性小网络验证方法）</li>
+<li><strong>指标层 8h</strong>：中心性/连通性/流能力全量跑；多指标互证不单报一个</li>
+<li><strong>决策层 14h</strong>：题目问的决策转成优化或评价模型；<strong>方法选择跟题面任务走，不跟题型惯性走</strong></li>
+<li><strong>实验层 8h</strong>：删点/删边/加边实验 + 参数敏感度</li>
+<li><strong>写作贯穿</strong>：网络可视化先行（布局要可读），每图一论点</li>
+</ol>
+<h2>常见死法</h2>
+<ol>
+<li>节点边语义不清（定义表缺失，04 模块 §4.1）</li>
+<li>按题型硬套图论（2026 D 的教训：先读题面任务清单）</li>
+<li>有向无向混淆；权与目标不一致（求时间却用距离做权）</li>
+<li>中心性当唯一"重要性"（三指标三排序，04 模块 §2.3）</li>
+<li>静态图解动态题不声明（时间展开图或声明快照口径）</li>
+<li>多主体问题写成单目标优化——每个主体的利益要先有模型</li>
+</ol>
+</div>
+<footer>MCM/ICM 2027 备赛知识库 · 2027-01-28 开赛 · 数据只存本浏览器</footer>
+<script>window.UPC_UI_ROOT="../../";</script>
+<script defer src="../../_vendor/katex/katex.min.js"></script>
+<script defer src="../../_vendor/katex/contrib/auto-render.min.js"></script>
+<script>window.addEventListener('DOMContentLoaded',function(){
+if(window.renderMathInElement){renderMathInElement(document.body,
+{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});</script>
+<script src="../../global-ui.js" defer></script>
+<script>
+var EV_START=1801173600000,EV_END=1801530000000;
+function p2(n){return n<10?'0'+n:''+n;}
+(function(){
+  var el=document.getElementById('clock');
+  function upd(){var t=Date.now();
+    if(t<EV_START){var ms=EV_START-t,dd=Math.floor(ms/864e5);
+      if(dd>=1){el.textContent='开赛 D-'+dd;el.dataset.s='pre';}
+      else{el.textContent='开赛 '+p2(Math.floor(ms/36e5))+':'+p2(Math.floor(ms%36e5/6e4));el.dataset.s='pre';}}
+    else if(t<EV_END){var u=Math.floor((t-EV_START)/1000);
+      el.textContent='赛中 '+p2(Math.floor(u/3600))+':'+p2(Math.floor(u%3600/60));el.dataset.s='live';}
+    else{el.textContent='已结束';el.dataset.s='post';}}
+  upd();setInterval(upd,30000);
+})();
+
+</script>
+</body>
+</html>
