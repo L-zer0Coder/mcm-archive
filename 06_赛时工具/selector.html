@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>选型助手 · MCM/ICM 备赛知识库</title>
+<meta name="description" content="MCM/ICM 备赛工具：五分钟自测队内技能与六题型的匹配度。数据只存本浏览器，不联网。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%232B5C8A'/%3E%3Ctext x='50' y='70' font-size='52' font-weight='700' text-anchor='middle' fill='%23FDFCF8' font-family='Georgia,serif'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../_vendor/katex/katex.min.css">
+<style>:root{--paper:#F7F4ED;--sheet:#FDFCF8;--ink:#2A251E;--mut:#6E6557;--dim:#786E60;
+--line:#E7E0D1;--line2:#D9D0BD;--acc:#2B5C8A;--acc-d:#1F4470;--acc-soft:rgba(43,92,138,.07);
+--serif:Georgia,'Times New Roman','Source Han Serif SC','Noto Serif SC',serif;
+--sans:'Segoe UI','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+--mono:ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.85}
+a{color:var(--acc);text-decoration:none}
+a:hover{color:var(--acc-d)}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(253,252,248,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar .in{max-width:1060px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:9px 22px}
+.topbar a{color:var(--mut)}
+.brand{display:flex;align-items:center;gap:9px;color:var(--ink);font-weight:600;font-size:13.5px}
+.brand .seal{width:24px;height:24px;border-radius:5px;background:var(--acc);color:#FDFCF8;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:13px;font-weight:700}
+.clock{font-family:var(--mono);font-size:11px;padding:1px 8px;border:1px solid rgba(43,92,138,.28);border-radius:3px;color:var(--acc);background:var(--acc-soft);white-space:nowrap}
+.clock[data-s='live']{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.clock[data-s='post']{color:var(--dim);border-color:var(--line2);background:transparent}
+.wrap{max-width:1060px;margin:0 auto;padding:22px 22px 80px}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:4px;padding:16px 20px}
+.btn{display:inline-flex;align-items:center;height:32px;padding:0 14px;border:1px solid var(--line2);border-radius:3px;font-size:12.5px;color:var(--ink);background:var(--sheet);cursor:pointer;font-family:inherit}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.solid{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.btn.solid:hover{background:var(--acc-d);color:#FDFCF8}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:11.5px;border-bottom:1px solid var(--line2)}
+tbody tr:nth-child(2n) td{background:#F8F5EC}
+pre{background:#F9F6EF;border:1px solid var(--line);border-radius:4px;padding:12px 15px;overflow:auto;font-size:12.5px;line-height:1.8}
+code{font-family:var(--mono)}
+footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}
+.q{border:1px solid #D9D0BD;background:#FDFCF8;border-radius:4px;padding:14px 18px;margin-bottom:10px}
+.q h3{margin:0 0 6px;font-size:14px}
+.opt{display:inline-block;margin:3px 6px 3px 0;padding:5px 12px;border:1px solid #D9D0BD;border-radius:3px;
+     font-size:12.5px;cursor:pointer;background:#FDFCF8}
+.opt.on{background:#2B5C8A;border-color:#2B5C8A;color:#FDFCF8}
+.opt:hover{border-color:#2B5C8A}
+#verdict{border:1px solid #2B5C8A;background:#FDFCF8;border-radius:4px;padding:16px 20px;margin-top:14px}
+#verdict .bar{height:8px;border-radius:4px;background:#E7E0D1;margin:4px 0 10px;position:relative}
+#verdict .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:#2B5C8A}
+.suggest{font-size:13px;color:#6E6557;margin-top:4px}
+
+</style>
+</head>
+<body>
+<div class="topbar"><div class="in">
+  <a class="brand" href="../index.html"><span class="seal">M</span>MCM/ICM 备赛知识库</a>
+  <span class="crumb">赛时工具</span>
+  <span class="clock" id="clock"></span>
+</div></div>
+<div class="wrap">
+<h1 class="pt">选型助手</h1>
+<p class="suggest">用途：赛前 5 分钟自测，输出六题型的匹配度排序与主攻模块建议。依据：2024–2026 官方题面画像 + 方法族映射（题型打法各页）。本页不联网，数据只存本浏览器。</p>
+<div class="q"><h3>1. 队里最能打的技能是？</h3>
+<span class="opt" data-q="0" data-o="0">微分方程 / 物理机理</span>
+<span class="opt" data-q="0" data-o="1">优化 / 算法 / 编程</span>
+<span class="opt" data-q="0" data-o="2">统计 / 数据处理</span>
+<span class="opt" data-q="0" data-o="3">运筹 / 网络分析</span>
+<span class="opt" data-q="0" data-o="4">指标体系 / 综合评价</span>
+<span class="opt" data-q="0" data-o="5">政策分析 / 写作论证</span>
+</div>
+<div class="q"><h3>2. 你们更擅长哪种工作方式？</h3>
+<span class="opt" data-q="1" data-o="0">推公式、写方程、做机理分析</span>
+<span class="opt" data-q="1" data-o="1">跑数据、画图、找规律</span>
+<span class="opt" data-q="1" data-o="2">搭模型、调约束、解出最优解</span>
+</div>
+<div class="q"><h3>3. 对「自带数据集」的题（C 类）感觉如何？</h3>
+<span class="opt" data-q="2" data-o="0">很适应——处理脏数据是乐趣</span>
+<span class="opt" data-q="2" data-o="1">一般——能做但不偏爱</span>
+<span class="opt" data-q="2" data-o="2">不适应——想要机理或结构清晰的题</span>
+</div>
+<div class="q"><h3>4. 写作与论证能力自评？</h3>
+<span class="opt" data-q="3" data-o="0">强——能把复杂模型讲得清晰可信</span>
+<span class="opt" data-q="3" data-o="1">中——重模型轻写作</span>
+</div>
+<button class="btn solid" id="go" style="margin-top:6px">生成匹配度报告</button>
+<div id="verdict" style="display:none"></div>
+</div>
+<footer>MCM/ICM 2027 备赛知识库 · 2027-01-28 开赛 · 数据只存本浏览器</footer>
+<script>window.UPC_UI_ROOT="../";</script>
+<script defer src="../_vendor/katex/katex.min.js"></script>
+<script defer src="../_vendor/katex/contrib/auto-render.min.js"></script>
+<script>window.addEventListener('DOMContentLoaded',function(){
+if(window.renderMathInElement){renderMathInElement(document.body,
+{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});</script>
+<script src="../global-ui.js" defer></script>
+<script>
+var EV_START=1801173600000,EV_END=1801530000000;
+function p2(n){return n<10?'0'+n:''+n;}
+(function(){
+  var el=document.getElementById('clock');
+  function upd(){var t=Date.now();
+    if(t<EV_START){var ms=EV_START-t,dd=Math.floor(ms/864e5);
+      if(dd>=1){el.textContent='开赛 D-'+dd;el.dataset.s='pre';}
+      else{el.textContent='开赛 '+p2(Math.floor(ms/36e5))+':'+p2(Math.floor(ms%36e5/6e4));el.dataset.s='pre';}}
+    else if(t<EV_END){var u=Math.floor((t-EV_START)/1000);
+      el.textContent='赛中 '+p2(Math.floor(u/3600))+':'+p2(Math.floor(u%3600/60));el.dataset.s='live';}
+    else{el.textContent='已结束';el.dataset.s='post';}}
+  upd();setInterval(upd,30000);
+})();
+
+var QUIZ=[["队里最能打的技能是？", [["微分方程 / 物理机理", {"A": 3, "B": 1}], ["优化 / 算法 / 编程", {"B": 3, "D": 1}], ["统计 / 数据处理", {"C": 3, "E": 1}], ["运筹 / 网络分析", {"D": 3, "B": 2}], ["指标体系 / 综合评价", {"E": 3, "F": 2}], ["政策分析 / 写作论证", {"F": 3, "E": 1}]]], ["你们更擅长哪种工作方式？", [["推公式、写方程、做机理分析", {"A": 2, "B": 1}], ["跑数据、画图、找规律", {"C": 2, "E": 1}], ["搭模型、调约束、解出最优解", {"B": 2, "D": 1}]]], ["对「自带数据集」的题（C 类）感觉如何？", [["很适应——处理脏数据是乐趣", {"C": 3}], ["一般——能做但不偏爱", {"C": 1}], ["不适应——想要机理或结构清晰的题", {"A": 1, "B": 1, "D": 1}]]], ["写作与论证能力自评？", [["强——能把复杂模型讲得清晰可信", {"F": 2, "E": 1}], ["中——重模型轻写作", {"B": 1, "A": 1, "D": 1}]]]], TP={"A": "A_%E8%BF%9E%E7%BB%AD", "B": "B_%E7%A6%BB%E6%95%A3", "C": "C_%E6%95%B0%E6%8D%AE%E6%B4%9E%E5%AF%9F", "D": "D_%E8%BF%90%E7%AD%B9%E7%BD%91%E7%BB%9C", "E": "E_%E5%8F%AF%E6%8C%81%E7%BB%AD", "F": "F_%E6%94%BF%E7%AD%96"}, TO={"A": "A_连续", "B": "B_离散", "C": "C_数据洞察", "D": "D_运筹网络", "E": "E_可持续", "F": "F_政策"}, TM={"A": "02_微分方程与动力学", "B": "01_优化方法族", "C": "03_统计与机器学习", "D": "04_图论与网络", "E": "05_评价与决策", "F": "07_写作与SummarySheet"};
+var LABEL={A:'MCM·连续',B:'MCM·离散',C:'MCM·数据洞察',D:'ICM·运筹网络',E:'ICM·可持续',F:'ICM·政策'};
+var pick={};
+function bind(){
+  document.querySelectorAll('.opt').forEach(function(el){
+    el.addEventListener('click', function(){
+      var q=el.dataset.q, o=+el.dataset.o;
+      document.querySelectorAll('.opt[data-q="'+q+'"]').forEach(function(x){x.classList.remove('on');});
+      el.classList.add('on'); pick[q]=o;
+    });
+  });
+  document.getElementById('go').addEventListener('click', report);
+}
+function report(){
+  for (var i=0;i<QUIZ.length;i++){ if(pick[i]===undefined){ alert('还有未作答的题'); return; } }
+  var sc={};
+  Object.keys(pick).forEach(function(qi){
+    var o=QUIZ[qi][1][pick[qi]][1];
+    Object.keys(o).forEach(function(t){ sc[t]=(sc[t]||0)+o[t]; });
+  });
+  var order=Object.keys(sc).sort(function(a,b){return sc[b]-sc[a];});
+  var max=sc[order[0]]||1;
+  var v=document.getElementById('verdict');
+  v.style.display='block';
+  var html='<b style="font-family:Georgia,serif">匹配度排序</b>';
+  order.forEach(function(t){
+    var pct=Math.round(sc[t]/max*100);
+    html+='<div style="margin-top:10px"><b>'+t+' '+LABEL[t]+'</b>—— 匹配 '+pct+'%'+
+      '<div class="bar"><i style="width:'+pct+'%"></i></div>'+
+      '<div class="suggest">打法：<a href="../docs/03_'+encodeURIComponent('题型打法')+'/'+TP[t]+'.html">'+TO[t]+'</a> · '+
+      '主攻模块：<a href="../docs/02_'+encodeURIComponent('知识模块')+'/'+encodeURIComponent(TM[t])+'.html">'+TM[t]+'</a></div></div>';
+  });
+  html+='<p class="suggest">提醒：匹配度只是先验。开赛当天务必六题全读一遍，用题面任务清单对照本报告再定题。</p>';
+  v.innerHTML=html;
+  try{ localStorage.setItem('mcm-quiz', JSON.stringify(pick)); }catch(e){}
+}
+if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', bind); else bind();
+
+</script>
+</body>
+</html>

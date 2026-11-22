@@ -14,7 +14,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 P = lambda *a: os.path.join(ROOT, *a)
 OUT_DOCS = os.path.join(ROOT, "docs")
 
-DOC_ROOTS = ["01_COMAP官方", "02_知识模块", "03_题型打法", "04_语料库", "05_论文拆解"]
+DOC_ROOTS = ["01_COMAP官方", "02_知识模块", "03_题型打法", "04_语料库", "05_论文拆解", "06_赛时工具"]
 EV = (EVENT_START_MS, EVENT_END_MS)
 
 
@@ -336,6 +336,8 @@ def main():
     print("building mcm-archive:")
     built = render_docs()
     print("  docs: {} pages".format(len(built)))
+    import build_tools
+    build_tools.build()
     render_index(built)
     print("  index.html")
     gen_global_ui()
