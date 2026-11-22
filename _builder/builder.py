@@ -119,8 +119,41 @@ def render_index(built_docs):
         '<table><thead><tr><th>#</th><th>模块</th><th>状态</th><th>入口</th></tr></thead><tbody>' + mods + '</tbody></table>'
         '<h2 style="font-family:var(--serif);margin-top:26px">96 小时作战室阶段表</h2>'
         '<table><thead><tr><th>阶段</th><th>任务</th><th>要点</th><th>时间</th></tr></thead><tbody>' + phases + '</tbody></table>'
+        '<h2 style="font-family:var(--serif);margin-top:26px">赛时直达</h2>'
+        '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:10px">' +
+        "".join('<a class="card" style="text-decoration:none;padding:12px 14px" href="{u}"><b style="font-family:var(--serif);color:var(--acc)">{nm}</b>'
+                '<div style="font-size:11.5px;color:var(--dim);margin-top:4px">{d}</div></a>'.format(u=u, nm=nm, d=d)
+                for u, nm, d in [
+                    ("06_赛时工具/warroom.html", "96h 作战室", "阶段轴 + 26 项 checklist"),
+                    ("06_赛时工具/budget.html", "页数预算器", "25 页逐节对账"),
+                    ("06_赛时工具/prompts.html", "提示词包", "AI 协作 12 条"),
+                    ("06_赛时工具/assembler.html", "论文组装机", "LaTeX 骨架生成"),
+                    ("06_赛时工具/selector.html", "选型助手", "题型匹配度自测"),
+                    ("06_赛时工具/flashcards.html", "闪卡库", "43 张概念自测"),
+                ]) + '</div>'
+        '<h2 style="font-family:var(--serif);margin-top:26px">全站导航</h2>'
+        '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-top:10px">' +
+        "".join('<a class="card" style="text-decoration:none;padding:12px 16px" href="{u}"><b style="font-family:var(--serif)">{nm}</b>'
+                '<div style="font-size:11.5px;color:var(--dim);margin-top:4px">{d}</div></a>'.format(u=u, nm=nm, d=d)
+                for u, nm, d in [
+                    ("docs/02_知识模块/00_学习路径.html", "学习路径", "68 天计划 · 先读这个"),
+                    ("docs/02_知识模块/01_优化方法族.html", "七大方法族", "概念→代码→真题→误用"),
+                    ("docs/03_题型打法/A_连续.html", "题型打法 A–F", "方法族→题型的映射"),
+                    ("docs/04_语料库/00_语料库总览.html", "语料库", "三梯队 · 奖项分布三年对比"),
+                    ("docs/04_语料库/02_2026O奖名录.html", "2026 O 奖名录", "41 队 + 学会奖归属"),
+                    ("docs/05_论文拆解/00_拆解方法论.html", "论文拆解", "模式卡片方法论"),
+                    ("docs/01_COMAP官方/竞赛要点.html", "竞赛要点", "官方规则中文导读"),
+                    ("docs/01_COMAP官方/历年题目清单.html", "历年题目清单", "2024–2026 十八题"),
+                    ("docs/07_资源导航/00_资源导航.html", "资源导航", "站外资源路由"),
+                ]) + '</div>'
+        '<h2 style="font-family:var(--serif);margin-top:26px">全站搜索</h2>'
+        '<div class="card" style="margin-top:10px">'
+        '<input id="sbox" placeholder="输入关键词，如：gap / 影子价格 / 删点实验 / 合并偏置 …" '
+        'style="width:calc(100% - 20px);margin:4px 10px;height:32px;border:1px solid #D9D0BD;border-radius:3px;'
+        'padding:0 10px;font-size:13px;font-family:inherit;background:#FDFCF8;color:var(--ink)">'
+        '<div id="sres" style="padding:4px 10px"></div></div>'
         '<p style="margin-top:14px;font-size:12.5px;color:var(--dim)">本站为 2027 MCM/ICM 备赛知识库 · '
-        '构建自 upc-archive 管线 · 官方事实核查于 2026-11-21</p>')
+        '构建自 upc-archive 管线 · 官方事实核查于 2026-11-22</p>')
     script = """
 (function(){
   var S=EV_START, E=EV_END, el=document.getElementById('clockrow');
@@ -135,10 +168,29 @@ def render_index(built_docs):
     else{el.innerHTML='<b style="font-family:var(--serif);font-size:20px">已结束</b>';}}
   upd();setInterval(upd,1000);
 })();
+(function(){
+  var el=document.getElementById('sbox'); if(!el) return;
+  var res=document.getElementById('sres');
+  function esc(s){return s.replace(/[&<>\"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  el.addEventListener('input', function(){
+    var kw=this.value.trim().toLowerCase();
+    if(kw.length<1){ res.innerHTML=''; return; }
+    var D=window.MCM_SEARCH||[];
+    var hits=D.filter(function(e){
+      return e.t.toLowerCase().indexOf(kw)>=0 || e.d.toLowerCase().indexOf(kw)>=0; }).slice(0,8);
+    res.innerHTML = hits.length ? hits.map(function(e){
+      var i=e.d.toLowerCase().indexOf(kw);
+      var frag = i>=0 ? '…'+esc(e.d.slice(Math.max(0,i-40), i+80))+'…' : esc(e.d.slice(0,120));
+      return '<div style="margin-top:8px"><a href="'+e.u+'"><b>'+esc(e.t)+'</b></a>'+
+        '<div style="font-size:12px;color:var(--dim)">'+frag+'</div></div>';
+    }).join('') : '<div style="font-size:12.5px;color:var(--dim)">无匹配——试试两侧挂件的树状导航</div>';
+  });
+})();
 """
     html = page("MCM/ICM 备赛知识库", "首页",
                 "MCM/ICM 2027 备赛知识库：方法族学习、O 奖语料对照、赛时工具。",
                 body, script, uiroot="", ev=EV, doc_title="首页 · MCM/ICM 备赛知识库")
+    html = html.replace("</body>", '<script src="search-index.js" defer></script></body>')
     with open(P("index.html"), "w", encoding="utf-8", newline="\n") as f:
         f.write(html)
 
@@ -262,19 +314,30 @@ def gen_data():
     home = {"n": "首页", "u": "index.html"}
     docs_tree = node(P("docs"), "docs", 0, 4)
     tree = {"n": "全站目录", "ch": [home] + (docs_tree["ch"] if docs_tree else [])}
-    manual_links = ("index.html", "docs/02_知识模块/00_学习路径.html", "docs/01_COMAP官方/竞赛要点.html")
+    manual_links = ("index.html", "docs/02_知识模块/00_学习路径.html", "docs/01_COMAP官方/竞赛要点.html",
+                    "docs/03_题型打法/A_连续.html", "docs/04_语料库/00_语料库总览.html",
+                    "docs/05_论文拆解/00_拆解方法论.html", "docs/01_COMAP官方/历年题目清单.html",
+                    "docs/07_资源导航/00_资源导航.html")
     for u in manual_links:
         if not os.path.exists(P(u)):
             raise SystemExit("manual link missing: " + u)
     data = ("window.UPC_UI_DATA=" + json.dumps(
         {"tree": tree,
          "manual": "<p><b>MCM/ICM 备赛知识库</b> —— 点两侧 ☰ / 📖 按钮随时打开目录与说明。</p>"
-                   "<p><b>核心页面：</b></p><ul>"
-                   "<li><a href=\"index.html\">首页</a>：赛程时钟 · 六题型 · 方法族模块 · 96h 阶段表</li>"
+                   "<p><b>学习方法：</b></p><ul>"
                    "<li><a href=\"docs/02_知识模块/00_学习路径.html\">学习路径</a>：68 天备赛计划（先读这个）</li>"
-                   "<li><a href=\"docs/01_COMAP官方/竞赛要点.html\">竞赛要点</a>：官方规则中文导读</li>"
+                   "<li><a href=\"docs/02_知识模块/01_优化方法族.html\">七大方法族</a>：概念→代码→真题→误用 四件套</li>"
+                   "<li><a href=\"docs/03_题型打法/A_连续.html\">题型打法 A–F</a>：方法族→题型的映射层</li>"
                    "</ul>"
-                   "<p><b>赛时工具页</b>（作战室 · 实验台 · 提示词包）在 M5 阶段上线。</p>"},
+                   "<p><b>语料与拆解：</b></p><ul>"
+                   "<li><a href=\"docs/04_语料库/00_语料库总览.html\">语料库</a>：三梯队路由 + 奖项分布三年对比 + O 奖名录</li>"
+                   "<li><a href=\"docs/05_论文拆解/00_拆解方法论.html\">论文拆解</a>：模式卡片方法论（T1 订阅后逐篇上线）</li>"
+                   "</ul>"
+                   "<p><b>赛时工具（六件）：</b>选型助手 · 页数预算器 · 96h 作战室 · 闪卡库 · 提示词包 · 论文组装机——"
+                   "入口在 <a href=\"index.html\">首页</a> 导航区与 06_赛时工具 目录。</p>"
+                   "<p><b>官方事实层：</b><a href=\"docs/01_COMAP官方/竞赛要点.html\">竞赛要点</a> · "
+                   "<a href=\"docs/01_COMAP官方/历年题目清单.html\">历年题目清单</a> · "
+                   "<a href=\"docs/07_资源导航/00_资源导航.html\">资源导航</a>（站外路由）。</p>"},
         ensure_ascii=False) + ";")
     with open(P("global-ui-data.js"), "w", encoding="utf-8", newline="\n") as f:
         f.write(data)
@@ -332,10 +395,41 @@ def validate():
     print("  validate: {} pages ok".format(len(pages)))
 
 
+def gen_search_index():
+    """search-index.js — 首页全站搜索的构建期索引（标题 + 正文纯文本）"""
+    import re as _re
+    idx = []
+    for root in DOC_ROOTS:
+        for f in sorted(glob.glob(P(root, "**", "*.md"), recursive=True)):
+            rel = os.path.relpath(f, ROOT).replace(os.sep, "/")
+            if os.path.basename(f).startswith("_"):
+                continue
+            html_path = os.path.join(OUT_DOCS, *(rel[:-3] + ".html").split("/"))
+            if not os.path.exists(html_path):
+                continue
+            text = open(html_path, encoding="utf-8").read()
+            m = _re.search(r"<h1[^>]*>(.*?)</h1>", text, _re.S)
+            title = _re.sub(r"<[^>]+>", "", m.group(1)).strip() if m else os.path.basename(f)
+            body = _re.sub(r"<script[\s\S]*?</script>|<style[\s\S]*?</style>|<[^>]+>", " ", text)
+            body = _re.sub(r"\s+", " ", body).strip()
+            idx.append({"u": "docs/" + rel[:-3] + ".html", "t": title, "d": body})
+    for u, nm, d in [("06_赛时工具/selector.html", "选型助手", "题型匹配度自测问卷"),
+                     ("06_赛时工具/budget.html", "页数预算器", "25 页逐节对账"),
+                     ("06_赛时工具/warroom.html", "96h 作战室", "阶段轴 checklist"),
+                     ("06_赛时工具/flashcards.html", "闪卡库", "43 张概念自测"),
+                     ("06_赛时工具/prompts.html", "提示词包", "AI 协作 12 条"),
+                     ("06_赛时工具/assembler.html", "论文组装机", "LaTeX 骨架生成")]:
+        idx.append({"u": u, "t": nm, "d": d})
+    with open(P("search-index.js"), "w", encoding="utf-8", newline=chr(10)) as f:
+        f.write("window.MCM_SEARCH=" + json.dumps(idx, ensure_ascii=False) + ";")
+    print("  search-index: {} entries".format(len(idx)))
+
+
 def main():
     print("building mcm-archive:")
     built = render_docs()
     print("  docs: {} pages".format(len(built)))
+    gen_search_index()
     import build_tools
     build_tools.build()
     render_index(built)
