@@ -48,8 +48,196 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</sty
 <div class="wrap">
 <h1 class="pt">图论与网络</h1>
 <blockquote>
-<p>本模块将在 M1 阶段上线。请先阅读 ](学习路径)(00_%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84.html)。</p>
+<p>学习核心模块之一，服务的典型场景：交通与路网、供应链与物流、社交与传播、调度与匹配——一切"关系结构"的建模。
+验证环境：NetworkX 3.6.1，Windows，2026-11-22 全部代码实跑通过。
+赛制相关的内容在 03_题型打法，本模块只讲方法本身。</p>
 </blockquote>
+<h2>0. 先建地图：三类网络问题</h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>回答的问题</th>
+<th>核心算法</th>
+<th>验证方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>路径</td>
+<td>最快/最短/最省怎么走</td>
+<td>Dijkstra、A*、Floyd</td>
+<td>小图手工验算</td>
+</tr>
+<tr>
+<td>流</td>
+<td>最多能运多少、瓶颈在哪</td>
+<td>最大流最小割</td>
+<td>割的容量对账</td>
+</tr>
+<tr>
+<td>匹配</td>
+<td>谁和谁成对（任务指派/结对）</td>
+<td>二部图匹配（匈牙利算法）；规模化转 MILP（接 <a href="01_%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95%E6%97%8F.html">01_优化方法族</a>）</td>
+<td>小例手工验算</td>
+</tr>
+<tr>
+<td>连接</td>
+<td>连通全部的最小代价（管网/路网设计）</td>
+<td>最小生成树 MST；要求回到起点则转 TSP/VRP（常转 MILP）</td>
+<td>与手工构造对照</td>
+</tr>
+<tr>
+<td>结构</td>
+<td>谁重要、抱团在哪</td>
+<td>中心性、社区发现</td>
+<td>多指标互证</td>
+</tr>
+</tbody>
+</table>
+<p><strong>心法三句</strong>：网络建模的第一产出是"节点边定义表"，不是代码；算法选择由边的性质（有向/无向/带权/时变）决定；结构类结论要用多个指标互证。</p>
+<h2>1. 概念讲透</h2>
+<h3>1.1 网络建模三要素：节点、边、权的语义</h3>
+<p>同一道题可以有完全不同的网络模型——<strong>语义选择才是建模</strong>：</p>
+<ul>
+<li><strong>节点</strong>：路口、仓库、人、任务、设备——先问"流经网络的东西是什么"，它停留/转换的地方就是节点；</li>
+<li><strong>边</strong>：道路、运输线、接触关系、任务先后——有方向吗（单行道/依赖序）？</li>
+<li><strong>权</strong>：时间、距离、成本、容量——单位统一，且"最短"的目标必须与权一致（求时间最短就别用距离做权）。</li>
+</ul>
+<p>两个容易踩的坑：<strong>时变网络</strong>（路况随时间变，一条静态最短路可能失效——用"时间展开图"升维：把每个时刻复制成一层，层内边表示"原地等待"（权=等待耗时），层间边表示"在时刻 t 移动到相邻节点"（权=该时段通行时间），权与容量按层各自取值）；<strong>多商品流</strong>（两种货物共享容量，单商品最大流不适用）。遇到它们要在假设里显式声明近似。</p>
+<h3>1.2 最短路：Dijkstra 与它的边界</h3>
+<p>Dijkstra 的直觉：像水波扩散，从起点按"当前已知最短距离"逐个确定节点，贪心且正确——<strong>前提是边权非负</strong>。有负权边（如"补贴"建模成负成本）时 Dijkstra 会给出错误答案，要换 Bellman–Ford 类算法；负环则最短路根本不存在。工具选择按"要几个点的答案"：单源用 Dijkstra、全对最短路的小图用 Floyd 一次算完、大图带启发函数用 A*。与最小生成树（MST）的区别常被混淆：<strong>MST 求"连通全部节点的最小总代价"，Dijkstra 只管"点到点的最省"</strong>——铺管网用 MST，算派车路线用最短路。另一个实战边界：<strong>等待/时间窗</strong>约束让"最短路"变成"约束最短路"，通常改写成 MILP（回 <a href="01_%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95%E6%97%8F.html">01_优化方法族</a>）而不是硬改 Dijkstra。</p>
+<h3>1.3 网络流：最大流最小割定理</h3>
+<p>最大流问"从源到汇最多运多少"，答案是它等于<strong>最小割的容量</strong>——把节点分成源侧/汇侧，跨越切口的边容量之和最小的那个方案，就是瓶颈本身。这个定理的实战价值：<strong>它把"运力上限"翻译成"瓶颈在哪"</strong>，比一个数字有用得多。多源多汇加超源超汇边；节点有容量（仓库吞吐上限）就拆点。最大流本身是 LP 的特例，规模大或带整数约束时回 <a href="01_%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95%E6%97%8F.html">01_优化方法族</a>。</p>
+<h3>1.4 中心性：三种"重要"，三个不同问题</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>回答的问题</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>度中心性</td>
+<td>谁连接最多</td>
+<td>资源覆盖、直接影响力</td>
+</tr>
+<tr>
+<td>介数中心性</td>
+<td>谁卡在别人最短路上</td>
+<td>关键枢纽、切断影响（如交通疏解）</td>
+</tr>
+<tr>
+<td>接近中心性</td>
+<td>谁到全网平均最快</td>
+<td>消息广播、选址（医院/仓库）</td>
+</tr>
+</tbody>
+</table>
+<p>三个指标给出的"最重要节点"常常不同（§2.3 的星型图会看到度中心性与介数中心性的分歧），<strong>用哪个取决于你要干预什么</strong>，结论里必须写明选择的理由。</p>
+<h3>1.5 连通与鲁棒性：删点实验</h3>
+<p>连通分量回答"是否全联通"；更实战的问题是<strong>鲁棒性</strong>：按介数从高到低逐个删节点，看最大连通块占比的衰减曲线——衰减越陡的网络越脆弱，曲线的拐点给出"临界规模"，保护优先级来自排序本身。两种口径：按初始介数排序静态删除（便宜），或每删一个重算介数的自适应删除（精细），论文里写明用哪种。对边做删除实验同理——2025 D 的桥梁失效正是删边版。抱团结构（社区发现，指标如模块度）是它的姊妹视角，本模块不展开，NetworkX 的 <code>community</code> 模块可用。</p>
+<h2>2. 最小可复现代码</h2>
+<p>以下三段 2026-11-22 在 NetworkX 3.6 实跑通过，输出为真实结果。</p>
+<h3>2.1 最短路（Dijkstra）</h3>
+<pre><code class="language-python">import networkx as nx
+G = nx.DiGraph()
+for u, v, wgt in [(&quot;A&quot;,&quot;B&quot;,4), (&quot;A&quot;,&quot;C&quot;,2), (&quot;B&quot;,&quot;D&quot;,5), (&quot;C&quot;,&quot;B&quot;,1),
+                  (&quot;C&quot;,&quot;D&quot;,8), (&quot;D&quot;,&quot;E&quot;,3), (&quot;B&quot;,&quot;E&quot;,10)]:
+    G.add_edge(u, v, weight=wgt)
+print(&quot;最短路径 =&quot;, nx.dijkstra_path(G, &quot;A&quot;, &quot;E&quot;),
+      &quot; 长度 =&quot;, nx.dijkstra_path_length(G, &quot;A&quot;, &quot;E&quot;))
+</code></pre>
+<p>真实输出：</p>
+<pre><code>最短路径 = ['A', 'C', 'B', 'D', 'E']  长度 = 11
+</code></pre>
+<p>读法：中转最少的走法 A→B→E 要 14，正确答案绕行 A→C→B→D→E 只要 11（2+1+5+3）——边权一大，"跳数少"与"总代价小"立刻分道扬镳。（本题里"每步选最便宜出边"的贪心恰好命中最优，那是运气不是性质：贪心在最短路上没有正确性保证，别把巧合当算法。）有向图的另一课：C→B 有边不代表 B→C 有边。</p>
+<h3>2.2 最大流与瓶颈</h3>
+<pre><code class="language-python">import networkx as nx
+H = nx.DiGraph()
+for u, v, cap in [(&quot;S&quot;,&quot;a&quot;,10), (&quot;S&quot;,&quot;b&quot;,5), (&quot;a&quot;,&quot;b&quot;,15),
+                  (&quot;a&quot;,&quot;t&quot;,5), (&quot;b&quot;,&quot;t&quot;,10)]:
+    H.add_edge(u, v, capacity=cap)
+mf = nx.maximum_flow(H, &quot;S&quot;, &quot;t&quot;)
+print(&quot;最大流 =&quot;, mf[0])
+print(&quot;分配 =&quot;, {u: {v: c for v, c in d.items() if c}
+                for u, d in mf[1].items() if any(d.values())})
+</code></pre>
+<p>真实输出：</p>
+<pre><code>最大流 = 15
+分配 = {'S': {'a': 10, 'b': 5}, 'a': {'b': 5, 't': 5}, 'b': {'t': 10}}
+</code></pre>
+<p>读法：汇 t 的入边总容量只有 5+10=15，<strong>这就是最小割</strong>——S 出发的能力（15）刚好被 t 的接货能力（15）卡死。想要更多运力？加容量必须落在割边上（a→t 或 b→t），扩 S→a 无效。<strong>"先找割、再投资"是网络流定理给出的决策顺序</strong>。</p>
+<h3>2.3 中心性：同一张图，两种"重要"</h3>
+<pre><code class="language-python">import networkx as nx
+S = nx.star_graph(5)          # 中心 0 连 5 个叶子
+S.add_edge(1, 2)              # 叶子 1-2 之间加一条捷径
+print(&quot;度中心性 =&quot;, {n: round(c, 2) for n, c in nx.degree_centrality(S).items()})
+print(&quot;介数中心性 =&quot;, {n: round(c, 2) for n, c in nx.betweenness_centrality(S).items()})
+</code></pre>
+<p>真实输出：</p>
+<pre><code>度中心性 = {0: 1.0, 1: 0.4, 2: 0.4, 3: 0.2, 4: 0.2, 5: 0.2}
+介数中心性 = {0: 0.9, 1: 0.0, 2: 0.0, 3: 0.0, 4: 0.0, 5: 0.0}
+</code></pre>
+<p>读法：先看纯星型图：节点 0 的介数是 1.0（任意两叶子之间的最短路必经它），叶子全为 0。给叶子 1-2 加一条捷径后降到 0.9——这对叶子间的一部分最短路不再经过中心。<strong>加边实验本身就是弱化枢纽的手段</strong>，城市疏解、备用线路论证用的就是它。度中心性给"连接最多"的节点 0 满分，介数中心性看"谁卡在别人的路上"——同一张图、两个指标、两种排序（§1.4）：找信息广播点用度中心性，找必须经过的咽喉用介数中心性。</p>
+<h2>3. 在真题中的用法</h2>
+<p>题目信息核查于 2026-11-22（来源：COMAP 官网历年题目页）。</p>
+<table>
+<thead>
+<tr>
+<th>真题</th>
+<th>场景</th>
+<th>网络范式</th>
+<th>三行翻译</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026 ICM D《Managing Sports for Success》（体育管理）</td>
+<td>球队经营与竞技的动态决策（官方题面 2026-11-22 核：球员估值/薪资帽/财务杠杆为主，联盟结构与赛程重构是可选项之一）</td>
+<td>财务建模主导，图论切入是支线：联盟结构/赛程的网络化（节点=球队，边=交易与竞赛关系）</td>
+<td>变量= roster/财务决策；目标=竞争平衡与利润；图论用于结构分析</td>
+</tr>
+<tr>
+<td>2025 ICM D《A Roadmap to a Better City》（城市路书）</td>
+<td>交通网络的改造评估（官方题面 2026-11-22 核：路网建模+桥梁失效影响）</td>
+<td>路网建模+删边/加边实验（鲁棒性）</td>
+<td>节点=路口；边=路段（权=通行时间）；目标=疏解瓶颈</td>
+</tr>
+</tbody>
+</table>
+<p>2025 D 是图论原生题（路网建模 + 删边实验），骨架照 §1.5 走：<strong>先立"节点边定义表"（§1.1）→ 小图验证算法 → 全网跑指标 → 鲁棒性/瓶颈实验给决策依据（§2.2、§1.5）</strong>——最有效的动作是"找到最小割对应的路段"并论证投资顺序，而不是报一堆中心性排名。2026 D 则提醒我们：<strong>方法组合贴着题面任务走，别按题型惯性硬套</strong>——它的主体是财务与竞技决策建模，图论只在联盟结构/赛程的支线进场（匹配、指派类工具见 §0 地图与 <a href="01_%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95%E6%97%8F.html">01_优化方法族</a>）。</p>
+<h2>4. 常见误用</h2>
+<ol>
+<li><strong>节点边语义不清</strong>。"节点是人还是家庭、边是接触还是同乘"直接改变结论——定义表不写清，后面的算法全是空中楼阁。</li>
+<li><strong>有向无向混淆</strong>。单行道、依赖序、贸易方向都是有向的；用无向图偷懒会算出物理上不存在的路径。</li>
+<li><strong>负权边硬上 Dijkstra</strong>。补贴/净收益类负权会让结果错误且无声（§1.2）。</li>
+<li><strong>把中心性当唯一"重要性"</strong>。三个指标三种排序（§2.3），只报一个等于替决策者做了选择还不声明。</li>
+<li><strong>静态图解动态题</strong>。路况随时间变、需求随时间变，静态最短路只是近似——用时间展开图，或在假设里写清"取高峰期静态快照"。</li>
+<li><strong>大规模网络暴力枚举路径</strong>。全路径数量指数增长，别用循环枚举代替最短路算法；百万级节点考虑 <code>scipy.sparse.csgraph</code>（CSR 矩阵版算法更快）。</li>
+<li><strong>单位与目标不一致</strong>。求"最快"却用"距离"做权。权与目标函数逐字对齐。</li>
+<li><strong>结论不做对账</strong>。最大流结果要报告对应的最小割（§2.2）；最短路要抽查两条手工验算——算法对账是网络题的成人礼。</li>
+</ol>
+<h2>5. 自检清单</h2>
+<ul>
+<li><input type="checkbox" disabled> 节点/边/权定义表先行，语义逐条可查</li>
+<li><input type="checkbox" disabled> 有向/无向、带权/不带权、静态/时变的选择有声明</li>
+<li><input type="checkbox" disabled> 最短路：边权非负性检查；抽查手工验算</li>
+<li><input type="checkbox" disabled> 最大流：报告了最小割与瓶颈位置</li>
+<li><input type="checkbox" disabled> 中心性：指标选择理由写明，多指标互证</li>
+<li><input type="checkbox" disabled> 鲁棒性实验：删点曲线 + 拐点结论</li>
+<li><input type="checkbox" disabled> 大网络用了稀疏矩阵算法，运行时间可接受</li>
+<li><input type="checkbox" disabled> 单位一致：权、目标、容量三处对齐</li>
+</ul>
+<h2>参考资料（核查日期 2026-11-22）</h2>
+<ul>
+<li><a href="https://networkx.org/documentation/stable/">NetworkX 官方文档</a>——<code>dijkstra_path/maximum_flow/betweenness_centrality</code> 全部用法</li>
+<li><a href="https://docs.scipy.org/doc/scipy/reference/sparse.csgraph.html">SciPy <code>sparse.csgraph</code></a>——大规模图的稀疏矩阵算法</li>
+<li><a href="https://en.wikipedia.org/wiki/Max-flow_min-cut_theorem">最大流最小割定理（Wikipedia）</a>——定理陈述与证明概要</li>
+<li>COMAP 历年题目页：<a href="https://www.contest.comap.com/undergraduate/contests/mcm/contests/2026/problems">2026</a>、<a href="https://www.contest.comap.com/undergraduate/contests/mcm/contests/2025/problems">2025</a></li>
+</ul>
 </div>
 <footer>MCM/ICM 2027 备赛知识库 · 2027-01-28 开赛 · 数据只存本浏览器</footer>
 <script>window.UPC_UI_ROOT="../../";</script>

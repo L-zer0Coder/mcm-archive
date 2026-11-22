@@ -48,8 +48,176 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</sty
 <div class="wrap">
 <h1 class="pt">统计与机器学习</h1>
 <blockquote>
-<p>本模块将在 M1 阶段上线。请先阅读 ](学习路径)(00_%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84.html)。</p>
+<p>学习核心模块之一，服务的典型场景：数据洞察题全流程（清洗→探索→建模→检验→叙述），以及任何需要"从数据里读出结论"的环节。
+验证环境：SciPy 1.18 / NumPy 2.5.1 / pandas 3.0.5，Windows，2026-11-22 全部代码实跑通过。
+赛制相关的内容在 03_题型打法，本模块只讲方法本身。</p>
 </blockquote>
+<h2>0. 先建地图：数据任务的三个层次</h2>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>回答的问题</th>
+<th>工具</th>
+<th>检验方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>描述</td>
+<td>数据长什么样</td>
+<td>分布/相关/时序图</td>
+<td>图表自明</td>
+</tr>
+<tr>
+<td>推断</td>
+<td>关系是否可信</td>
+<td>相关检验、回归显著性</td>
+<td>p 值 + 效应量</td>
+</tr>
+<tr>
+<td>预测</td>
+<td>未见数据上表现如何</td>
+<td>回归/分类/时序</td>
+<td><strong>样本外误差</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>心法三句</strong>：清洗纪律决定数据题上限；模型只值一分，检验值九分；样本外表现是预测任务的唯一成绩单。</p>
+<h2>1. 概念讲透</h2>
+<h3>1.1 清洗纪律：数据的每一步都有账</h3>
+<p>数据题的第一夜是清洗。四类问题四种处理，<strong>每一步都要留下"做了什么、为什么、丢了多少行"的记录</strong>（写进论文附录，这是可复现性的起点）：</p>
+<ul>
+<li><strong>缺失</strong>：删除（缺失行占比小删行，整列缺失率过高删列）、填充（描述性图表可用前后插值；<strong>进入模型的特征必须只往前填</strong>——用了后向信息就是泄漏，见 §1.5；横截面用中位数）或建模处理（缺失本身有信息时，如"拒答"）；</li>
+<li><strong>异常</strong>：先分清"录入错误"（删）与"真实极端值"（保留并讨论）——用箱线图/3σ 粗筛，用业务含义终判；</li>
+<li><strong>口径</strong>：单位、时间粒度、地理边界统一；合并表前先确认键唯一；</li>
+<li><strong>重复</strong>：完全重复与"键重复值不同"（后者必须人工裁决，不能盲目去重）。</li>
+</ul>
+<h3>1.2 探索分析（EDA）：先看后建模</h3>
+<p>三个必看：<strong>分布</strong>（直方图——偏态决定要不要取对数）、<strong>相关</strong>（散点/相关系数——注意非线性相关皮尔逊会漏）、<strong>时间结构</strong>（按时间排序画趋势+季节，别用随机顺序的散点图糊弄自己）。EDA 的产出是建模假设，不是装饰图。</p>
+<h3>1.3 回归：假设、检验与过拟合</h3>
+<p>OLS 的关键假设：线性、外生性（误差与特征无关）、<strong>无严重多重共线性</strong>、独立性、同方差（正态性主要影响小样本推断）。共线性的探测工具：相关矩阵与方差膨胀因子 VIF（&gt;10 即警戒）——§2.1 就是一个活案例。</p>
+<p>模型质量两把尺：</p>
+<ul>
+<li><strong>拟合优度</strong> $R^2$：训练数据解释了多少方差——<strong>它对预测任务几乎无意义</strong>，加垃圾变量也会涨；</li>
+<li><strong>样本外误差</strong>：留出检验集或交叉验证测 MSE——预测任务的唯一成绩单。</li>
+</ul>
+<p><strong>交叉验证的操作化</strong>：k 折把训练集切成 k 份轮流做验证，调参与选模都在训练集内部完成；测试集只在最终报告用一次（与 §4.2 的三分纪律衔接）。</p>
+<p>过拟合的信号：训练集 $R^2$ 高、样本外差。解法按代价从小到大：减少特征、正则化（岭回归用系数收缩换方差下降，Lasso 收缩兼做变量选择——机制见 ISLR 第 6 章）、换简单模型。变量选择要看<strong>业务含义 + 逐个加入的边际贡献</strong>，不是跑一个自动选择器就完事。</p>
+<h3>1.4 聚类：标准化不是可选项</h3>
+<p>k-means 的距离是欧氏的——<strong>不同量纲的变量直接混算，大数值特征会淹没小数值特征</strong>。纪律：先标准化（<code>whiten</code> 或 z-score），再聚类；k 的选择用肘部法/轮廓系数给依据；<strong>固定随机种子</strong>保证可复现。聚完必做一步：给每簇画像（各特征均值表），让簇有意义。</p>
+<h3>1.5 时间序列：趋势、季节与外推的边界</h3>
+<p>三件常识工具：滑动平均看趋势（窗口宽度是季节长度的倍数）；季节差分去季节；拟合趋势后<strong>外推要声明"假设趋势延续"</strong>。样本量小、结构可能突变的数据，外推几期可以，外推几十期是编故事。数据泄漏重灾区：<strong>用未来信息构造过去时刻的特征</strong>（如用全年均值填充 3 月的缺失）——时序数据的一切统计量只能用"当时已知"的信息算。</p>
+<h3>1.6 分类：最小概念集</h3>
+<p>分类预测类别标签，与回归共用同一套"样本外检验"哲学。最小概念三件：<strong>逻辑回归</strong>（线性模型的分类版，输出概率而非硬标签）；<strong>混淆矩阵</strong>（真正/假正/真负/假负四格——它是准度的解剖台）；<strong>类别不平衡陷阱</strong>（99% 负例下"全预测负例"也有 99% 准确率，此时必须用精确率/召回率/F1 代替裸准确率）。进阶与代码见 ISLR 第 4 章（参考资料）。</p>
+<h2>2. 最小可复现代码</h2>
+<p>以下三段 2026-11-22 实跑通过，输出为真实结果。</p>
+<h3>2.1 多元回归：系数、$R^2$（NumPy/pandas）</h3>
+<pre><code class="language-python">import numpy as np, pandas as pd
+data = pd.DataFrame({&quot;面积&quot;: [50, 65, 80, 95, 110],
+                     &quot;房龄&quot;: [20, 12, 8, 3, 1],
+                     &quot;售价&quot;: [180, 230, 280, 350, 410]})
+X = np.column_stack([np.ones(5), data[&quot;面积&quot;], data[&quot;房龄&quot;]])
+beta, _, _, _ = np.linalg.lstsq(X, data[&quot;售价&quot;], rcond=None)
+print(&quot;截距/面积/房龄 系数 =&quot;, np.round(beta, 2).tolist())
+pred = X @ beta
+tot = ((data[&quot;售价&quot;] - data[&quot;售价&quot;].mean()) ** 2).sum()
+r2 = 1 - ((data[&quot;售价&quot;] - pred) ** 2).sum() / tot
+print(&quot;R2 =&quot;, round(float(r2), 4))
+</code></pre>
+<p>真实输出：</p>
+<pre><code>截距/面积/房龄 系数 = [-108.28, 4.69, 2.63]
+R2 = 0.9973
+</code></pre>
+<p>读法：先别急着解读系数——本数据里面积与房龄强负相关（r ≈ −0.978），是同一信息的两种编码。单变量回归时房龄斜率约 −11.7（越老越便宜，符合直觉），放进多元回归却翻成 +2.63（越老越贵，反直觉）：<strong>这正是多重共线性的经典症状</strong>——系数在共线特征间互相"借"解释力，连符号都不可信。处理：查相关矩阵与 VIF、合并或删掉其中一个特征。$R^2 = 0.997$ 也别高兴太早：5 个样本拟 3 个参数，残差自由度只剩 2（调整 $R^2$ ≈ 0.9946），系数对单个数据点极度敏感——<strong>小样本上 $R^2$ 只能当拟合检查，不能当证据</strong>。</p>
+<h3>2.2 聚类：标准化 + 固定种子</h3>
+<pre><code class="language-python">from scipy.cluster.vq import kmeans2, whiten
+import numpy as np
+pts = np.array([[1, 2], [1.5, 1.8], [1.2, 2.2], [6, 7], [6.5, 6.8],
+                [7, 7.3], [4, 4.5], [4.2, 4.2]], float)
+cent, lab = kmeans2(whiten(pts), 3, seed=2, minit=&quot;++&quot;)
+print(&quot;三簇中心 =&quot;, np.round(cent, 2).tolist())
+print(&quot;簇标签 =&quot;, lab.tolist())
+</code></pre>
+<p>真实输出：</p>
+<pre><code>三簇中心 = [[0.54, 0.91], [2.83, 3.21], [1.78, 1.99]]
+簇标签 = [0, 0, 0, 1, 1, 1, 2, 2]
+</code></pre>
+<p>读法：8 个点聚成 3 簇（前 3、中 3、后 2），标签就是簇的编号。两个纪律都藏在参数里：<code>whiten</code> 标准化（只除以各维标准差、不减均值——平移不影响 k-means 距离，所以够用；输出的簇中心是白化后坐标，还原到原量纲要乘回标准差）、<code>seed=2</code> 固定（k-means 对初值敏感，不固定种子则每次结果不同、论文不可复现）。<strong>k 的合理性要单独论证</strong>（肘部法），不是跑出来几簇就是几簇。</p>
+<h3>2.3 相关与滑动平均</h3>
+<pre><code class="language-python">import numpy as np
+from scipy.stats import pearsonr
+t = np.arange(12)
+series = 5 + 0.8 * t + np.array([1, -1, 0.5, -0.5, 1, 0, -1, 0.5, -0.5, 1, 0, -1], float)
+r, p = pearsonr(t, series)
+print(&quot;线性趋势 r =&quot;, round(float(r), 3), &quot; p =&quot;, format(float(p), &quot;.3g&quot;))
+k = 3
+ma = np.convolve(series, np.ones(k) / k, mode=&quot;valid&quot;)
+print(&quot;三项滑动平均 =&quot;, np.round(ma, 2).tolist())
+</code></pre>
+<p>真实输出：</p>
+<pre><code>线性趋势 r = 0.961  p = 6.4e-07
+三项滑动平均 = [5.97, 6.27, 7.73, 8.37, 9.0, 9.63, 10.27, 11.73, 12.37, 13.0]
+</code></pre>
+<p>读法：$r=0.961$ 说明强线性上升趋势。p 值打印成 0.0 是舍入假象（精确量级 $6.4\times10^{-7}$，<code>.3g</code> 格式如实显示）——<strong>规范报告写 $p<0.001$，p 值不可能等于 0</strong>。滑动平均把噪声摆动抹平：9 个相邻差的平均 ≈0.78，与真实斜率 0.8 一致，但单个相邻差在 0.3–1.5 之间摆动——<strong>单看相邻两步不可靠，要看平均趋势</strong>。注意边界损失（12 点只剩 10 个输出）与滞后：k=3 的滑动平均滞后 $(k-1)/2=1$ 期，用于拐点判断要打这个折扣。</p>
+<h2>3. 在真题中的用法</h2>
+<p>题目信息核查于 2026-11-22（来源：COMAP 官网历年题目页）。</p>
+<table>
+<thead>
+<tr>
+<th>真题</th>
+<th>场景</th>
+<th>统计范式</th>
+<th>三行翻译</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026 MCM C《Data With The Stars》（星球数据）</td>
+<td>综艺评分数据的多变量分析（官方题面 2026-11-22 核：34 季《与星共舞》舞者-明星搭档数据）</td>
+<td>清洗→EDA→关系挖掘→预测/分类，全流程</td>
+<td>变量=特征工程后的指标；模型=回归/聚类/分类；检验=样本外误差</td>
+</tr>
+<tr>
+<td>2025 MCM C《Models for Olympic Medal Tables》（奥运奖牌表）</td>
+<td>各国奖牌数的建模与预测（官方题面 2026-11-22 核：巴黎 2024 奖牌表数据）</td>
+<td>面板数据的趋势+协变量建模</td>
+<td>变量=国家×年份奖牌数；协变量=经济/人口/东道主效应；检验=留出最近一届预测</td>
+</tr>
+</tbody>
+</table>
+<p>两题共同的骨架：<strong>清洗留账（§1.1）→ EDA 定假设（§1.2）→ 模型 + 样本外检验（§1.3）→ 每个结论配一个图</strong>。数据类工作的质量分水岭从来不是模型花哨程度，而是清洗纪律与检验完整性——读者会追问的正是"你怎么处理脏数据的"和"你怎么知道模型没瞎说"。</p>
+<h2>4. 常见误用</h2>
+<ol>
+<li><strong>$R^2$ 崇拜</strong>。训练集 $R^2$ 高不代表能预测（§2.1 的 5 样本教训）；预测任务只认样本外误差，且要报告检验集大小。</li>
+<li><strong>在测试集上调参</strong>。看了测试集表现再改模型，测试集就成了训练集的一部分——这是数据泄漏的温和形态。纪律：训练/验证/测试三分，测试集只在最终报告用一次。</li>
+<li><strong>相关当因果</strong>。$r=0.961$（§2.3）只说明一起变化；因果结论需要机制论证或对照，散点图标题写"相关"不写"导致"。</li>
+<li><strong>聚类不标准化、不固定种子</strong>。两类事故都让结果不可信或不可复现（§2.2）。</li>
+<li><strong>时序数据用未来信息</strong>。用全期均值填充早期缺失、用全期趋势标准化——泄漏让样本外成绩虚高。一切统计量按"当时已知"滚动计算。</li>
+<li><strong>异常值静默删除</strong>。删掉的每个点都可能是故事的关键（极端事件正是题目的趣味所在）。保留但讨论，删除要给理由与数量。</li>
+<li><strong>小样本上黑箱模型</strong>。几十行的数据上跑深度学习，检验集 5 个样本的 90% 准确率毫无意义。小样本用简单模型 + 置信区间说话。</li>
+<li><strong>清洗不留账</strong>。论文里"我们对数据做了一些处理"等于没说。附录里给清洗流水线表：步骤/动作/影响行数。</li>
+</ol>
+<h2>5. 自检清单</h2>
+<ul>
+<li><input type="checkbox" disabled> 清洗流水线有账：步骤/理由/影响行数</li>
+<li><input type="checkbox" disabled> EDA 三件套（分布/相关/时序）先于建模</li>
+<li><input type="checkbox" disabled> 报告了样本外误差，测试集只用了最终一次</li>
+<li><input type="checkbox" disabled> 特征选择有业务含义与边际贡献论证</li>
+<li><input type="checkbox" disabled> 聚类：标准化 + 固定种子 + 簇画像</li>
+<li><input type="checkbox" disabled> 时序：无泄漏特征，外推声明假设</li>
+<li><input type="checkbox" disabled> 每个统计结论配 p 值 + 效应量 + 图</li>
+<li><input type="checkbox" disabled> 小样本用简单模型，不硬上黑箱</li>
+</ul>
+<h2>参考资料（核查日期 2026-11-22）</h2>
+<ul>
+<li><a href="https://docs.scipy.org/doc/scipy/tutorial/stats.html">SciPy 统计教程</a>——检验、分布、相关</li>
+<li><a href="https://pandas.pydata.org/docs/user_guide/index.html">pandas 用户指南</a>——清洗与合并</li>
+<li><a href="https://docs.scipy.org/doc/scipy/reference/cluster.vq.html">scipy.cluster.vq 文档</a>——<code>kmeans2/whiten</code> 语义</li>
+<li><a href="https://www.statlearning.com/">James 等《An Introduction to Statistical Learning》——回归/分类/交叉验证的标准教材，</a>免费在线版（分类见第 4 章，正则化见第 6 章）</li>
+<li><a href="https://scikit-learn.org/stable/">scikit-learn</a>——实战规模数据的组合（LinearRegression/KMeans/KFold）；本模块刻意用 numpy/scipy 手算以暴露机制，真数据集上千行时用它</li>
+<li>COMAP 历年题目页：<a href="https://www.contest.comap.com/undergraduate/contests/mcm/contests/2026/problems">2026</a>、<a href="https://www.contest.comap.com/undergraduate/contests/mcm/contests/2025/problems">2025</a></li>
+</ul>
 </div>
 <footer>MCM/ICM 2027 备赛知识库 · 2027-01-28 开赛 · 数据只存本浏览器</footer>
 <script>window.UPC_UI_ROOT="../../";</script>

@@ -33,11 +33,17 @@ missing = {m.replace("docs/", "") for m in mds} - docs_html
 
 # 链接校验
 href_re = re.compile(r'(?:href|src)="([^"]+)"')
+dead_re = re.compile(r"\]\([^) ]{1,200}\)")  # 正文里残留的 ](...) 死链接痕迹
 bad = []
 pages = [P("index.html")] + list(glob.glob(P("docs", "**", "*.html"), recursive=True))
 for pg in pages:
     base = os.path.dirname(pg)
     text = open(pg, encoding="utf-8").read()
+    body = re.sub(r"<pre[\s\S]*?</pre>|<code[\s\S]*?</code>", " ", text)
+    for m in dead_re.finditer(body):
+        frag = body[max(0, m.start() - 60):m.start() + 60]
+        if "<pre" not in frag and "<code" not in frag:
+            bad.append(("DEADLINK", os.path.relpath(pg, ROOT), m.group(0)[:60]))
     for u in href_re.findall(text):
         if re.match(r"^(https?:|data:|#|mailto:|javascript:)", u) or "'" in u or "+" in u:
             continue

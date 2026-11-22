@@ -48,9 +48,9 @@ def render_docs():
                 if os.path.exists(abs_t):
                     if abs_t.lower().endswith(".md"):
                         t_rel = os.path.relpath(abs_t, ROOT).replace(os.sep, "/")[:-3] + ".html"
-                        return "]({})({}{})".format(
+                        return "[{}]({}{})".format(
                             label, link_to(os.path.join(OUT_DOCS, *t_rel.split("/"))), frag)
-                    return "]({})({}{})".format(label, link_to(abs_t), frag)
+                    return "[{}]({}{})".format(label, link_to(abs_t), frag)
                 return "\\[" + label + "\\](" + tgt + ")"
             text = re.sub(r"\[([^\]]*)\]\(([^)\s]+)\)", sub, text)
             # 数学隔离：公式先抽走再转 markdown，防 $x_{ij}$ 被斜体/转义破坏（代码围栏不动）
@@ -282,7 +282,7 @@ def gen_data():
 
 
 def validate():
-    """链接校验：生成的 href/src 必须解析到磁盘真实文件（相对构建根）"""
+    """链接校验：href 必须解析到真实文件 + 死链接探测（md 链接未渲染成 <a> 的残留）"""
     idx = {}
     for dp, dns, fns in os.walk(ROOT):
         rel = os.path.relpath(dp, ROOT).replace(os.sep, "/")
@@ -299,9 +299,16 @@ def validate():
     pages = [P("index.html")] + glob.glob(P("docs", "**", "*.html"), recursive=True) \
         + glob.glob(P("12_赛时工具", "*.html"))
     href_re = re.compile(r'(?:href|src)="([^"]+)"')
+    dead_re = re.compile(r"\]\([^) ]{1,200}\)")  # 正文里残留的 ](...) 死链接痕迹
+    dead_skips = ("<pre", "<code")
     for pg in pages:
         base = os.path.dirname(pg)
         text = open(pg, encoding="utf-8").read()
+        body = re.sub(r"<pre[\s\S]*?</pre>|<code[\s\S]*?</code>", " ", text)
+        for m in dead_re.finditer(body):
+            frag = body[max(0, m.start() - 60):m.start() + 60].replace("\n", " ")
+            if not any(s in frag for s in dead_skips):
+                bad.append(("DEADLINK", os.path.relpath(pg, ROOT), m.group(0)[:60]))
         for u in href_re.findall(text):
             if re.match(r"^(https?:|data:|#|mailto:|javascript:)", u):
                 continue

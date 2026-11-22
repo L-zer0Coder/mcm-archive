@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>写作与Summary Sheet · MCM/ICM 备赛知识库</title>
-<meta name="description" content="MCM/ICM 备赛知识库 · 写作与Summary Sheet">
+<title>写作与 Summary Sheet · MCM/ICM 备赛知识库</title>
+<meta name="description" content="MCM/ICM 备赛知识库 · 写作与 Summary Sheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%232B5C8A'/%3E%3Ctext x='50' y='70' font-size='52' font-weight='700' text-anchor='middle' fill='%23FDFCF8' font-family='Georgia,serif'%3EM%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="../../_vendor/katex/katex.min.css">
 <style>:root{--paper:#F7F4ED;--sheet:#FDFCF8;--ink:#2A251E;--mut:#6E6557;--dim:#786E60;
@@ -46,10 +46,191 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</sty
   <span class="clock" id="clock"></span>
 </div></div>
 <div class="wrap">
-<h1 class="pt">写作与Summary Sheet</h1>
+<h1 class="pt">写作与 Summary Sheet</h1>
 <blockquote>
-<p>本模块将在 M1 阶段上线。请先阅读 ](学习路径)(00_%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84.html)。</p>
+<p>学习核心模块之一，服务的对象：竞赛论文（含 Summary Sheet）、模型报告、任何"模型要给人看"的场合。本模块与官方写作要求的衔接见 <a href="../01_COMAP%E5%AE%98%E6%96%B9/%E7%AB%9E%E8%B5%9B%E8%A6%81%E7%82%B9.html">竞赛要点</a>。
+验证环境：Python 3.12，2026-11-22 代码实跑通过。机械修订规则的出处见 §1.4 与参考资料。
+与赛制相关的官方要求（AI 报告格式等）以当年 Contest Instructions 为准，本模块只讲写作方法。</p>
 </blockquote>
+<h2>0. 先建地图：读者的阅读路径</h2>
+<p>假设评委（或导师、或任何读者）只有 15 分钟：<strong>先读 Summary（一页）→ 扫图表 → 抽查正文一节</strong>。写作的全部策略从这个路径倒推：</p>
+<table>
+<thead>
+<tr>
+<th>环节</th>
+<th>读者在做什么</th>
+<th>你的对策</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Summary 初筛</td>
+<td>决定这篇值不值得细看</td>
+<td>数字、方法主线、结果三件齐全</td>
+</tr>
+<tr>
+<td>扫图表</td>
+<td>用图重建你的论证</td>
+<td>每图一个论点、自明</td>
+</tr>
+<tr>
+<td>抽查正文</td>
+<td>验证可信度</td>
+<td>假设可追溯、公式有编号、数据有出处</td>
+</tr>
+</tbody>
+</table>
+<p><strong>心法三句</strong>：Summary 是全文压缩不是全文摘要引言；每个论点带具体数字；图表是论证的主角，正文是图表的旁白。</p>
+<h2>1. 概念讲透</h2>
+<h3>1.1 Summary Sheet 配方：六要素骨架</h3>
+<p>一页 Summary 的骨架（每个要素一个职责，各 1–3 句，顺序即逻辑）：</p>
+<ol>
+<li><strong>问题与目标</strong>（1–2 句）：把题面翻译成"我们要决定/预测/评估什么"，具体到量；</li>
+<li><strong>方法主线</strong>（2–3 句）：模型链条一句话讲清（如"ODE 刻画放电 → 蒙特卡洛灌入使用场景不确定性 → 分位数给出续航结论"），<strong>逻辑连接词体现模型间的输入输出关系</strong>；</li>
+<li><strong>关键结果</strong>（2–3 句）：<strong>全部带数字</strong>（最优值、gap、P90、超限概率），这是 Summary 与平庸作文的分水岭；</li>
+<li><strong>检验与稳健性</strong>（1–2 句）：收敛性/样本外/敏感度各一句，证明结论不是运气；</li>
+<li><strong>亮点或政策含义</strong>（1 句）：模型独特之处或对决策方的直接建议；</li>
+<li>（如需要）<strong>关键词行</strong>：方法名与题型标签。</li>
+</ol>
+<p>反面自查：把 Summary 写成"首先我们……然后我们……最后我们……"的流水账，是方法堆砌而非论证——每个"我们做了 X"都要接"所以得到了 Y（数字）"。</p>
+<h3>1.2 数字优先原则</h3>
+<p>模糊词与数字的区别就是"效果不错"与"误差 2.1%"的区别。纪律：</p>
+<ul>
+<li>结论句必带量：数值 + 单位 + 对照物（"比基准低 12%"而非"显著降低"）；</li>
+<li>精度与样本量匹配（蒙特卡洛精度纪律见 <a href="06_%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E4%B8%8E%E6%A8%A1%E6%8B%9F.html">06_蒙特卡洛与模拟</a> §1.2）；</li>
+<li>每个数字在正文可追溯（编号/表格引用），Summary 里的数字与正文完全一致——<strong>前后不一致是最致命的低级伤</strong>。</li>
+</ul>
+<h3>1.3 图表纪律：一图一论点</h3>
+<ul>
+<li><strong>图题写结论不写内容</strong>："图 3：权重扰动下方案排名的变化（方案 1 在 α&lt;0.4 时反超）"——读者只看图题就能拿到论点；</li>
+<li>每图自明：坐标轴带单位、图例完整、色盲友好的配色；</li>
+<li>表格用于精确数字（参数表、权重表），图用于趋势与对比——同一数据不重复又表又图；</li>
+<li>图必须被正文引用（"如图 3 所示……"），没被引用的图是孤儿。</li>
+</ul>
+<h3>1.4 中式表达的机械修订与人工重写</h3>
+<p>中译英的两类问题要分开处理：<strong>冗余结构</strong>可以机械替换（§2 的脚本），<strong>语态与语序</strong>必须人工重写。高频机械修订六条（前三条出自 Strunk《The Elements of Style》的删冗余与主动语态元规则；第 6 条与 upc-archive 润色库 §6.2 呼应——该库是站外资源，见参考资料）：</p>
+<table>
+<thead>
+<tr>
+<th>中式写法</th>
+<th>修订</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>In order to</td>
+<td>To</td>
+<td>冗余</td>
+</tr>
+<tr>
+<td>it can be seen that</td>
+<td>（直接删除）</td>
+<td>冗余</td>
+</tr>
+<tr>
+<td>the model which was proposed by us</td>
+<td>the model we proposed</td>
+<td>定语从句臃肿</td>
+</tr>
+<tr>
+<td>has the ability to</td>
+<td>can</td>
+<td>冗余</td>
+</tr>
+<tr>
+<td>make a comparison of A and B</td>
+<td>compare A and B</td>
+<td>名词化臃肿</td>
+</tr>
+<tr>
+<td>obviously / clearly</td>
+<td>（删除——让证据说话）</td>
+<td>语气滥用</td>
+</tr>
+</tbody>
+</table>
+<p>剩下的被动语态堆叠（"the simulation was conducted by us"）机械替换治不了——需要改写为主动（"we ran the simulation"）。<strong>机翻感的主要来源正是语态与语序，不是词汇</strong>；词汇替换只是第一步。</p>
+<h3>1.5 AI 使用披露的写法</h3>
+<p>如实、结构化、可复现：系统与版本、每条原始提问、<strong>完整输出</strong>（COMAP AI 政策原文要求 "complete output"，2026-11-22 核对政策 PDF v102025；纯翻译用途可按政策示例只附一句声明）——格式按官方当年 Instructions 附上（要求本身见 <a href="../01_COMAP%E5%AE%98%E6%96%B9/%E7%AB%9E%E8%B5%9B%E8%A6%81%E7%82%B9.html">竞赛要点</a>）。<strong>写作纪律</strong>：披露是清单不是检讨；生成后必须有人工验证与修改痕迹（结果数字、公式、图表自己重做），完全未验证的 AI 输出与未披露同样危险。</p>
+<h3>1.6 引用与出处</h3>
+<p>引用纪律赛制无关、一以贯之：<strong>外部数据</strong>（每个数据集标来源与获取日期）、<strong>他人图表与结论</strong>（直接引用或改绘需注明）、<strong>AI 工具</strong>（按 §1.5 披露并进引用列表）——凡是"不是你做的"都要能给读者指出处。图注标数据来源；正文引用与文末列表一一对应（§5 终检项）。</p>
+<h2>2. 最小可复现代码</h2>
+<p>写作自检的机械部分可以脚本化。以下片段 2026-11-22 在 Python 3.12 实跑通过：</p>
+<pre><code class="language-python">text = (&quot;In order to analyze the model which was proposed by us, &quot;
+        &quot;it can be seen that the simulation was conducted by us.&quot;)
+rules = [(&quot;In order to&quot;, &quot;To&quot;),
+         (&quot;which was proposed by us&quot;, &quot;we proposed&quot;),
+         (&quot;it can be seen that &quot;, &quot;&quot;)]
+out = text
+for bad, good in rules:
+    out = out.replace(bad, good)
+print(&quot;修订前&quot;, len(text.split()), &quot;词 → 机械修订后&quot;, len(out.split()), &quot;词&quot;)
+print(out)
+</code></pre>
+<p>真实输出：</p>
+<pre><code>修订前 22 词 → 机械修订后 12 词
+To analyze the model we proposed, the simulation was conducted by us.
+</code></pre>
+<p>读法：机械规则砍掉 10 个冗余词（约 45%），但剩下的 "the simulation was conducted by us" 仍是被动堆叠——<strong>机械替换的边界就在这里</strong>，语态改写（"we ran the simulation"）需要人来重排语序。这个两段式（脚本删冗余 → 人工改语态）正是润色的正确工序。</p>
+<h2>3. 在实战中的用法</h2>
+<p>写作模块的"用法"贯穿全周期，以三道检查点落地：</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>动作</th>
+<th>用本模块的哪一节</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>赛前</td>
+<td>Summary 六要素模板 + 图表规范先建模板文件（官方 Instructions 提供 Word/LaTeX Summary Sheet 模板可下载）；机械修订规则表贴在工位</td>
+<td>§1.1、§1.4</td>
+</tr>
+<tr>
+<td>赛中</td>
+<td>每天写一版 Summary（模型推进到哪写到哪），最后一天做的是压缩与校数字，不是从零写</td>
+<td>§1.2</td>
+</tr>
+<tr>
+<td>终检</td>
+<td>数字一致性全文对账（Summary ↔ 正文 ↔ 图表）；图题逐条检查"结论式图题"；AI 披露格式核对</td>
+<td>§1.3、§1.5</td>
+</tr>
+</tbody>
+</table>
+<p>写作时间占全程的四分之一以上是常态（经验值，无官方统计）；<strong>把它当模型工作的一部分（每天 1–2 小时），而不是最后一天的任务</strong>，是写作质量的最大单一杠杆。页数预算的逐节对账工具规划在 06_赛时工具（页数预算器，待上线）。</p>
+<h2>4. 常见误用</h2>
+<ol>
+<li><strong>Summary 写成流水账</strong>。"首先……然后……最后……"式方法罗列，无结果数字、无逻辑主线（§1.1 的六句结构逐句对照修）。</li>
+<li><strong>结论不带数字</strong>。"模型效果良好"不是结论；"样本外误差 3.2%，优于基准 1.8 个百分点"才是（§1.2）。</li>
+<li><strong>Summary 与正文数字不一致</strong>。最后一天改了正文忘了同步 Summary——终检必须做全文数字对账。</li>
+<li><strong>图题写内容不写论点</strong>。"图 2：各方案得分"是无效图题；结论进图题（§1.3）。</li>
+<li><strong>被动语态堆叠</strong>。机翻感的主要来源；机械替换治不了，要人工改主动（§1.4、§2）。</li>
+<li><strong>术语不定义就使用</strong>。第一次出现的符号与专有名词必须就地定义（或指向符号表）。</li>
+<li><strong>AI 输出未验证直接采用</strong>。数字、公式、图表逐项人工核对；披露文件是清单不是事后补写的检讨（§1.5）。</li>
+<li><strong>格式漂移</strong>。公式不编号、引用无出处、图表孤儿化——用终检清单逐条过（§5）。</li>
+</ol>
+<h2>5. 自检清单</h2>
+<ul>
+<li><input type="checkbox" disabled> Summary 六要素齐全，结果句全部带数字</li>
+<li><input type="checkbox" disabled> Summary、正文、图表三处数字一致（终检对账）</li>
+<li><input type="checkbox" disabled> 每图一个论点，图题写结论，图被正文引用</li>
+<li><input type="checkbox" disabled> 坐标轴单位、图例、配色可及性检查</li>
+<li><input type="checkbox" disabled> 术语与符号首次出现即定义</li>
+<li><input type="checkbox" disabled> 机械冗余已清理，被动语态人工改写完成</li>
+<li><input type="checkbox" disabled> AI 使用披露：系统/提问/输出三要素齐全且与实际使用一致</li>
+<li><input type="checkbox" disabled> 全文经"15 分钟读者路径"自查：只读 Summary 能否复述方法与结果</li>
+</ul>
+<h2>参考资料（核查日期 2026-11-22）</h2>
+<ul>
+<li><a href="https://www.contest.comap.com/undergraduate/contests/mcm/instructions.php">COMAP Contest Instructions</a>——Summary Sheet 与 AI 披露的官方要求（赛制细节以当年 Instructions 为准）</li>
+<li><a href="https://www.contest.comap.com/undergraduate/contests/mcm/flyer/Contest_AI_Policy.pdf">COMAP Contest AI Policy（PDF，v102025）</a>——AI 披露格式原文（"complete output"措辞出处），2026-11-22 核</li>
+<li>中译英润色库（upc-archive 站外资源）：<a href="https://l-zer0coder.github.io/upc-archive/docs/11_%E8%AE%BA%E6%96%87%E6%A8%A1%E6%9D%BF%E4%B8%8E%E5%B7%A5%E5%85%B7/%E4%B8%AD%E8%AF%91%E8%8B%B1%E6%B6%A6%E8%89%B2%E5%BA%93.html">线上版</a>——30 条中式表达对照与语料实证（upc-archive 仓库 <code>11_论文模板与工具/中译英润色库.md</code>）</li>
+<li><a href="https://en.wikisource.org/wiki/The_Elements_of_Style">The Elements of Style（Wikisource 公版）</a>——Rule 11 "Use the active voice"、Rule 13 "Omit needless words"，§1.4 机械规则前五条的元规则出处</li>
+</ul>
 </div>
 <footer>MCM/ICM 2027 备赛知识库 · 2027-01-28 开赛 · 数据只存本浏览器</footer>
 <script>window.UPC_UI_ROOT="../../";</script>

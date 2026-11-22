@@ -35,12 +35,12 @@ PROBLEMS = [
 MODULES = [
     {"id": "00", "name": "学习路径", "file": "02_知识模块/00_学习路径.md", "status": "ready"},
     {"id": "01", "name": "优化方法族", "file": "02_知识模块/01_优化方法族.md", "status": "ready"},
-    {"id": "02", "name": "微分方程与动力学", "file": "02_知识模块/02_微分方程与动力学.md", "status": "M1"},
-    {"id": "03", "name": "统计与机器学习", "file": "02_知识模块/03_统计与机器学习.md", "status": "M1"},
-    {"id": "04", "name": "图论与网络", "file": "02_知识模块/04_图论与网络.md", "status": "M1"},
-    {"id": "05", "name": "评价与决策", "file": "02_知识模块/05_评价与决策.md", "status": "M1"},
-    {"id": "06", "name": "蒙特卡洛与模拟", "file": "02_知识模块/06_蒙特卡洛与模拟.md", "status": "M1"},
-    {"id": "07", "name": "写作与Summary Sheet", "file": "02_知识模块/07_写作与SummarySheet.md", "status": "M1"},
+    {"id": "02", "name": "微分方程与动力学", "file": "02_知识模块/02_微分方程与动力学.md", "status": "ready"},
+    {"id": "03", "name": "统计与机器学习", "file": "02_知识模块/03_统计与机器学习.md", "status": "ready"},
+    {"id": "04", "name": "图论与网络", "file": "02_知识模块/04_图论与网络.md", "status": "ready"},
+    {"id": "05", "name": "评价与决策", "file": "02_知识模块/05_评价与决策.md", "status": "ready"},
+    {"id": "06", "name": "蒙特卡洛与模拟", "file": "02_知识模块/06_蒙特卡洛与模拟.md", "status": "ready"},
+    {"id": "07", "name": "写作与Summary Sheet", "file": "02_知识模块/07_写作与SummarySheet.md", "status": "ready"},
 ]
 
 # 96h 阶段表（数模版，蓝图第二节；开赛时刻公布后与 EVENT 对齐微调）
