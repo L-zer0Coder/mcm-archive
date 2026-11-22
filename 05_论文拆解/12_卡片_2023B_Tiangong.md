@@ -1,0 +1,113 @@
+# 模式卡片 · 2023 MCM B · 队伍 2315379（Tiangong University，Outstanding Winner + INFORMS Award）
+
+> **身份验证链**：论文 PDF 页眉每页自印 "Team#2315379" + Summary Sheet 印 Team Control Number 2315379（p.1）+ 信件落款 "#2315379 2023.2.20"（p.22，符合 2023 年 2 月赛程）→ 官方 2023_B_Results.pdf 交叉验证（本站验证）：**Tiangong University / 顾问 Wang Xiaoyin / 2023 B Outstanding Winner + INFORMS Award**；站内 [00_语料库总览](00_语料库总览.html) 同步记录"2023 B 三 O 全中（清华/天工-INFORMS/杜克-Giordano）"，2026-11-22 核。论文正文匿名（无作者名），身份全部来自 Results 册。
+> **页码纪律**：正文页眉自印 "Page N of 25" 与 PDF 页码一致（25/25 页逐页读）；Summary Sheet 无页眉；非技术信件两页（PDF p.21-22）为羊皮纸装饰版式无页眉页码，位置由前后页眉（Page 20/23 of 25）夹逼确认。卡内页码即 PDF 页码 p.1–25。
+> **版权纪律**：PDF 存本地学习目录（不进公开仓库）；本卡只放本站原创分析与 ≤25 词短引注。
+> **对照基线**：同题清华 O 卡 [05_卡片_2023B_Tsinghua](05_卡片_2023B_Tsinghua.html)（2300136，下称"清华 O"）、同题福州 F 卡 [04_卡片_2023B_Fuzhou](04_卡片_2023B_Fuzhou.html)（2316192，下称"F 卡"）、同题杜克 O（2318300，本卡仅深读其 Summary Sheet p.1 作路线证据，已在自查标注）。站内方法页交叉对照：[05_评价与决策](../02_知识模块/05_评价与决策.html)、[E_可持续](../03_题型打法/E_可持续.html)。
+
+## 1. 模式卡片
+
+```json
+{
+  "team": "2315379（Tiangong University，顾问 Wang Xiaoyin；2023 B Outstanding Winner + INFORMS Award，官方 Results 册交叉验证；PDF 正文匿名，页眉自证队伍号，信件落款 2023.2.20）",
+  "problem": "2023-B（Reimagining Maasai Mara：马赛马拉区内区外的资源管理分区、政策排序方法与长期趋势确定性）",
+  "tiers": {
+    "summary": {
+      "背景问题": "Mara 河年度动物大迁徙举世闻名，但区内居民利益同样不可忽视——保护与发展并重（p.1）",
+      "任务重述": "四问逐条对应题面四交付，且给问题 2 自定排名判据：交互是否良性 + 经济是否增益（p.3 restatement）",
+      "方法主线": "数据清洗与可视化→36 等分格×4 类功能区（保护/农业/狩猎/旅游）→Model I 双目标 0-1 规划（Lingo，3 情景）→Model II 加权图 Dijkstra 最小交互模型+经济影响评价模型（排名）→Model III 二次非线性回归+1% 增长假设+COVID t 检验+Yellowstone 迁移→4 特例权重敏感度（p.1, p.8, p.12, p.14, p.16, p.23）",
+      "关键结果数字": "摘要页带单位结果量值 3 处：$141,274,438 / $154,948,974 / $130,180,760（unit: million）+ 情景 2 构成计数（13 保护区/13 农业/2 狩猎/9 旅游——农业格数与正文 Table 5 的 12 差 1，37≠36，见 checks）+ p<0.05（p.1）；三值与 p.15 Table 8 精确闭合",
+      "结论建议": "scenario 2 交互最小且经济最大→最优（p.1, p.15）；4 特例下排名不变、模型稳定（p.23）；信件 4 条定性建议：社区参与/游客守则/合规禁毁林采矿/平衡保护与生计（p.22）",
+      "关键词": "Grid method; Dual-goal planning; Dijkstra's algorithm; Non-linear regression（p.1）"
+    },
+    "structure": [
+      "Summary Sheet（p.1）：摘要自带 3 处经济量值+情景构成+p 值——数字密度高于清华摘要页（工作量计数型）",
+      "Content（p.2）",
+      "1 Introduction：Background / Restatement（四问+排名判据）/ Literature review（4 条文献）/ Our work（Fig 1 三段式工作流程图, p.3-4）",
+      "2 Assumption and Justification：5 条假设逐条 justification（p.4-5；附注声明 game theory 假设'shown below'但正文无博弈模型，见 checks）",
+      "3 Notations and Definitions：Table 1 符号表 + §3.2 四个题面模糊概念精确定义（Resources/Lost Opportunities/people attracted/Negative interactions, p.5）",
+      "4 Data：Overview / Collection（Table 2 七条数据源带 URL）/ Screening & Visualization（Fig 2 2010-2020 四序列堆叠图, p.6）",
+      "5 Problem 1：分析 / 准备（eq1-4 经济与生态效益量化）/ 建立（5.3.1 36 格分区; 5.3.2 决策变量与约束 eq5-13; 5.3.3 目标函数 eq14-15）/ 求解（Lingo, Table 5 三情景, p.7-11）",
+      "6 Problem 2：分析 / 准备（Table 6 四类交互; eq16 最小距离）/ 建立（6.2.2 无向图+Table 7 类型权重+eq17+Algorithm 2 Dijkstra 伪代码）/ 求解（Fig 5-7）/ 6.3 经济影响评价（eq18, Table 8, p.12-15）",
+      "7 Problem 3：分析 / 7.2.1 旅游收入二次回归（Fig 8 双曲线对跑, eq19）/ 7.2.2 农业 / 7.2.3 COVID-19 t 检验（Table 9-10）/ 7.2.4 长期影响（Fig 9 七阶段良性循环）/ 7.3 Yellowstone 迁移（Table 11-12, eq20-21, Fig 13, p.16-20）",
+      "8 Problem 4：一句话声明（p.20）→ 非技术信件两页（羊皮纸插画版式, p.21-22）",
+      "9 Sensitivity analysis：food crisis/natural disaster/policy change/financial crisis 四特例权重 ±0.1（Table 13）+ 各特例 R²（Table 14）（p.23）",
+      "10 Evaluation and extension：3 条 Advantages（含 'Boring data may be able to reflect the law, but not as intuitive as so many images' 的可视化自辩, p.23-24）",
+      "11 Reference：仅 8 条（含题面自带 2 条法案 [7][8]；2 条中文硕论 [4][5]；22 条的清华 O 的 1/3 弱, p.24）",
+      "12 Appendix：工具版本（MATLAB R2021b & Python 3.8 & Lingo17.0）/ 2010-2020 五序列数据表 / Dijkstra MATLAB 源码（p.25）"
+    ],
+    "models": [
+      {"name": "双目标 0-1 整数规划（Model I）", "type": "整数规划/资源分配", "assumptions": "格内条件均匀（假设 4, p.5）；草地植被均匀（p.8）；各分区建设成本相同（p.11）", "validation": "决策变量 X/Y/Z/W_j∈{0,1}（Table 3, p.9）；约束 eq5 一格一用、eq6 保护区数占优、eq7-10 生态值 Vx 阈值 0.5/0.4/0.2 分级、eq11 游客 ΣZ_j×40≤410、eq13 居民收入≥$2082/人/年（p.9-11）；目标 eq14 生态最大+eq15 经济最大；承认无最优解→给 3 套更优解（p.11）；Lingo 17.0 求解（Table 5: 8/11/6/11, 9/12/2/13, 10/10/4/12）", "pages": "p.7-11"},
+      {"name": "生态效益量化链", "type": "归一化+加权指数", "assumptions": "动物按稀有度赋权：lions 1/elephants 0.8/zebras 0.5/antelopes -0.3（如印刷）/giraffes 0.4（p.7）", "validation": "Tr=Nt×Als×Ads×Lts（eq1）、Nvc 极差归一（eq2）、Nai=(Asw×Na)/Sta（eq3）、Vx=B1×Ax+B2×Px（eq4, p.7-8）——B1/B2、逐格 Vx/Ax/Nvc 数值全程未列出，生态账不闭合（见 checks）", "pages": "p.7-8"},
+      {"name": "最小交互模型（Model II）", "type": "图论/最短路", "assumptions": "四类功能区为节点、相邻格边长 d 相同（p.13）；边权按类型对查 Table 7（NR-狩猎 1/NR-农业 0.5/NR-旅游 0.8/狩猎-农业 0.2/狩猎-旅游 0.4/农业-旅游 0.6，来源仅'some information we have reviewed', p.13-14）", "validation": "eq16 最小距离定义（p.12）；eq17 交互强度 P=Σd_ij·w_ij+Σb_n·w_n——b1-b3/w1-w3（环境/气候/人口密度项）从未量化（p.14）；Algorithm 2 标准 Dijkstra 伪代码（p.14）；三情景交互比较仅图示+断言 'scenario2 resulted in the least interaction'（MATLAB），无逐情景 P 值或距离数值表（p.13, p.15）", "pages": "p.12-15"},
+      {"name": "经济影响评价模型", "type": "单位值×计数直算", "assumptions": "利润政府/居民按税率 r1=0.2/r2=0.8 分成（eq12, p.11）", "validation": "单位值账完整：狩猎 $151,000/年·区、农业 $4,786,900/年·区、日消费 $364（p.10）→ V_y=$7.55M、V_z=$13.286M、V_w=$11,967.25M 每格每年（p.11，V_w 与 p.10 单位值×50 对不上，疑似 ×2500，见 checks）；V_X=$862.1M/格（p.15）；eq18 E_i=ΣQ×V，Table 8 三值可逐项精确复算闭合（154,948.974=13×862.1+2×7.55+9×13.286+12×11967.25）", "pages": "p.10-11, p.15"},
+      {"name": "二次非线性回归（Model III 主件）", "type": "回归/模型选择", "assumptions": "Mara 是赴肯第一目的地→政策后游客年增 1%（此前约 0.3%/年）（p.16-17）——政策→旅游的传导全靠这条假设", "validation": "二次 vs 一次双曲线对跑（Fig 8）：R²=0.926 vs 0.912、调整 R²=90.5% vs 90.1%、S=7395.25 vs 7551.33 全报值；图内自评 'Neither the quadratic curve nor the linear regression could fit the point well.' 指向离群点（p.16）；eq19 系数'全过检验'（声明式无表）；2019 基线 1.762M 游客/$167.8M→三年预测 $159.79/$170.193/$182.205M（p.17）", "pages": "p.16-17"},
+      {"name": "COVID-19 t 检验", "type": "统计假设检验/外生冲击验证", "assumptions": "疫情作为 force majeure 案例检验长期预测对冲击的敏感（p.17）", "validation": "Table 9 疫情前后各 3 年游客数（177.8/178.4/176.2 vs 77.4/65.2/130）；Table 10：177.47±1.14 vs 90.87±34.44，t=4.354，p=0.049*——经复算与 Welch 校正 t 检验精确闭合（n=3+3，df≈2.0），为真实计算；但 n=3/组、p 贴 0.05 边缘", "pages": "p.17"},
+      {"name": "长期影响传导（Fig 9）", "type": "机制循环图（无数据仿真）", "assumptions": "政策→格间距↑→负交互↓（阶段 2）→吸引力↑→游客与收入↑（阶段 4）→反哺保护投入（阶段 5）→野生动物生存↑（阶段 6）→生态效益↑（阶段 7）——图内条件句 'Similarly, when the shortest distance decreases, the overall negative cycle is preserved'（p.18）", "validation": "无长期仿真；'长期趋势'由机制图（p.18）+3 年回归预测窗（p.17）+1% 增长假设（p.16-17）三件套交付", "pages": "p.16-18"},
+      {"name": "Yellowstone 迁移（7.3）", "type": "约束重参数化迁移", "assumptions": "两园相似性对照表定可行性（面积/票价/气候/物种, Table 11, p.18）；差异三条：无大迁徙/经济体量/管理成熟度（p.20）", "validation": "只改约束不改模型：收入保障改为 ΣV_2i/ΣP_j≥65627（eq20，怀俄明占 96% 面积取其 2021 人均收入, Table 12, p.19）+ 游客约束 ΣZ_j×40≤10904（eq21, 4.11/4.02/4.08M 年游客→日均, p.20）；给出五分区图（Fig 13）但无重解输出数字（见 checks）", "pages": "p.18-20"},
+      {"name": "四特例权重敏感度（§9）", "type": "权重扰动+拟合优度", "assumptions": "理想情形需校真；四特例（粮食危机/自然灾害/政策变化/金融危机）权重调整幅度≤0.1（p.23）", "validation": "Table 13：四特例×三情景经济值，scenario 2 全部最大；Table 14：四特例 R²=0.879086/0.979658/0.999959/0.955990 均>0.8——但 R² 的拟合对象未定义、Table 13 量值与 Table 8 基准差约 8-9 倍读不出（见 checks）；敏感度只覆盖经济层，未触 Table 7 图权重与回归层", "pages": "p.23"}
+    ],
+    "figures": [
+      {"id": "Fig 1", "page": "p.4", "claim": "三段式工作流程图（数据处理→模型构建→结果分析），Pro 1-6 与四问对应", "type": "总流程图", "self_evidence": "中"},
+      {"id": "Fig 2", "page": "p.6", "claim": "2010-2020 四经济序列堆叠柱状图，图内注记小尺度狩猎序列用红线高亮——实数据+诚实标注", "type": "实数据图", "self_evidence": "高"},
+      {"id": "Fig 3", "page": "p.8", "claim": "Mara 野生动物分布——用艺术观光地图（署名 photo by Louis & Sherry）当物种分布参照", "type": "引用地图（非科学数据图）", "self_evidence": "低（如实登记：无数据加工）"},
+      {"id": "Fig 4", "page": "p.9", "claim": "36 格分区叠加实地图：大象/营地/大迁徙/放牧区标注——空间底账", "type": "实地图+网格", "self_evidence": "高"},
+      {"id": "Fig 5", "page": "p.13", "claim": "初始态保护区-旅游区最小距离（红色箭头示距离）", "type": "示意地图", "self_evidence": "中（无数值）"},
+      {"id": "Fig 6", "page": "p.13", "claim": "Scenario 1 重分区后最短距离", "type": "示意地图", "self_evidence": "中（无数值）"},
+      {"id": "Fig 7", "page": "p.15", "claim": "Scenario 2 分区现状：四色功能区铺满 36 格——问题 1+2 的空间答案", "type": "结果图（分区地图）", "self_evidence": "高"},
+      {"id": "Fig 8", "page": "p.16", "claim": "二次 vs 一次回归双面板对跑：R²/S 印在图内+离群点自评注记——模型选择可视化", "type": "结果图（回归对比）", "self_evidence": "高"},
+      {"id": "Fig 9", "page": "p.18", "claim": "政策→生态→经济七阶段良性循环图（带条件句注记）", "type": "机制概念图", "self_evidence": "中-高"},
+      {"id": "Fig 10", "page": "p.19", "claim": "Yellowstone 野生动物分布图（左）", "type": "引用地图", "self_evidence": "中"},
+      {"id": "Fig 11", "page": "p.19", "claim": "Yellowstone 地形图（右）", "type": "引用地图", "self_evidence": "中"},
+      {"id": "Fig 13", "page": "p.20", "claim": "Yellowstone 五分区图（Mammoth/Geyser/Lake/Canyon/Roosevelt）——图号从 11 跳到 13，无 Fig 12（如实登记）", "type": "结果图（分区地图）", "self_evidence": "中（无重解输出数字）"},
+      {"id": "信件配图", "page": "p.22", "claim": "Scenario 2 分区图复用（与 Fig 7 同图）", "type": "复用结果图", "self_evidence": "中"}
+    ],
+    "checks": [
+      "模型选择统计比较：二次 vs 一次回归 R²/调整 R²/S 三指标并列全报值（Fig 8, p.16）——选择有据而非声明",
+      "参数显著性：'coefficients of the regression equations all passed the test'（p.16）——声明式，无检验表（如实登记）",
+      "外生冲击 t 检验：t=4.354, p=0.049（Table 10, p.17）——本卡复算与 Welch 校正精确闭合（n=3+3, df≈2.0），真跑过；但 n=3/组脆弱、p 贴线；且摘要称检验'tourism revenue'（p.1），正文实际检验的是游客数（Table 10 行名 Number of tourists）——摘要-正文口径错位",
+      "权重敏感度：四特例权重 ±0.1 扰动（Table 13, p.23）+ 假设 2 假设无天灾（p.4）却把 natural disaster 列入特例——对自家假设做扰动，动作正确；但 Table 13 量值与 Table 8 基准差约 8-9 倍、Table 14 的 R² 拟合对象未定义（读不出）",
+      "结果账可复算：Table 8 三值=单位值×格数逐项精确闭合（p.15）；Table 5 三情景满足全部约束（eq6 占优、eq11 游客、eq13 收入）——整数规划的解可核查",
+      "跨区迁移交付：Yellowstone 可行性对照表（Table 11）+两处约束重参数化（eq20-21）+五分区图（p.18-20）——题面 'applied to other wildlife management areas' 的实动作；但重解无输出数字（格数/经济值全缺，p.20）",
+      "缺项与瑕疵（诚实登记）：① 摘要-正文三处口径错位——情景构成 13+13+2+9=37≠36 格（p.1 vs Table 5 的 12 农业, p.11）；摘要 'directed graph'（p.1）vs 正文 'undirected graph'（p.13）；摘要 t 检验对象 revenue vs 正文 tourists（p.1 vs p.17）；② 单位值上游疑点——V_w=$11,967.25M 与 p.10 农业单位值 $4,786,900×50km²=$239.3M 对不上、恰为 ×2500（50²），若按 ×50 重算 Table 8 量值缩至约 1/11；单位面积保护区价值 $17,242,130,000/km² 与 V_X=$862.1M 恰差 ×1000（p.10-11, p.15）；③ 生态账不闭合——B1/B2 权重、逐格 Vx/Ax/Nvc 数值全程未列，eq7-10 阈值约束的输入不可核查（p.7-10）；④ Table 7 图权重无来源无检验（对照 05 模块 §1.2 权重来源声明——本文绕开 AHP 却在图权重处拍脑袋）；eq17 的 b/w 项从未量化（p.14）；⑤ 模板残留——Table 1 出现 'E_i Power generation of i-th hydropower station'（p.5）、敏感度引言出现 'feasibility of establishing hydropower plants'（p.23），全文无水电内容；p.5 注记承诺 'assumptions of game theory model will be shown below' 而正文无博弈模型；⑥ 编辑伤——图号跳过 Fig 12（p.19→p.20）；p.16 'the policy implementation.7.2 Long-term...' 断行丢失；p.5 Lost Opportunities 定义句 'Livestock raised and their own lives might be safe from...' 语义与'机会损失'相反（疑漏 not）；antelope 权重印刷为 -0.3（p.7）；⑦ 数据口径——Fig 8 轴标 'Million people/USD million' 与 Appendix 2 表头 '$ million, 10,000 people' 同现错位：按 p.17 预测值反推，eq19 工作单位应为 x=万人、y=千美元；Table 9 表头 'million' 实为万人（176.2=1.762M 与 p.17 基线一致）；剔除离群点声明（p.6）未说明剔了什么；[6]（Li et al. 2020 遥感论文）被用于 Kenya Tourism Board 游客数与人均收入两处引文（p.10-11）；⑧ 首年预测 $159.79M 低于 2019 基线 $167.8M，正文仍称 'a relatively large increase was achieved'（p.17）"
+    ],
+    "wordsmith": [
+      {"quote": "Build a common paradise for humans and wildlife in the Maasai Mara", "page": "p.1", "note": "标题即论点：双主体命运绑定，全文所有模型都服务这句"},
+      {"quote": "we precisely defined the vague concepts of 'lost opportunities' and 'negative interactions'", "page": "p.1", "note": "摘要声明定义动作+§3.2 兑现（p.5）——题面模糊词逐个精确定义的开题习惯"},
+      {"quote": "we proposed the concept and calculation method of ecological and economic benefits, and took their maximum value as the objective function", "page": "p.1", "note": "摘要方法句三连：概念→计算法→目标函数，把评价问题翻译成规划语言"},
+      {"quote": "Using the COVID-19 pandemic as an example, in testing the accuracy of the long-term prediction results, we used a t-test", "page": "p.1", "note": "用真实外生冲击（疫情）当预测检验案例——检验素材取自现实的摘要句式"},
+      {"quote": "Neither the quadratic curve nor the linear regression could fit the point well.", "page": "p.16", "note": "图内诚实标注：把拟合弱点画在图上指向离群点——图表自白式透明"},
+      {"quote": "Similarly, when the shortest distance decreases, the overall negative cycle is preserved", "page": "p.18", "note": "机制条件句：把传导链的成立条件写进概念图注记"},
+      {"quote": "The influence of the weights of these factors on our model is small, and our model is stable without being affected by special cases.", "page": "p.23", "note": "敏感度结论句式：扰动幅度+稳定性结论一句话（对照清华卡同位置句式 p.1）"}
+    ]
+  },
+  "distinct": "同题三 O 中唯一把问题 1 做成带求解器的双目标 0-1 整数规划（Lingo 出三套可数分区方案 Table 5, p.11），问题 2 的负交互评价不走综合赋权而走类型权重图上 Dijkstra 最短路（Table 7 + Algorithm 2, p.14）——'资源分配策略'的运筹骨架与 INFORMS 奖味一致；辅以 COVID 外生冲击 t 检验（p.17）与 Yellowstone 约束重参数化迁移（eq20-21, p.19-20）。对照成立：清华 O distinct=前置量化信件+三段式+CC 迁移检验（评分网络+AHP 路线）；F 卡候选 distinct（词频定权/三角不等式链/百年情景矩阵）与本卡互斥；杜克 O（2318300 摘要页 p.1）=Lotka-Volterra 六分量 ODE+Gordon-Schaefar 生物经济模型+L-BFGS-B 效用最大化——三家路线互不相同，本卡 distinct 成立。"
+}
+```
+
+## 2. 三 O 互比（清华 2300136 / 天工 2315379 / 杜克 2318300）
+
+杜克侧证据仅为其 Summary Sheet p.1（本卡未深读全篇，路线归纳以摘要自述为限）。
+
+1. **问题 1 的求解范式三分**。清华：四 section 评分网络+AHP 定权+24 情景 MATLAB 仿真，政策=参数改写（清华卡 p.8-17）；天工：36 格 0-1 双目标规划，Lingo 求出三套可数整数解（p.11 Table 5）；杜克：六分量 Lotka-Volterra 动力学，政策=扰动模型参数+L-BFGS-B 找最大社会效益参数（杜克 p.1）。**三 O 里唯一"真跑求解器出整数解"的是天工——INFORMS 奖的运筹味落点正在此**：显式目标函数（eq14/15, p.11）、约束逐条带经济含义（游客上限/收入保障, p.10-11）、算法伪代码（Algorithm 2, p.14）、求解器工具链实名（Lingo 17.0, p.25）。
+2. **排名机制的分歧**。清华用 AHP 综合分数排序（三矩阵+CR 三值, 清华卡 p.15-16）；天工用双判据直比——交互（图最短路）+经济（eq18 直算），两判据在三个情景上同向指向 scenario 2（p.15），**判据同向使其无需任何赋权合成，恰好绕开 05 模块 §1.2 的 AHP/熵权泥潭**；但代价是判据冲突时无仲裁规则（读不出），且交互侧无逐情景数值表（p.13-15 仅图示）。杜克用 utility function 把社会效益折成单值再优化（杜克 p.1）。
+3. **"确定性"交付的武器库不同**。清华：随机残差+α 扫描+CC 区间三层（清华卡 p.11/21/22）；天工：模型选择统计比较（R²/S 对跑, p.16）+**外生冲击 t 检验（p=0.049, p.17）**+四特例权重扰动（p.23）——三家中唯一做统计假设检验的一家；杜克：渐近稳定性+参数扫描长期行为（杜克 p.1）。同题面 "estimates of the certainties"，三家分别用仿真扰动/统计检验/动力学稳定性作答。
+4. **可迁移性交付的深度-厚度反差**。清华 CC 校正系数做成定量检验并自带二次敏感度、报稳定区间（清华卡 p.22）；天工迁移动作最实（可行性对照表 Table 11+两处约束重参数化 eq20-21+五分区图, p.18-20）但输出最薄（重解无任何数字）；杜克仅在摘要声明 extensibility（杜克 p.1）。**清华交付"检验"，天工交付"动作"，杜克交付"声明"。**
+5. **结果量值的位置策略**。清华把 12 处结果数字前置到 p.2-3 信件（清华卡 §2.5）；天工把 3 处经济量值+构成计数+p 值直接写进摘要页 p.1、与正文 Table 5/8 闭合，信件 p.21-22 反而只有 4 条定性建议+一组计数（13,2,9,12, p.21）；杜克摘要自带预算 KSh379 million 与 24%/78%/19%/97%/50%/7.5% 一串效应量值（杜克 p.1）。**三 O 的公共底座是"摘要页有可回查的结果量值"（F 卡为 0 处），位置策略（信件前置 vs 摘要自带）可以不同——修订 F 卡升档候选 1 的表述**。
+
+## 3. 打法提炼（页码为本 PDF）
+
+1. **定义先行**：题面模糊词（resources/lost opportunities/people attracted/negative interactions）在 §3.2 逐一精确定义（p.5），并在摘要声明这一动作（p.1）——开题即消歧，四问边界随之清晰。
+2. **网格化降维起步**：36 等分格×50 km²（p.8, Fig 4 p.9）——连续保护区一刀切成可数格，决策变量立刻可写、约束可编程、解可画图；题面 "different areas" 的最直接落地。
+3. **约束写经济账**：每条约束都有单位可查——游客 150,000/年→410/天→40/格（eq11, p.10）；居民收入保障 ≥$2082/人/年（eq13, p.11）；生态值 0.5/0.4/0.2 三档分级约束（eq7-10, p.10）——约束不是免责声明而是政策语言（对照 E_可持续 死法#5 的反面做法）。
+4. **双目标不硬合成**：承认无最优解→交三套更优解情景（p.11），排名留给问题 2 双判据直比；判据同向则免赋权（p.15）——比 05 模块 §1.2 组合赋权更省的运筹式绕行，但要在论文里明说判据与结论的同向性。
+5. **长期趋势用机制叙事替代长程仿真**：七阶段良性循环图（Fig 9, p.18）+3 年预测窗（p.17）+1% 年增假设（p.16-17）——"长期"不一定要百年积分，传导闭环画清楚+短窗外推也是合规交付（与杜克 ODE 稳定性、清华 20 年仿真三家三样）。
+6. **检验武器库分层配靶**：模型选择层用统计比较（双曲线 R²/S 对跑, p.16）、冲击层用 t 检验（p.17）、权重层用特例 ±0.1 扰动（p.23）——每类检验有自己的靶子，不把敏感度做成万金油。
+7. **图内诚实标注**：Fig 8 双面板自评+离群点箭头（p.16）、Fig 2 小尺度序列红线高亮说明（p.6）——弱点画在图上而非藏进文字，评委可感的第一透明度。
+8. **迁移=约束重参数化+工具链实名**：换保护区不改模型，只换收入线（$65,627）与客流线（10,904/天）两处参数（eq20-21, p.19-20）并附可行性对照表（Table 11, p.18）；Algorithm 2 伪代码（p.14）+Lingo/MATLAB/Python 版本（Appendix 1, p.25）+Dijkstra 源码（Appendix 3, p.25）——复现线索给全。
+
+## 4. 自查（代理产出，待站长复核）
+
+- 页码逐条核过：正文页眉 Page N of 25 与 PDF 页码一致（25/25 页逐页读）；信件两页（PDF p.21-22）无页眉由前后页眉夹逼定位；杜克侧仅据其摘要页 p.1 归纳路线，未深读全篇，已在 §2 开头标注
+- 无臆测：Table 8 复算闭合、t=4.354/p=0.049 的 Welch 闭合、eq19 工作单位重构（万人/千美元）均为本卡复算并注明依据；V_w ×50 疑点、Table 13 ×8-9 倍、B1/B2·Vx 无数值、hydropower 残留、game theory 空承诺、Fig 12 跳号、摘要-正文三处口径错位等均按"如实登记/读不出"处理，不作定论
+- 身份 O+INFORMS 经官方 Results 册（任务方已验）+站内语料库总览记录双重确认；distinct 与清华卡、F 卡候选、杜克摘要页三方对照互斥成立；全部英文引注 ≤25 词
