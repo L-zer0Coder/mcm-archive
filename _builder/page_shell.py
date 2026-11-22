@@ -44,6 +44,7 @@ SHELL = r"""<!DOCTYPE html>
 <title>__DOCTITLE__</title>
 <meta name="description" content="__DESC__">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%232B5C8A'/%3E%3Ctext x='50' y='70' font-size='52' font-weight='700' text-anchor='middle' fill='%23FDFCF8' font-family='Georgia,serif'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="__UIROOT___vendor/katex/katex.min.css">
 <style>__CSS__</style>
 </head>
 <body>
@@ -58,6 +59,11 @@ __BODY__
 </div>
 <footer>MCM/ICM 2027 备赛知识库 · 2027-01-28 开赛 · 数据只存本浏览器</footer>
 <script>window.UPC_UI_ROOT="__UIROOT__";</script>
+<script defer src="__UIROOT___vendor/katex/katex.min.js"></script>
+<script defer src="__UIROOT___vendor/katex/contrib/auto-render.min.js"></script>
+<script>window.addEventListener('DOMContentLoaded',function(){
+if(window.renderMathInElement){renderMathInElement(document.body,
+{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});</script>
 <script src="__UIROOT__global-ui.js" defer></script>
 <script>
 var EV_START=__EV_START__,EV_END=__EV_END__;

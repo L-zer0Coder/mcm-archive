@@ -53,11 +53,26 @@ def render_docs():
                     return "]({})({}{})".format(label, link_to(abs_t), frag)
                 return "\\[" + label + "\\](" + tgt + ")"
             text = re.sub(r"\[([^\]]*)\]\(([^)\s]+)\)", sub, text)
+            # 数学隔离：公式先抽走再转 markdown，防 $x_{ij}$ 被斜体/转义破坏（代码围栏不动）
+            stash = []
+            def stash_math(m):
+                stash.append(m.group(0))
+                return "QQMATH{}QQ".format(len(stash) - 1)  # 纯字母数字，markdown 不动它
+            seg = text.split("```")
+            for j in range(0, len(seg), 2):  # 偶数段在围栏外
+                seg[j] = re.sub(r"\$\$[^$]+\$\$|\$[^$\n]+\$", stash_math, seg[j])
+            text = "```".join(seg)
             m = re.match(r"\s*#\s+(.+)", text)
             title = m.group(1).strip() if m else os.path.splitext(os.path.basename(f))[0]
             if m:
                 text = text[m.end():]  # 标题交给页面骨架渲染，正文不重复
             html = md.reset().convert(text)
+            for i, s in enumerate(stash):
+                html = html.replace("QQMATH{}QQ".format(i), s)
+            # 任务清单：- [ ] / - [x] → 勾选框（免 pymdownx 依赖）
+            html = html.replace("<li>[ ] ", '<li><input type="checkbox" disabled> ')
+            html = html.replace("<li>[x] ", '<li><input type="checkbox" checked disabled> ')
+            html = html.replace("<li>[X] ", '<li><input type="checkbox" checked disabled> ')
             crumb = rel.split("/")[0]
             os.makedirs(os.path.dirname(out), exist_ok=True)
             page_html = page(title, crumb,

@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>优化方法族 · MCM/ICM 备赛知识库</title>
-<meta name="description" content="MCM/ICM 备赛知识库 · 优化方法族">
+<title>优化方法族（LP · MILP · 启发式） · MCM/ICM 备赛知识库</title>
+<meta name="description" content="MCM/ICM 备赛知识库 · 优化方法族（LP · MILP · 启发式）">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%232B5C8A'/%3E%3Ctext x='50' y='70' font-size='52' font-weight='700' text-anchor='middle' fill='%23FDFCF8' font-family='Georgia,serif'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../_vendor/katex/katex.min.css">
 <style>:root{--paper:#F7F4ED;--sheet:#FDFCF8;--ink:#2A251E;--mut:#6E6557;--dim:#786E60;
 --line:#E7E0D1;--line2:#D9D0BD;--acc:#2B5C8A;--acc-d:#1F4470;--acc-soft:rgba(43,92,138,.07);
 --serif:Georgia,'Times New Roman','Source Han Serif SC','Noto Serif SC',serif;
@@ -45,13 +46,267 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</sty
   <span class="clock" id="clock"></span>
 </div></div>
 <div class="wrap">
-<h1 class="pt">优化方法族</h1>
+<h1 class="pt">优化方法族（LP · MILP · 启发式）</h1>
 <blockquote>
-<p>本模块将在 M1 阶段上线。请先阅读 ](学习路径)(00_%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84.html)。</p>
+<p>学习核心模块之一，服务的典型场景：资源分配、选址、排产、调度、搜索规划。
+验证环境：SciPy 1.18 / NumPy 2.5.1 / PuLP 2.7.0 / CBC，Windows，2026-11-22 全部代码实跑通过。
+赛制相关的内容（题型映射、比赛规则）在 03_题型打法，本模块只讲方法本身。</p>
 </blockquote>
+<h2>0. 先建地图：三种境界</h2>
+<table>
+<thead>
+<tr>
+<th>境界</th>
+<th>变量</th>
+<th>求解器</th>
+<th>一句话适用</th>
+<th>验证方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LP 线性规划</td>
+<td>连续</td>
+<td><code>scipy.optimize.linprog</code>（HiGHS）</td>
+<td>流量、配比、运输——比例可切分</td>
+<td>影子价格、对偶</td>
+</tr>
+<tr>
+<td>MILP 混合整数</td>
+<td>整数+连续</td>
+<td><code>scipy.optimize.milp</code>（HiGHS）、PuLP+CBC</td>
+<td>选/不选、台数、指派——离散决策</td>
+<td>gap 界、与松弛对照</td>
+</tr>
+<tr>
+<td>启发式</td>
+<td>任意</td>
+<td>自己写（贪心/局部搜索/遗传）</td>
+<td>求解器超时、目标非凸非线</td>
+<td>必须与界或精确解对照</td>
+</tr>
+</tbody>
+</table>
+<p><strong>心法三句</strong>：先把问题写成"变量–目标–约束"三行表再动手；能精确就精确、超时才降级；启发式的价值要用界来证明，不是用运行时间来证明。</p>
+<h2>1. 概念讲透</h2>
+<h3>1.1 三要素：把题面翻译成数学</h3>
+<p>任何优化问题都只由三样东西构成。以运输问题为例——3 个产地供给 $(30,50,20)$，3 个销地需求 $(25,35,40)$，单位运价矩阵 $c_{ij}$：</p>
+<p>$$\min \sum_{i=1}^{3}\sum_{j=1}^{3} c_{ij}x_{ij} \qquad \text{s.t.}\quad \sum_j x_{ij}=s_i,\ \sum_i x_{ij}=d_j,\ x_{ij}\ge 0$$</p>
+<p>符号表（读到新符号回来查）：</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+<th>单位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$i,\ j$</td>
+<td>产地 / 销地的编号</td>
+<td>—</td>
+</tr>
+<tr>
+<td>$s_i,\ d_j$</td>
+<td>产地 $i$ 的供给量 / 销地 $j$ 的需求量</td>
+<td>吨</td>
+</tr>
+<tr>
+<td>$c_{ij}$</td>
+<td>从 $i$ 运到 $j$ 的单位运价</td>
+<td>元/吨</td>
+</tr>
+<tr>
+<td>$x_{ij}$</td>
+<td><strong>决策变量</strong>：从 $i$ 运到 $j$ 的量</td>
+<td>吨</td>
+</tr>
+</tbody>
+</table>
+<p>翻译检查法：<strong>每个决策问一句"你要决定什么"（变量）、"你在优化什么"（目标）、"什么不能违反"（约束）</strong>。经验法则：题面里的名词（运量、台数、时刻）是候选变量，动词与要求（不超过、必须在…之前）是候选约束，"最大化/最小化/最…"是目标。三行写不出来，说明题还没读懂，不要开写代码。</p>
+<p>这个模型悄悄用了三条假设，写论文时要显式说出来：<strong>线性</strong>（总运费是各段运量之和，没有联合折扣）、<strong>比例可分</strong>（运 0.7 吨也可以，LP 才成立）、<strong>数据确定</strong>（$s,d,c$ 已知且不随机）。</p>
+<h3>1.2 先判断：这个问题该用优化吗</h3>
+<p>不是所有问题都轮得到优化出场。三问自查：<strong>有没有可控行动</strong>（只能预测趋势的问题去统计模块）；<strong>不确定性的主角是谁</strong>（随机主导的问题去蒙特卡洛模块）；<strong>有没有明确决策变量</strong>（说不清"决定什么"就先别建优化模型）。优化回答的是"给定情景，最好的行动是什么"，它不负责预测情景本身。</p>
+<h3>1.3 LP 的几何与对偶：敏感度分析的理论来源</h3>
+<p>LP 可行域是凸多面体。<strong>若最优解存在，必有一个顶点达到最优</strong>（最优解集合也可能是一整条边甚至一个面——§2.3 演示的正是这种情况；无界可行域则可能没有最优解）。单纯形法就是沿顶点搜索的算法。</p>
+<p>更重要的是<strong>对偶</strong>：每个约束都对应一个影子价格（shadow price），它回答"某资源多一个单位，目标值变多少"。注意这个解读<strong>对不等式约束直接成立</strong>（约束松紧由你控制）；对等式约束，"多一个单位资源"必须两侧同时调整才有意义，读数时要小心（§2.1 有一手示例）。</p>
+<p>这是 LP 比启发式高一个境界的原因：<strong>求解器不只给你最优方案，还给你敏感度全貌</strong>。非绑定约束的影子价格为 0；绑定约束的影子价格告诉你放宽哪条约束最划算。报告敏感度分析，LP 直接引用求解器输出的对偶值即可，这是最省力且最有说服力的写法。</p>
+<h3>1.4 整数为什么难：分支定界、松弛与 gap</h3>
+<p>要求某些变量取整数后，问题从多项式可解变成 NP-hard。主流求解器用<strong>分支定界</strong>：不断解 LP 松弛（允许分数取值），松弛值是整数最优的<strong>界</strong>（min 问题它是下界，max 问题它是上界）；某个变量的分数解 $\bar x$ 处分成 $x \le \lfloor\bar x\rfloor$ 与 $x \ge \lceil\bar x\rceil$ 两支继续搜，用界剪掉不可能超过已知最优解的分支。</p>
+<p>由此得到本模块最重要的一个工具——<strong>gap（最优性间隙）</strong>：</p>
+<p>$$\text{gap} = \frac{|z_{IP} - z_{LP}|}{|z_{IP}|} \times 100\%$$</p>
+<p>其中 $z_{IP}$ 是整数最优（或当前最好整数解）、$z_{LP}$ 是松弛解目标值。min 问题里 $z_{IP} \ge z_{LP}$，分子就是"整数解减下界"；max 问题反过来。gap 是证明"解接近最优"最标准的凭证（小规模精确解对照、已知基准实例也是合法凭证），求解器终止时会自动给出（<code>res.mip_gap</code>），也可用参数控制杀到多小（常用 1%）。</p>
+<p><strong>big-M 陷阱</strong>：MILP 里"要么…要么…"约束常用大常数 $M$（如 $x \le M \cdot y$）。$M$ 取得过大，松弛变得毫无区分度，求解慢到天荒地老；取得过小会误杀最优解。$M$ 要从数据算出来，例如 $M = \text{系数} \times \text{变量上界} + \varepsilon$（即该变量物理上可能的最大值再留一点余量），不要无脑取 1e6。</p>
+<h3>1.5 启发式的定位：它是妥协，不是替代</h3>
+<p>启发式（贪心、局部搜索、遗传算法）不保证最优，它的价值在两个场景：求解器确实超时；目标函数非凸非线性、根本写不成 LP。写启发式必须回答两个问题：<strong>解可行吗</strong>（逐条检查约束）、<strong>离最优多远</strong>（拿界或小规模精确解对照）。答不了第二个问题的启发式，说服力只有一半。</p>
+<h2>2. 最小可复现代码</h2>
+<p>以下代码 2026-11-22 在 SciPy 1.18 / NumPy 2.5.1 / PuLP 2.7.0 / CBC 实跑通过，输出为真实运行结果。离线环境准备见 §4.7。</p>
+<h3>2.1 LP：运输问题（<code>linprog</code>，HiGHS 内嵌免安装）</h3>
+<pre><code class="language-python">from scipy.optimize import linprog
+c = [4, 6, 9, 5, 3, 8, 8, 5, 4]            # 单位运价 c_ij，按行展开
+A_eq, b_eq = [], []
+for i, s in enumerate([30, 50, 20]):       # 供给约束
+    r = [0] * 9
+    for j in range(3): r[i * 3 + j] = 1
+    A_eq.append(r); b_eq.append(s)
+for j, d in enumerate([25, 35, 40]):       # 需求约束
+    r = [0] * 9
+    for i in range(3): r[i * 3 + j] = 1
+    A_eq.append(r); b_eq.append(d)
+res = linprog(c, A_eq=A_eq, b_eq=b_eq, bounds=(0, None), method=&quot;highs&quot;)
+print(&quot;最小总运费 =&quot;, round(res.fun, 1))
+plan = {(i, j): float(round(res.x[i*3+j], 1)) for i in range(3) for j in range(3)
+        if res.x[i*3+j] &gt; 1e-9}
+print(&quot;运输方案 =&quot;, plan)
+print(&quot;影子价格 =&quot;, [round(float(m), 1) + 0.0 for m in res.eqlin.marginals])
+</code></pre>
+<p>真实输出：</p>
+<pre><code>最小总运费 = 450.0
+运输方案 = {(0, 0): 25.0, (0, 2): 5.0, (1, 1): 35.0, (1, 2): 15.0, (2, 2): 20.0}
+影子价格 = [4.0, 3.0, -1.0, 0.0, 0.0, 5.0]
+</code></pre>
+<p>三处读法：</p>
+<ul>
+<li><strong>方案</strong>：产地 2 的 20 吨全给了销地 2（运价 4 最便宜），销地 2 的需求 40 由三方凑齐——LP 在替你做全局权衡。这个 LP 解恰好全是整数不是巧合：供需都是等式的运输问题系数矩阵是全单模的，LP 解天然整数。这也解释了 §0 里"流量配比可用 LP"的深层原因；反过来，一旦约束混入不等式或非网络结构，LP 解就可能出现分数。</li>
+<li><strong>影子价格</strong>：六个数对应六条约束（前三条供给、后三条需求）。注意本例是<strong>等式</strong>约束，这组数要当成"对偶位势"来读（检验 $c_{ij}$ 与位势之和的关系），不能直接读成"销地 2 多一吨需求省 5 元"——等式约束下两侧要一起动，"多一单位资源"的直接解读只对不等式约束成立（§1.3）。若把供给写成 $\le s_i$（用 <code>A_ub/b_ub</code>），边际值就是标准的"放宽一单位约束能省多少运费"。</li>
+<li><strong>运行时间</strong>：<code>res</code> 里有 <code>res.nit</code>（迭代次数）与求解耗时，报告时一并给出。</li>
+</ul>
+<h3>2.2 MILP：背包问题（<code>milp</code>）+ LP 松弛对照</h3>
+<pre><code class="language-python">import numpy as np
+from scipy.optimize import milp, LinearConstraint, Bounds
+v = np.array([60, 100, 120, 40, 70], float)   # 价值
+w = np.array([10, 20, 30, 10, 24], float)     # 重量
+con = LinearConstraint(w, -np.inf, 50)        # 容量 50
+ip = milp(c=-v, constraints=[con], integrality=np.ones(5), bounds=Bounds(0, 1))
+lp = milp(c=-v, constraints=[con], bounds=Bounds(0, 1))   # 松弛：去掉 integrality
+print(&quot;整数最优 =&quot;, int(-ip.fun), &quot;选中 =&quot;, np.where(ip.x &gt; 0.5)[0].tolist())
+print(&quot;LP 上界 =&quot;, round(-lp.fun, 2), &quot;松弛解 =&quot;, np.round(lp.x, 3).tolist())
+print(&quot;求解器 mip_gap =&quot;, ip.mip_gap)
+print(&quot;gap = (上界-整数最优)/整数最优 =&quot;,
+      round((-lp.fun + ip.fun) / -ip.fun * 100, 1), &quot;%&quot;)
+</code></pre>
+<p>真实输出：</p>
+<pre><code>整数最优 = 220 选中 = [1, 2]
+LP 上界 = 240.0 松弛解 = [1.0, 1.0, 0.333, 1.0, 0.0]
+求解器 mip_gap = 0.0
+gap = (上界-整数最优)/整数最优 = 9.1 %
+</code></pre>
+<p>读法：松弛解允许"拿 1/3 个物品 2"（价值 240），整数解拿不到分数，只能退而求 220。<strong>上界 240 告诉你任何算法都不可能超过 240</strong>。两个 gap 要分清：求解器自己报的 <code>mip_gap = 0.0</code> 是说"分支定界已证明这个解就是整数最优"；手算的 9.1% 是拿最终整数解对<strong>初始</strong> LP 界的差距，回答的是"如果只允许用启发式级别的解法，离最优最多差多少"。报告时用哪个，取决于你想证明"已最优"还是"近似得够好"。</p>
+<h3>2.3 建模层：PuLP 同一背包（语法可读，求解器可换）</h3>
+<pre><code class="language-python">import pulp   # 注意：pip install pulp==2.7.0（见 §4.6 版本纪律）
+vals = [60, 100, 120, 40, 70]
+wts = [10, 20, 30, 10, 24]
+p = pulp.LpProblem(&quot;knapsack&quot;, pulp.LpMaximize)
+x = [pulp.LpVariable(&quot;x{}&quot;.format(i), cat=&quot;Binary&quot;) for i in range(5)]
+p += pulp.lpSum(vals[i] * x[i] for i in range(5))
+p += pulp.lpSum(wts[i] * x[i] for i in range(5)) &lt;= 50
+p.solve(pulp.PULP_CBC_CMD(msg=False))
+print(&quot;状态 =&quot;, pulp.LpStatus[p.status], &quot; 价值 =&quot;, int(pulp.value(p.objective)),
+      &quot; 选中 =&quot;, [i for i in range(5) if x[i].value() &gt; 0.5])
+</code></pre>
+<p>真实输出：</p>
+<pre><code>状态 = Optimal  价值 = 220  选中 = [0, 2, 3]
+</code></pre>
+<p><strong>对比 §2.2：目标值同为 220，但 CBC 选了另一组物品 [0,2,3]（60+120+40，重量恰 50），HiGHS 选 [1,2]（100+120，重量 50）。</strong> 这个例子真实演示了多重最优解：最优值唯一，最优方案未必唯一。读论文和写论文都要盯目标值与约束余量，不要迷信"求解器选的方案就是唯一答案"——这正是 §1.3 说"最优解集合可能是一整条边"的实例。</p>
+<h3>2.4 贪心启发式 + 与最优对照</h3>
+<pre><code class="language-python">import numpy as np
+v = np.array([60, 100, 120, 40, 70], float)
+w = np.array([10, 20, 30, 10, 24], float)
+order = sorted(range(5), key=lambda i: -v[i] / w[i])   # 性价比降序
+cap, got, val_sum, chosen = 50, 0.0, 0, []
+for i in order:
+    if got + w[i] &lt;= cap:
+        got += w[i]; chosen.append(i); val_sum += v[i]
+print(&quot;性价比排序 =&quot;, order)
+print(&quot;贪心选中 =&quot;, chosen, &quot; 价值 =&quot;, val_sum, &quot; 重量 =&quot;, got)
+print(&quot;与整数最优差 =&quot;, 220 - val_sum, &quot;（{}%）&quot;.format(round((220 - val_sum) / 220 * 100, 1)))
+</code></pre>
+<p>真实输出：</p>
+<pre><code>性价比排序 = [0, 1, 2, 3, 4]
+贪心选中 = [0, 1, 3]  价值 = 200.0  重量 = 40.0
+与整数最优差 = 20.0 （9.1%）
+</code></pre>
+<p>贪心卡在 200（重量只用 40，浪费了 10 吨容量），最优 220。<strong>这个 9.1% 就是启发式必须付出、也必须报告的代价</strong>。改进方向：从贪心解出发做局部搜索（交换/替换一个物品），通常能把差距压到 1–2%。</p>
+<h2>3. 在真题中的用法</h2>
+<p>以下题目信息核查于 2026-11-22（来源：COMAP 官网历年题目页）。方法族如何落地，比题目本身更重要——<strong>每道题都能先做"三行翻译"</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>真题</th>
+<th>场景</th>
+<th>优化范式</th>
+<th>三行翻译</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024 MCM B《Searching for Submersibles》（潜艇搜索）</td>
+<td>失联潜艇（末段位置与航速已知）的搜索规划</td>
+<td>搜索努力分配：网格化海域，把有限搜索资源分给各网格，最大化累计探测概率</td>
+<td>变量=各网格搜索时长/次数；目标=$\max\sum(\text{探测概率})$；约束=总预算、平台续航</td>
+</tr>
+<tr>
+<td>2025 MCM B《Managing Sustainable Tourism》（可持续旅游）</td>
+<td>景区承载量下的游客管理</td>
+<td>容量约束下的流量规划与调度</td>
+<td>变量=各时段/景点流量；目标=体验或收益最大化；约束=生态承载力、季节波动</td>
+</tr>
+<tr>
+<td>2026 MCM B《Creating a Moon Colony Using a Space Elevator System》（太空电梯月球殖民）</td>
+<td>地月货运与建设排程</td>
+<td>货运调度/物流网络：批次、窗口、装载</td>
+<td>变量=各批次运量与时刻；目标=建设进度或成本；约束=发射窗口、运力、依赖序</td>
+</tr>
+</tbody>
+</table>
+<p>其中 2024 B 是"搜索努力分配"范式的标准案例，该场景的标准工具组合是<strong>贝叶斯搜索理论 + 网格化努力分配 + 蒙特卡洛模拟</strong>（语料库建成后在此补充对应卡片链接）。它与本模块 §2.2 的背包是<strong>类比</strong>关系：都是"预算换收益"，但探测概率对搜索努力是边际递减的凹函数，严格建模要用可分凹资源分配或分段线性化——背包只覆盖"选/不选"的离散版本，别把类比当成同构。</p>
+<p>网络与运筹类场景（最短路径、网络流、调度）是本方法族的主场：前两者是 LP/MILP 的特例，排队系统本身的演化是随机过程（属蒙特卡洛/仿真模块），但排队系统的<strong>优化决策</strong>（如服务台配置）常回到 MILP。用到时先回忆 §0 的地图，问一句"这题的连续部分和整数部分分别是什么"。</p>
+<h2>4. 常见误用</h2>
+<ol>
+<li><strong>黑箱求解不查可行性</strong>。模型报 infeasible 就摊手，是新手最常见的死法。排查三步：把约束逐条打印成区间表、找互相打架的两条；检查单位（吨 vs 千克、小时 vs 分钟）；检查 big-M 是否把可行域压死。<strong>永远先让一个"显然可行"的测试解过一遍约束，再谈优化。</strong></li>
+<li><strong>0-1 变量对称性爆炸</strong>。给 20 个相同设备指派任务、设备之间可互换，分支定界会把每种排列都搜一遍。破对称：加字典序约束 $y_1 \ge y_2 \ge \cdots$，或把"设备"改写成"第 k 个启用的设备"。</li>
+<li><strong>big-M 无脑取 1e6</strong>。见 §1.4——$M$ 必须从数据上界算出（$M = \text{系数} \times \text{变量上界} + \varepsilon$），否则松弛无区分度、数值报警。</li>
+<li><strong>把启发式结果当最优宣称</strong>。启发式结果不得裸报，必须附界证据。写法模板："greedy 达到 200，位于 LP 上界 240 与精确解 220 之间，达到最优的 90.9%，可接受"。</li>
+<li><strong>敏感度分析只做"改一个参数重跑十次"</strong>。LP 直接引用影子价格（§1.3）；MILP 做参数扫描时报告趋势与拐点，而不是贴十张表。</li>
+<li><strong>不锁版本</strong>。PuLP 4.x 用 Rust 重写了核心 API：<code>LpVariable(cat=...)</code> 等全网教程写法直接报错，CBC 不再捆绑、<code>PULP_CBC_CMD</code> 也已移除（本站 2026-11-22 在 PuLP 4.3.1 实测，不要走"只改 cat 写法"的修复路径）。<strong>工作环境提前冻结：<code>pip freeze &gt; requirements.txt</code>，论文附录注明版本号。</strong></li>
+<li><strong>现场才装求解器</strong>。现场网络不可赌，提前离线轮子准备（在有网机器执行下载；<strong>目标机的 Python 版本与操作系统平台必须与下载机一致</strong>，否则轮子装不上）：</li>
+</ol>
+<p><code>pip download -d ./wheels scipy pulp==2.7.0 numpy --only-binary=:all:</code></p>
+<p>目标机离线安装：</p>
+<p><code>pip install --no-index --find-links ./wheels scipy pulp==2.7.0 numpy</code></p>
+<ol start="8">
+<li><strong>目标函数无量纲意识</strong>。把"成本（元）"和"时间（小时）"加进同一个目标必出灾难。除了加权前归一化，还有两种标准做法：<strong>ε-约束</strong>（保留主目标，其余目标写成约束并给容差 ε）与<strong>字典序</strong>（按优先级逐层求解，先定成本上限再优化时间）。权重或 ε 的选择本身要做敏感度分析。</li>
+</ol>
+<h2>5. 自检清单</h2>
+<ul>
+<li><input type="checkbox" disabled> 先过了 §1.2 三问：有行动、不确定性不是主角、变量说得清</li>
+<li><input type="checkbox" disabled> 三行翻译（变量/目标/约束）先于代码存在，符号表齐</li>
+<li><input type="checkbox" disabled> 模型假设显式（线性/可分/数据确定——或写明为什么违反仍可接受）</li>
+<li><input type="checkbox" disabled> 变量类型表：哪些连续、哪些整数、为什么</li>
+<li><input type="checkbox" disabled> 求解器输出三件事都报告：最优值、gap、运行时间</li>
+<li><input type="checkbox" disabled> LP 有影子价格表（等式约束按位势解读）；MILP 有与松弛的 gap 对照</li>
+<li><input type="checkbox" disabled> 启发式有界参照（LP 上界或小规模精确解）</li>
+<li><input type="checkbox" disabled> 敏感度分析不是"重跑十次"，而是影子价格/趋势拐点</li>
+<li><input type="checkbox" disabled> 环境锁定（requirements.txt + 版本号进附录）</li>
+</ul>
+<h2>参考资料（核查日期 2026-11-22）</h2>
+<ul>
+<li><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.milp.html">SciPy <code>milp</code> 文档</a>——HiGHS 内嵌，MILP 首选</li>
+<li><a href="https://coin-or.github.io/pulp/">PuLP 官方文档</a>——建模层语法；4.x 用户请读站内迁移指南（CBC 不再捆绑）</li>
+<li><a href="https://developers.google.com/optimization/cp/cp_solver">OR-Tools CP-SAT</a>——纯整数/调度/逻辑约束场景的专用求解器；连续变量多时不适用</li>
+<li><a href="https://d-krupke.github.io/cpsat-primer">CP-SAT Primer</a>——CP-SAT 深度实战手册</li>
+<li><a href="https://or.stackexchange.com/questions/4119/cp-sat-over-cbc-for-mip-is-it-worthwhile">OR StackExchange：CP-SAT over CBC for MIP?</a>——求解器选型讨论</li>
+<li>COMAP 历年题目页：<a href="https://www.contest.comap.com/undergraduate/contests/mcm/contests/2026/problems">2026</a>、<a href="https://www.contest.comap.com/undergraduate/contests/mcm/contests/2025/problems">2025</a>、<a href="https://www.contest.comap.com/undergraduate/contests/mcm/contests/2024/problems">2024</a></li>
+</ul>
 </div>
 <footer>MCM/ICM 2027 备赛知识库 · 2027-01-28 开赛 · 数据只存本浏览器</footer>
 <script>window.UPC_UI_ROOT="../../";</script>
+<script defer src="../../_vendor/katex/katex.min.js"></script>
+<script defer src="../../_vendor/katex/contrib/auto-render.min.js"></script>
+<script>window.addEventListener('DOMContentLoaded',function(){
+if(window.renderMathInElement){renderMathInElement(document.body,
+{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});</script>
 <script src="../../global-ui.js" defer></script>
 <script>
 var EV_START=1801173600000,EV_END=1801530000000;
