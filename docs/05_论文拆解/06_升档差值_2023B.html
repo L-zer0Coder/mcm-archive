@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>升档差值 · 2023 B · 同题同年 O-vs-F（清华 2300136 vs 福州 2316192） · MCM/ICM 备赛知识库</title>
+<meta name="description" content="MCM/ICM 备赛知识库 · 升档差值 · 2023 B · 同题同年 O-vs-F（清华 2300136 vs 福州 2316192）">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%232B5C8A'/%3E%3Ctext x='50' y='70' font-size='52' font-weight='700' text-anchor='middle' fill='%23FDFCF8' font-family='Georgia,serif'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../_vendor/katex/katex.min.css">
+<style>:root{--paper:#F7F4ED;--sheet:#FDFCF8;--ink:#2A251E;--mut:#6E6557;--dim:#786E60;
+--line:#E7E0D1;--line2:#D9D0BD;--acc:#2B5C8A;--acc-d:#1F4470;--acc-soft:rgba(43,92,138,.07);
+--serif:Georgia,'Times New Roman','Source Han Serif SC','Noto Serif SC',serif;
+--sans:'Segoe UI','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+--mono:ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.85}
+a{color:var(--acc);text-decoration:none}
+a:hover{color:var(--acc-d)}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(253,252,248,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar .in{max-width:1060px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:9px 22px}
+.topbar a{color:var(--mut)}
+.brand{display:flex;align-items:center;gap:9px;color:var(--ink);font-weight:600;font-size:13.5px}
+.brand .seal{width:24px;height:24px;border-radius:5px;background:var(--acc);color:#FDFCF8;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:13px;font-weight:700}
+.clock{font-family:var(--mono);font-size:11px;padding:1px 8px;border:1px solid rgba(43,92,138,.28);border-radius:3px;color:var(--acc);background:var(--acc-soft);white-space:nowrap}
+.clock[data-s='live']{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.clock[data-s='post']{color:var(--dim);border-color:var(--line2);background:transparent}
+.wrap{max-width:1060px;margin:0 auto;padding:22px 22px 80px}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:4px;padding:16px 20px}
+.btn{display:inline-flex;align-items:center;height:32px;padding:0 14px;border:1px solid var(--line2);border-radius:3px;font-size:12.5px;color:var(--ink);background:var(--sheet);cursor:pointer;font-family:inherit}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.solid{background:var(--acc);border-color:var(--acc);color:#FDFCF8}
+.btn.solid:hover{background:var(--acc-d);color:#FDFCF8}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:11.5px;border-bottom:1px solid var(--line2)}
+tbody tr:nth-child(2n) td{background:#F8F5EC}
+pre{background:#F9F6EF;border:1px solid var(--line);border-radius:4px;padding:12px 15px;overflow:auto;font-size:12.5px;line-height:1.8}
+code{font-family:var(--mono)}
+footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</style>
+</head>
+<body>
+<div class="topbar"><div class="in">
+  <a class="brand" href="../../index.html"><span class="seal">M</span>MCM/ICM 备赛知识库</a>
+  <span class="crumb">05_论文拆解</span>
+  <span class="clock" id="clock"></span>
+</div></div>
+<div class="wrap">
+<h1 class="pt">升档差值 · 2023 B · 同题同年 O-vs-F（清华 2300136 vs 福州 2316192）</h1>
+<blockquote>
+<p>全站第一个<strong>同题同年同页数</strong>（两篇均 25 页）的 O-vs-F 对照。O = 05_卡片_2023B_Tsinghua（05_卡片_2023B_Tsinghua.html）（Tsinghua / Outstanding Winner）；F = 04_卡片_2023B_Fuzhou（04_卡片_2023B_Fuzhou.html）（Fuzhou / Finalist）。所有页码：O p.X = 清华论文 PDF 页码，F p.Y = 福州论文 PDF 页码。方法与纪律见 00_拆解方法论（00_拆解方法论.html）。</p>
+</blockquote>
+<h2>2. 同题 O-vs-F 升档差值（O=2300136 p.X / F=2316192 p.Y）</h2>
+<p>对照基线：F 卡 §2 的六维度（其对照对象为 2024 E Soochow O 卡）；本节按<strong>同题同年</strong>证据逐维度重比。两篇同为 25 页、同题面。</p>
+<ol>
+<li>
+<p><strong>假设→参数→数值闭环</strong>。O 的假设体系分两层：6 条主假设逐条绑引文数字（85% household income [10]，O p.6；25%/75% 土地占比 [11]，O p.6），另有每 section 的补充假设同样带数（生物量 180/23/123/200 kg 引 [16]，O p.10；草地参数 g=41.9、b=1/4000、r=0.47% 引 [17]，O p.10；汇率 1:100 用 2012-2022 实证，O p.12-13；2% 折现率引 200 专家共识 [20]，O p.13；罚款 100.53/损失 247.74 USD 引 [10]，O p.14）。政策端全部落成 Table 2 一张量化表（O p.17）。F 的 4 条主假设同样逐条 justification（F p.6），但核心动力学参数 r/x_m/E、Q_j、z1-z3 全程无数值无来源（F p.17-18）。<strong>差距不在假设条数，在"假设→参数→数值"的最后一公里：O 的每个方程都有可查的参数账，F 的 Model III 方程只有符号。</strong></p>
+</li>
+<li>
+<p><strong>模型链接口：参数改写即接口</strong>。O 的三问共用一套评分函数（final score 公式，O p.16）：上游 Table 2 的政策百分比（O p.17）直接改写 Score1-4 的输入变量，下游 24 次仿真与三区排序全部复用同一函数（O p.18-20）——接口即公式与参数表。F 是三棒接力（耦合度分类 F p.8-10 → AHP+0-1 规划 F p.12-15 → Logistic+随机仿真 F p.17-18），接口靠定性规则（Underdeveloped Grid 的权重不等式，F p.14）加单网格孤例 μ_L=0.583/μ_H=0.417（F p.15）。<strong>O 的评委只需理解一张 Table 2；F 的评委要在两处自行补全映射规则。</strong></p>
+</li>
+<li>
+<p><strong>检验报数率</strong>。O 的检验条条带数：CR 三值 0.0612/0.0223/0.0301（O p.16）、三处 R²（O p.9/13）、CC 扫描报 final score 区间 0.5-0.575（O p.22）。F 的检验有框架但近乎不报数：CR 只写 "the final CR &lt; 0.1"（F p.14）、敏感度 Score 公式未定义（F p.20）、80/20 分割只画在流程图（F p.7 Fig4）从未出样本外数字。对照 05 模块 §1.4 与 E_可持续死法#3：<strong>CR"做了"和"报数"是两件事——这是两篇在检验维度最尖锐的差值</strong>。O 的敏感度结论也是定性的（O p.21），但其 CC 检验补了一个数值区间，F 连一个检验数值都没有。</p>
+</li>
+<li>
+<p><strong>图表论点密度</strong>。O 共 12 图：概念图仅 Fig1（O p.8），其余 11 张中 5 张实数据图（Fig2 p.9、Fig3 p.11、Fig4 p.12、Fig5 p.13、Fig6 p.15）+ 6 张结果图（Fig7 p.16、Fig8-10 p.18-20、Fig11 p.21、Fig12 p.22）。F 共 8 图：6 张流程/概念图（F p.4/5/7/8/9/12），唯一实数据锚点是引用地图（F p.3）与地名坐标表（F p.10），核心中间产物"四类栅格分区"只有概念示意（F p.9 Fig6）。O 的三类核心中间产物全部有实数据图：水压力月度热图（O Fig4 p.12）、三区实地图（O Fig6 p.15）、权重条形图（O Fig7 p.16）。<strong>O 的图多在证明"结论成立"，F 的图多在说明"做了什么"——同题证据强化 F 卡判断。</strong></p>
+</li>
+<li>
+<p><strong>摘要数字密度与结果量值的位置</strong>。两篇摘要页同为工作量计数型：O 摘要（O p.1）=四 section/三类土地/三政策/24 情景/20 年，F 摘要（F p.1）=8.75km/四类/六政策/四层/十二情景。差值在<strong>结果量值的位置</strong>：O 把非技术报告前置为 p.2-3 信件，内含 12 处结果数字（50%→2%→5%→30%→0.5%→5%→0.5%→10%→8%→0.5%→0.7%→USD$310），其中 11 处可逐条回查 Table 2（O p.17）；F 的唯一结果型数值 max W=2.597672 在正文 p.15（F 卡已登记"未进摘要"），非技术海报在文末 F p.23-24，且 Model III 输出仅定性解读（F p.22）。<strong>评委按序阅读的前 3 页内，O 可触达 12 处结果量值，F 为 0 处（首个结果值在第 15 页）。</strong>修订 F 卡候选 1：升档动作不是"往一页摘要塞数字"，而是"把结果量值前移到评委最先读到的页面，并与参数表闭环"。</p>
+</li>
+<li>
+<p><strong>distinct 风格：反直觉登记 + 三段式节奏</strong>。O 主动登记两个反直觉结果并给机制与自质疑：① hunting quotas 单独施行长期负面，机制=政策参数压迫草地，并自认 "extremely dependent upon our predetermined parameter"（O p.18）；⑥ wildlife corridor 有害，机制=资源竞争+偷猎+PIE 上升（O p.19）；另有"补偿政策分数无差异但值得推荐"的不可量化论证（O p.20→信件 O p.3）。F 全文结论与直觉同向，无反直觉登记。写作节奏上，O 每个 section 固定三段式 Modelling ideas→Supplementary assumptions→Calculations（O p.8-15），假设跟随模型分散登记；F 假设集中于 §2（F p.6），章节为公式流水式。<strong>"模型在思考"vs"模型在执行"是 distinct 维度的核心差值。</strong></p>
+</li>
+<li>
+<p><strong>时点排序与基线对照</strong>。O 每区给 2022/2032/2042 三时点八情景排序表（Tables 3/4/5，O p.18/19/20），HSZ 冠军随时间变化被如实展示（④⑤→④，O p.19）——这正是 05 模块 §1.5 要求的"条件化结论"（"best policy for most years"，O p.1）；每个情景图含 Non 基线并推出"政策选择有效"（O p.18-20）。F 的排序是单网格孤例（Table 6，F p.15-16），百年预测无基线对照、无时点对照，输出仅定性解读（F p.19/22）。</p>
+</li>
+<li>
+<p><strong>题面逐句对齐</strong>。题面两处高亮要求：① "within and outside the current boundaries"（题面 p.1）→ O 的三区划分明确 "HSZ and LGZ mainly exists outside the reserve in surrounding conservancies"（O p.15 + Fig6 实地图）；② "how your approach could be applied to other wildlife management areas"（题面 p.1）→ O 专设 VI 章，用 correcting coefficient 做成定量检验并自带 CC∈[−3.6%,−90%] 敏感度（O p.22）。"estimates of the certainties"（题面 p.1）→ O 的随机残差+α 扫描+CC 区间三层交付（O p.1/21/22）。F 对要求②无对应章节或动作（F 卡 structure 全序列无 universality 项）。<strong>题面每句话都有交付物，是 O 结构层面的隐性得分点。</strong></p>
+</li>
+</ol>
+<p><strong>反向亮点（O 不做或做得比 F 少的三处，防一面倒）</strong>：① 情景覆盖广度：F 的十二参数配置×百年预测（F p.19）时间跨度比 O 的 20 年预测窗（O p.18-20，图示 2002-2041）更激进；② 加噪鲁棒性检验：F 对小 α 加噪观察波动（F p.20），O 的随机残差是建模成分（O p.11）而非独立加噪实验——F 卡此亮点在同题对照下依然成立；③ 数据源登记形式：F 的 Table 2 六源带 URL（F p.7）比 O 的行文内联引用（O p.2 信件点名五源 + p.25 共 22 条文献）更易集中核查。F 队的短板不在动作缺失，而在数字与证据链断点——同题证据与 F 卡原判断一致。</p>
+<h2>3. 升档差值表收束：F 队补上就到 O（延续 F 卡 §3 候选并按同题证据修订）</h2>
+<ol>
+<li><strong>结果量值前移并与参数表闭环</strong>（修订候选 1）。O 的证据：非技术信件前置 p.2-3，12 处结果数字中 11 处回查 Table 2（O p.17）；O 的一页摘要本身也是工作量计数（O p.1）——说明升档不在摘要页塞数，而在"评委最先读到的位置有可回查的结果账"。F 队动作：把文末海报（F p.23-24）的数字版前移；把 max W=2.597672 与最优组合 (x1,x4,x5,x6)（F p.15）写进摘要或前置信件。</li>
+<li><strong>方程级参数对账</strong>（合并候选 2+5）。O 的证据：不设集中参数表，参数在使用处跟随方程出现并挂文献（g/b/r 引 [17]，O p.10；100.53/247.74 USD 引 [10]，O p.14；2% 引 [20]，O p.13），政策效果集中成一张 Table 2（O p.17）。F 队动作：为 r/x_m/E、Q_j、z1-z3（F p.17-18）补文献值或设定依据；给"政策组合→模型参数"画一张 O 式映射表——F 的数据源表（F p.7）不输 O，断点只在方程级。</li>
+<li><strong>检验从框架到报数</strong>（修订候选 3）。O 的证据：CR 报三值（O p.16）、CC 扫描报分数区间 0.5-0.575（O p.22）。F 队动作：CR 报具体数值（F p.14）；给 Fig10 的 Score 定义式并报数值结论（F p.20）；兑现 Fig4 的 20% 测试集或删掉该声明（F p.7）——O 的对应习惯是"每个检验动作至少落一个数字"。</li>
+<li><strong>核心中间产物配实数据图</strong>（修订候选 4）。O 的证据：水压力热图（O p.12）、三区实地图（O p.15）、权重条形图（O p.16）——三类中间产物全部可视化且可核查。F 队动作：给四类栅格分区画实数据 α 分布地图或直方图，替换概念示意 Fig6（F p.9）。</li>
+<li><strong>题面逐句清点交付物</strong>（新增，同题证据）。O 的证据：题面 "applied to other wildlife management areas"（题面 p.1）→ VI 章 CC 检验（O p.22）；"rank and compare"→三时点排序表（O p.18-20）。F 队动作：为可迁移性补一个最小动作（换一组参数重跑十二情景并报对比即可），并把排序结论写成条件化形式（某时段某组合优）——同时继承 F 队已有优势（百年跨度 F p.19、加噪检验 F p.20、六源带 URL 表 F p.7），这三处 O 反而没做或没做全。</li>
+</ol>
+<hr>
+<p><strong>一页结论</strong>：F 队的动作清单不缺、数据源表不输、甚至有两处 O 没做的检验（百年跨度、加噪）——<strong>F 与 O 的差值收敛为一句话：把"做了"变成"报数"，把"符号"变成"带出处的数值"，把"文末的交付物"变成"评委前三页就能看到的可回查结果账"。</strong> 这三条对所有档位通用，与 2024 E 精读（02_精读_2024E_Soochow.html） 审计结论（O 论文也有检验缺项）互为印证。</p>
+</div>
+<footer>MCM/ICM 2027 备赛知识库 · 2027-01-28 开赛 · 数据只存本浏览器</footer>
+<script>window.UPC_UI_ROOT="../../";</script>
+<script defer src="../../_vendor/katex/katex.min.js"></script>
+<script defer src="../../_vendor/katex/contrib/auto-render.min.js"></script>
+<script>window.addEventListener('DOMContentLoaded',function(){
+if(window.renderMathInElement){renderMathInElement(document.body,
+{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});</script>
+<script src="../../global-ui.js" defer></script>
+<script>
+var EV_START=1801173600000,EV_END=1801530000000;
+function p2(n){return n<10?'0'+n:''+n;}
+(function(){
+  var el=document.getElementById('clock');
+  function upd(){var t=Date.now();
+    if(t<EV_START){var ms=EV_START-t,dd=Math.floor(ms/864e5);
+      if(dd>=1){el.textContent='开赛 D-'+dd;el.dataset.s='pre';}
+      else{el.textContent='开赛 '+p2(Math.floor(ms/36e5))+':'+p2(Math.floor(ms%36e5/6e4));el.dataset.s='pre';}}
+    else if(t<EV_END){var u=Math.floor((t-EV_START)/1000);
+      el.textContent='赛中 '+p2(Math.floor(u/3600))+':'+p2(Math.floor(u%3600/60));el.dataset.s='live';}
+    else{el.textContent='已结束';el.dataset.s='post';}}
+  upd();setInterval(upd,30000);
+})();
+
+</script>
+</body>
+</html>
