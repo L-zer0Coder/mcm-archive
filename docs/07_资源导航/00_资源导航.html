@@ -375,17 +375,19 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</sty
 <h2>站内路由</h2>
 <ul>
 <li>赛制事实（时长/页数/奖项/AI 要求）一律走 <a href="../01_COMAP%E5%AE%98%E6%96%B9/%E7%AB%9E%E8%B5%9B%E8%A6%81%E7%82%B9.html">竞赛要点</a>，本页不重复维护</li>
-<li>学习顺序走 <a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/00_%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84.html">学习路径</a>；题型打法走 03_题型打法（../03_题型打法/A_连续.html）</li>
-<li>工具页走 工具总览（../06_赛时工具/00_工具总览.html）</li>
+<li>学习顺序走 <a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/00_%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84.html">学习路径</a>；题型打法走 <a href="../03_%E9%A2%98%E5%9E%8B%E6%89%93%E6%B3%95/A_%E8%BF%9E%E7%BB%AD.html">03_题型打法</a></li>
+<li>工具页走 <a href="../06_%E8%B5%9B%E6%97%B6%E5%B7%A5%E5%85%B7/00_%E5%B7%A5%E5%85%B7%E6%80%BB%E8%A7%88.html">工具总览</a></li>
 </ul>
 </div>
 <footer>MCM/ICM 2027 备赛知识库 · 2027-01-28 开赛 · 数据只存本浏览器</footer>
 <script>window.UPC_UI_ROOT="../../";</script>
 <script defer src="../../_vendor/katex/katex.min.js"></script>
 <script defer src="../../_vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="../../_vendor/mermaid/mermaid.min.js"></script>
 <script>window.addEventListener('DOMContentLoaded',function(){
 if(window.renderMathInElement){renderMathInElement(document.body,
-{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});</script>
+{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}
+if(window.mermaid){mermaid.initialize({startOnLoad:false,theme:'neutral'});mermaid.run({querySelector:'code.language-mermaid'});}});</script>
 <script src="../../global-ui.js" defer></script>
 <script>
 var EV_START=1801173600000,EV_END=1801530000000;

@@ -61,9 +61,11 @@ __BODY__
 <script>window.UPC_UI_ROOT="__UIROOT__";</script>
 <script defer src="__UIROOT___vendor/katex/katex.min.js"></script>
 <script defer src="__UIROOT___vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="__UIROOT___vendor/mermaid/mermaid.min.js"></script>
 <script>window.addEventListener('DOMContentLoaded',function(){
 if(window.renderMathInElement){renderMathInElement(document.body,
-{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});</script>
+{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}
+if(window.mermaid){mermaid.initialize({startOnLoad:false,theme:'neutral'});mermaid.run({querySelector:'code.language-mermaid'});}});</script>
 <script src="__UIROOT__global-ui.js" defer></script>
 <script>
 var EV_START=__EV_START__,EV_END=__EV_END__;

@@ -164,17 +164,19 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</sty
 <h2>现在做什么</h2>
 <ol>
 <li><strong>按周学习</strong>：方法族清单（下表）已全部上线，每周两篇按序推进，配套 <a href="../../06_%E8%B5%9B%E6%97%B6%E5%B7%A5%E5%85%B7/flashcards.html">闪卡库</a> 自测概念</li>
-<li><strong>做题对照</strong>：学完一个方法族到 题型打法（../03_题型打法/A_连续.html） 看对应题型的真题画像与 O 卡示例</li>
-<li><strong>语料对照</strong>：语料库总览（00_语料库总览.html） 与 论文拆解（../05_论文拆解/00_拆解方法论.html） 提供同题多篇 O 论文的路线对照与升档差值</li>
+<li><strong>做题对照</strong>：学完一个方法族到 <a href="../03_%E9%A2%98%E5%9E%8B%E6%89%93%E6%B3%95/A_%E8%BF%9E%E7%BB%AD.html">题型打法</a> 看对应题型的真题画像与 O 卡示例</li>
+<li><strong>语料对照</strong>：语料库总览（00_语料库总览.html） 与 <a href="../05_%E8%AE%BA%E6%96%87%E6%8B%86%E8%A7%A3/00_%E6%8B%86%E8%A7%A3%E6%96%B9%E6%B3%95%E8%AE%BA.html">论文拆解</a> 提供同题多篇 O 论文的路线对照与升档差值</li>
 </ol>
 </div>
 <footer>MCM/ICM 2027 备赛知识库 · 2027-01-28 开赛 · 数据只存本浏览器</footer>
 <script>window.UPC_UI_ROOT="../../";</script>
 <script defer src="../../_vendor/katex/katex.min.js"></script>
 <script defer src="../../_vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="../../_vendor/mermaid/mermaid.min.js"></script>
 <script>window.addEventListener('DOMContentLoaded',function(){
 if(window.renderMathInElement){renderMathInElement(document.body,
-{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});</script>
+{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}
+if(window.mermaid){mermaid.initialize({startOnLoad:false,theme:'neutral'});mermaid.run({querySelector:'code.language-mermaid'});}});</script>
 <script src="../../global-ui.js" defer></script>
 <script>
 var EV_START=1801173600000,EV_END=1801530000000;

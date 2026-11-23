@@ -48,7 +48,7 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</sty
 <div class="wrap">
 <h1 class="pt">精读 03 · Teaming Wisdom Coming from Soccer Field（2020 题 D O 奖 · 队伍 2006782 · Xidian University 西安电子科技大学 / INFORMS Award）</h1>
 <blockquote>
-<p>这份精读怎么用：把一篇网络科学题 O 论文当作<strong>一条流水线</strong>读——题面动词翻译成图定义表，图统计量直升成指标体系，评价模型把赛果写进搜索可行域，建议层再落回数字表与战术板。读完你应该能回答两个问题：网络题从 Task 1 的图走向 Task 2 的指标体系，最短路径是什么；以及"约束搜索式评价模型"怎么搭、怎么命名、怎么审计它。配套：模式卡片（03_卡片_2020D_XJTU.html）（拆解者视角结构表）、D 题打法（../03_题型打法/D_运筹网络.html）、04_图论与网络（../02_知识模块/04_图论与网络.html）。
+<p>这份精读怎么用：把一篇网络科学题 O 论文当作<strong>一条流水线</strong>读——题面动词翻译成图定义表，图统计量直升成指标体系，评价模型把赛果写进搜索可行域，建议层再落回数字表与战术板。读完你应该能回答两个问题：网络题从 Task 1 的图走向 Task 2 的指标体系，最短路径是什么；以及"约束搜索式评价模型"怎么搭、怎么命名、怎么审计它。配套：<a href="03_%E5%8D%A1%E7%89%87_2020D_XJTU.html">模式卡片</a>（拆解者视角结构表）、<a href="../03_%E9%A2%98%E5%9E%8B%E6%89%93%E6%B3%95/D_%E8%BF%90%E7%AD%B9%E7%BD%91%E7%BB%9C.html">D 题打法</a>、<a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/04_%E5%9B%BE%E8%AE%BA%E4%B8%8E%E7%BD%91%E7%BB%9C.html">04_图论与网络</a>。
 页码均为论文 PDF 页码 p.1–27（页脚印刷页 "Page X of 25" = PDF − 2）；全部直接引语与瑕疵逐条对 LaTeX 源码（<code>2006782.tex</code>）核验；§2 复现代码与 §4 审计数字本站实跑验证（2026-11-22）。
 <strong>年代口径（单独标注）</strong>：2020 年赛制 25 页含附录、无 AI 使用披露要求；本篇 Summary 全篇零结果数字（p.1）是 2020 年普遍口径而非该队失误——凡涉及此差异处均单独标注，不与 2026"数字优先"标准混写。</p>
 </blockquote>
@@ -68,7 +68,7 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</sty
 <h3>Summary（p.1）</h3>
 <ul>
 <li>【它写了什么】立论句开场（"Team success is much more than the sum of the abilities of individual players."，p.1，14 词）→ 四个 TASK 各一段、与题面任务一一对应 → 敏感度与优缺点各一句收尾；关键词三个（Passing network / Adversarial Regression / Defensive Counterattack）。</li>
-<li>【为什么这样写】四问四段是"任务对账式摘要"：评委拿题面逐条对账，每问都能找到落点。专名机制（"we choose the weight with LowestError as the regression equation"，p.1，10 词）让自定义方法有了可引用的名字。⚠ 年代口径：全篇零结果数字——按 07_写作与SummarySheet（../02_知识模块/07_写作与SummarySheet.html） §1.2 的"数字优先"标准是明显缺口，但这是 2020 年普遍口径而非该队失误。</li>
+<li>【为什么这样写】四问四段是"任务对账式摘要"：评委拿题面逐条对账，每问都能找到落点。专名机制（"we choose the weight with LowestError as the regression equation"，p.1，10 词）让自定义方法有了可引用的名字。⚠ 年代口径：全篇零结果数字——按 <a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/07_%E5%86%99%E4%BD%9C%E4%B8%8ESummarySheet.html">07_写作与SummarySheet</a> §1.2 的"数字优先"标准是明显缺口，但这是 2020 年普遍口径而非该队失误。</li>
 <li>【你要学什么】任务对账结构 + 专名贯穿是跨年代都成立的动作；数字锚点按 2026 标准加码执行（详见卡片对照 3）。</li>
 </ul>
 <h3>§1-2 Introduction + Preparation（p.3-4）</h3>
@@ -81,7 +81,7 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</sty
 <ul>
 <li>【它写了什么】3.1.1 用半页完成翻译：节点=球员、边=传球事件、权=传球次数 w_ij（eq(1) 邻接矩阵，无向，Fig 1 Gephi 可视化）；3.1.2 四参数逐个给定义式——L（eq(2)）、ρ（eq(3)）、直径 D（eq(4)-(5)，拓扑距离=权重倒数）、加权聚类系数（eq(6)-(7)），每个参数后接一句足球语义（degree 高=更多参与进攻、小直径=传球分散），Match 1 数值 L=369、ρ=6.71（p.8）；3.2.1 阵型规则映射（4-3-3/5-3-2/4-4-2）；3.2.2 结构发现三段式：拓扑距离矩阵热图目视找小值（Fig 2，p.7）→ K-means 聚类画回场地（Fig 3，p.8，1 个 dyad + 2 个 triad）→ 定量复核（"the cluster coefficient C of the three equals 7.31, much smaller than that of the whole team (7.62)"，p.8，18 词；trio 触达传球 227 次）；3.3 题面状语"regions and time"拆成两节：时间尺度（10-min 传球数 Fig 4 + 整场/整季快照 Fig 5，p.9-10）与区域尺度（8 区域热图 Fig 6，p.10）。</li>
 <li>【为什么这样写】参数组=定义式+语义翻译，评委不懂图论也能读；三段式让聚类从黑箱变成可验证的发现；"题面状语→节-图对账"保证交付物一个不漏。</li>
-<li>【你要学什么】网络题开局 2 小时的产出就是那张"节点边权定义表+方向性声明"（与 04_图论与网络（../02_知识模块/04_图论与网络.html） §1.1 心法一致）；结构发现不要只报算法输出，补一层定量复核。</li>
+<li>【你要学什么】网络题开局 2 小时的产出就是那张"节点边权定义表+方向性声明"（与 <a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/04_%E5%9B%BE%E8%AE%BA%E4%B8%8E%E7%BD%91%E7%BB%9C.html">04_图论与网络</a> §1.1 心法一致）；结构发现不要只报算法输出，补一层定量复核。</li>
 </ul>
 <h3>§4 Task 2：Evaluation of Successful Teamwork（p.11-16，主模型战场）</h3>
 <ul>
@@ -383,7 +383,7 @@ figure saved: audit_2020D.png
 </tr>
 </tbody>
 </table>
-<p><strong>独立复现审计汇总</strong>（复现代码见 §2，全部用论文印刷值；标 ★ 者为本精读新发现，其余源自模式卡片（03_卡片_2020D_XJTU.html）瑕疵清单并经 tex 复核）：</p>
+<p><strong>独立复现审计汇总</strong>（复现代码见 §2，全部用论文印刷值；标 ★ 者为本精读新发现，其余源自<a href="03_%E5%8D%A1%E7%89%87_2020D_XJTU.html">模式卡片</a>瑕疵清单并经 tex 复核）：</p>
 <table>
 <thead>
 <tr>
@@ -506,7 +506,7 @@ figure saved: audit_2020D.png
 7 Sensitivity：瞄准人为自由参数（判定阈值 ε 扫描 + 结构参数 N-pass 消融）
 8 S&amp;W + References + Appendix：代码与正文方法一一对应（变量绑定要与公式对齐）
 </code></pre>
-<p><strong>句式库</strong>（原文摘录 + 使用场景，完整版见模式卡片（03_卡片_2020D_XJTU.html））：
+<p><strong>句式库</strong>（原文摘录 + 使用场景，完整版见<a href="03_%E5%8D%A1%E7%89%87_2020D_XJTU.html">模式卡片</a>）：
 - 立论句：<code>Team success is much more than the sum of the abilities of individual players.</code>（p.1）——摘要先立命题再给模型，"整体&gt;个体之和"类题目直接套。
 - 专名机制句：<code>we choose the weight with LowestError as the regression equation</code>（p.1）——给自定义机制起专名，摘要-正文-代码三处一致。
 - 公平性卖点句：<code>introduce the opponent's confrontation factors, which makes the model more fair in evaluation</code>（p.13）——把对手/环境因素写进方法卖点。
@@ -515,7 +515,7 @@ figure saved: audit_2020D.png
 - 弱验证句（反例）：<code>we can conclude that the model is valid</code>（p.14）——只说 valid 不报数字；2026 口径必须补准确率/误差。</p>
 <p><strong>图表配方</strong>：摆位/力导向网络图（节点按角色着色、边宽∝权）→ 距离矩阵热图（红框标候选簇）→ 聚类画回物理空间 → 时序面积图+事件标注 → 网络快照阵列（标 L 值）→ 空间热图 → 双面板指标对比 → 可行权重折线 → 对手对标条形图 → 战术板示意图 → 双轴权重-误差敏感度曲线 → N-pass 消融三线图——十二张图覆盖网络题从结构到决策的完整链条。</p>
 <hr>
-<p>建议对照：模式卡片（03_卡片_2020D_XJTU.html）（本篇的结构化速查版）、D_运筹网络（../03_题型打法/D_运筹网络.html）（题型打法与 2026 D 范式漂移对照）、04_图论与网络（../02_知识模块/04_图论与网络.html）（节点边权语义与多指标互证）、精读 01（02_精读_2024E_Soochow.html） / 精读 02（03_精读_2023B_Tsinghua.html）（评价类精读姊妹篇：Table 4 权重凑整与 HSZ 矩阵偏差——三篇 O 论文的数字自洽性都栽在小处）。</p>
+<p>建议对照：<a href="03_%E5%8D%A1%E7%89%87_2020D_XJTU.html">模式卡片</a>（本篇的结构化速查版）、<a href="../03_%E9%A2%98%E5%9E%8B%E6%89%93%E6%B3%95/D_%E8%BF%90%E7%AD%B9%E7%BD%91%E7%BB%9C.html">D_运筹网络</a>（题型打法与 2026 D 范式漂移对照）、<a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/04_%E5%9B%BE%E8%AE%BA%E4%B8%8E%E7%BD%91%E7%BB%9C.html">04_图论与网络</a>（节点边权语义与多指标互证）、<a href="02_%E7%B2%BE%E8%AF%BB_2024E_Soochow.html">精读 01</a> / <a href="03_%E7%B2%BE%E8%AF%BB_2023B_Tsinghua.html">精读 02</a>（评价类精读姊妹篇：Table 4 权重凑整与 HSZ 矩阵偏差——三篇 O 论文的数字自洽性都栽在小处）。</p>
 <hr>
 <ul>
 <li>自查·页码：全部为 PDF 页码 p.1-27（印刷页 = PDF−2）；英文引语 ≤25 词且逐条对 <code>2006782.tex</code> 核验；§2 代码与 §4 审计数字实跑于 2026-11-22。</li>
@@ -527,9 +527,11 @@ figure saved: audit_2020D.png
 <script>window.UPC_UI_ROOT="../../";</script>
 <script defer src="../../_vendor/katex/katex.min.js"></script>
 <script defer src="../../_vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="../../_vendor/mermaid/mermaid.min.js"></script>
 <script>window.addEventListener('DOMContentLoaded',function(){
 if(window.renderMathInElement){renderMathInElement(document.body,
-{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});</script>
+{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}
+if(window.mermaid){mermaid.initialize({startOnLoad:false,theme:'neutral'});mermaid.run({querySelector:'code.language-mermaid'});}});</script>
 <script src="../../global-ui.js" defer></script>
 <script>
 var EV_START=1801173600000,EV_END=1801530000000;

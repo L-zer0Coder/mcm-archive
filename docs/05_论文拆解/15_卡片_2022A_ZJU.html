@@ -52,7 +52,7 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</sty
 <strong>身份验证链</strong>：论文 PDF（队伍号 2212245，正文匿名 Team Control Number）→ 官方 <code>2022_A_Results.pdf</code> 交叉验证（本站）：<strong>Zhejiang University / 顾问 TAN Zhiyi / 2022 A Outstanding Winner + SIAM Award</strong>（本站 dick20 仓库 2022 A 目录）。
 <strong>页码纪律</strong>：本卡页码 = PDF 页码 = 印刷页码（页眉 "Page X of 25"，p.1 为 Summary Sheet，全文共 25 页，Contents 标 "Page 2 of 25"）。
 <strong>版权纪律</strong>：PDF 存本地学习目录（不进公开仓库）；本页只放本站原创分析与 ≤25 词短引注。
-论文经拆解代理逐页深读 + 站内方法清单（A_连续（../03_题型打法/A_连续.html）、02_微分方程与动力学（../02_知识模块/02_微分方程与动力学.html））交叉对照；跨年对比基线为 06_卡片_2024A_Wuhan（06_卡片_2024A_Wuhan.html）（2024 A O）。</p>
+论文经拆解代理逐页深读 + 站内方法清单（<a href="../03_%E9%A2%98%E5%9E%8B%E6%89%93%E6%B3%95/A_%E8%BF%9E%E7%BB%AD.html">A_连续</a>、<a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/02_%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E4%B8%8E%E5%8A%A8%E5%8A%9B%E5%AD%A6.html">02_微分方程与动力学</a>）交叉对照；跨年对比基线为 <a href="06_%E5%8D%A1%E7%89%87_2024A_Wuhan.html">06_卡片_2024A_Wuhan</a>（2024 A O）。</p>
 </blockquote>
 <h2>1. 模式卡片</h2>
 <pre><code class="language-json">{
@@ -144,7 +144,7 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</sty
 </code></pre>
 <h2>2. 可复用的打法提炼（连续题特有动作）</h2>
 <ol>
-<li><strong>机理假设的 justification 用"承认复杂→假设→分析可行"三段式</strong>：假设4 先承认"生物供能过程非常复杂、受酶浓度等多因素影响、难以给出数学表达"，再落到假设使"分析在短时间内可行"（p.4）；其余三条各有量化理由——赛道 20/40 km 尺度故人车可视为质点、主办方选平地故弯道匀速、体重非本题主问题故取均值忽略（p.4）。对照 A_连续（../03_题型打法/A_连续.html） 常见死法 1（假设不写来源），本文每条 justification 都能指着说"为什么可以这么假设"。</li>
+<li><strong>机理假设的 justification 用"承认复杂→假设→分析可行"三段式</strong>：假设4 先承认"生物供能过程非常复杂、受酶浓度等多因素影响、难以给出数学表达"，再落到假设使"分析在短时间内可行"（p.4）；其余三条各有量化理由——赛道 20/40 km 尺度故人车可视为质点、主办方选平地故弯道匀速、体重非本题主问题故取均值忽略（p.4）。对照 <a href="../03_%E9%A2%98%E5%9E%8B%E6%89%93%E6%B3%95/A_%E8%BF%9E%E7%BB%AD.html">A_连续</a> 常见死法 1（假设不写来源），本文每条 justification 都能指着说"为什么可以这么假设"。</li>
 <li><strong>机理三级翻译流水线：生化流程图 → 库-流 ODE → 决策算法</strong>：每个供能系统先画物质流示意（Fig 2, p.5；Fig 3, p.6），再写成含量 ODE+初值（eq3, p.5；eq7, p.6），解出后用 min{…, ṽ_ATP,i} 加生理速率上限截断（eq5/9/10, p.6-7），最后合成"谁主导"的分级决策流程图（Fig 4, p.8）——评委能逐步跟随"机理怎么变成方程、方程怎么变成可执行算法"。生理极限不硬截断，留超限出口：ε&gt;1 常数建模肾上腺素冲刺（eq11, p.8）、不完全分解系数 b 建模乳酸堆积（eq12, p.8）。</li>
 <li><strong>双模型总装：内因（供能）×外因（力学）各自成章，策略层做接口</strong>：§3-4 内因（供能→功率剖面, p.5-11）、§5 外因（四阻力+弯道限速 eq13-22, p.12-14）、§6 策略层（三状态+地形分型流程图 Fig 11, p.15）；"恒速 vs 变速"之争用能耗积分 eq23 一锤定音（p.15）。"分模块+总装"结构在 strengths 里自我认证（'problems are divided into different modules', p.22）——这是 A_连续骨架"机理方程→数值解→策略"的总装示范。</li>
 <li><strong>现实锚点三重对账是应用题可信度的主证据</strong>：①理论 power curve 对线上真实数据四特征值（p.9-12）；②赛道重建报误差（Tokyo 4.5%、Belgium 3%, p.16-17）；③仿真最优时间对冠军成绩（53.02 vs 57.78 min, p.1）——对照 2024 A Wuhan 卡"无实测对账"的短板，本篇的<strong>外部锚点路线</strong>在"有公开成绩/公开数据"的题型上可直接复制；三处对账都有明确数字而非定性图。</li>
@@ -235,9 +235,11 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</sty
 <script>window.UPC_UI_ROOT="../../";</script>
 <script defer src="../../_vendor/katex/katex.min.js"></script>
 <script defer src="../../_vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="../../_vendor/mermaid/mermaid.min.js"></script>
 <script>window.addEventListener('DOMContentLoaded',function(){
 if(window.renderMathInElement){renderMathInElement(document.body,
-{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});</script>
+{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}
+if(window.mermaid){mermaid.initialize({startOnLoad:false,theme:'neutral'});mermaid.run({querySelector:'code.language-mermaid'});}});</script>
 <script src="../../global-ui.js" defer></script>
 <script>
 var EV_START=1801173600000,EV_END=1801530000000;

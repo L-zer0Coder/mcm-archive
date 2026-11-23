@@ -48,7 +48,7 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</sty
 <div class="wrap">
 <h1 class="pt">精读 01 · Sustainability of Property Insurance（2024 题 E O 奖 · 队伍 2413552 · Soochow University / INFORMS Award）</h1>
 <blockquote>
-<p>这份精读怎么用：跟着它把一篇真 O 论文<strong>按写作顺序读三遍</strong>——第一遍跟"骨架图"看逻辑链，第二遍跟"逐节导读"看写法，第三遍跟"公式精讲+复现审计"看数学。读完后你应该能回答：这篇 O 论文如果让普通队来写，最可能卡在哪三步。配套：模式卡片（01_卡片_2024E_Soochow.html）（拆解者视角的结构表）、E 题打法（../03_题型打法/E_可持续.html）、统计模块（../02_知识模块/03_统计与机器学习.html）。</p>
+<p>这份精读怎么用：跟着它把一篇真 O 论文<strong>按写作顺序读三遍</strong>——第一遍跟"骨架图"看逻辑链，第二遍跟"逐节导读"看写法，第三遍跟"公式精讲+复现审计"看数学。读完后你应该能回答：这篇 O 论文如果让普通队来写，最可能卡在哪三步。配套：<a href="01_%E5%8D%A1%E7%89%87_2024E_Soochow.html">模式卡片</a>（拆解者视角的结构表）、<a href="../03_%E9%A2%98%E5%9E%8B%E6%89%93%E6%B3%95/E_%E5%8F%AF%E6%8C%81%E7%BB%AD.html">E 题打法</a>、<a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/03_%E7%BB%9F%E8%AE%A1%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html">统计模块</a>。</p>
 </blockquote>
 <h2>0. 一分钟看懂全文骨架</h2>
 <pre><code class="language-mermaid">flowchart LR
@@ -213,7 +213,7 @@ fig.savefig(&quot;audit_2024E.png&quot;, dpi=110)
 <h3>eq(17)-(21)：改进熵权 → HIC（p.13-16）</h3>
 <p><strong>怎么想到</strong>：12 个社会经济指标要合成一个"人文调整系数"——客观赋权避免拍脑袋。
 <strong>完整推导</strong>：极差正规化 $SEF'_{ij}=\frac{SEF_{ij}-\min_j}{\max_j-\min_j}$（eq17）→ 比重 $p_{ij}=\frac{SEF'_{ij}}{\sum_k SEF'_{kj}}$ → 熵值 $E_j=-\frac{1}{\ln n}\sum_i p_{ij}\ln p_{ij}$（eq18）→ 权重 $w_j=\frac{1-E_j}{\sum_k(1-E_k)}$（eq19）→ 加权综合 $SEF''_i=\sum_j w_j SEF'_{ij}$（eq20）→ 线性 g 函数 $H_i=a+b\cdot SEF''_i$（eq21，a、b 用"最小化实际-预测保费差"训练）。
-<strong>适用边界</strong>：熵权度量的是<strong>区分度</strong>不是重要性（评价模块（../02_知识模块/05_评价与决策.html） §1.2 的警告）——组合赋权是标准修正，本论文没做；且见 §4 审计：本表的 w 与 E 数值上不满足 eq19。</p>
+<strong>适用边界</strong>：熵权度量的是<strong>区分度</strong>不是重要性（<a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/05_%E8%AF%84%E4%BB%B7%E4%B8%8E%E5%86%B3%E7%AD%96.html">评价模块</a> §1.2 的警告）——组合赋权是标准修正，本论文没做；且见 §4 审计：本表的 w 与 E 数值上不满足 eq19。</p>
 <h2>4. 建模决策链 + 独立复现审计</h2>
 <table>
 <thead>
@@ -306,7 +306,7 @@ fig.savefig(&quot;audit_2024E.png&quot;, dpi=110)
 </tr>
 </tbody>
 </table>
-<p><strong>审计结论</strong>：这篇 O 论文的<strong>结构与数据锚点纪律</strong>值得全抄；它的<strong>数字自洽性有两处硬伤</strong>（权重手工凑整、预测后段偏离自述模型）——普通队补一张拟合诊断表 + 做一次 eq(19) 自检就能在"严谨性"维度超过它。这也验证了模式卡片（01_卡片_2024E_Soochow.html）的判断：O/H 差距未必在检验数量，而在数据主动扩展与模型贯穿性。</p>
+<p><strong>审计结论</strong>：这篇 O 论文的<strong>结构与数据锚点纪律</strong>值得全抄；它的<strong>数字自洽性有两处硬伤</strong>（权重手工凑整、预测后段偏离自述模型）——普通队补一张拟合诊断表 + 做一次 eq(19) 自检就能在"严谨性"维度超过它。这也验证了<a href="01_%E5%8D%A1%E7%89%87_2024E_Soochow.html">模式卡片</a>的判断：O/H 差距未必在检验数量，而在数据主动扩展与模型贯穿性。</p>
 <h2>5. 从本篇提炼的可复用模板</h2>
 <p><strong>论文结构模板</strong>（代码块形式，直接抄）：</p>
 <pre><code>Summary（六要素，数字锚点法）
@@ -319,22 +319,24 @@ fig.savefig(&quot;audit_2024E.png&quot;, dpi=110)
 8 S&amp;W + 9 Conclusion
 Letter/交付物（题面点名的一定有）+ References + AI Report（完整三要素）
 </code></pre>
-<p><strong>句式库</strong>（原文摘录 + 使用场景，完整版见模式卡片（01_卡片_2024E_Soochow.html））：
+<p><strong>句式库</strong>（原文摘录 + 使用场景，完整版见<a href="01_%E5%8D%A1%E7%89%87_2024E_Soochow.html">模式卡片</a>）：
 - 开篇立框架：<code>This study presents a comprehensive analytical framework addressing...</code>（摘要首句）
 - 方法引入对比式：<code>Unlike GWR, which assumes..., MGWR allows...</code>（先立别人局限）
 - 双价值收束：<code>not only aligns with actuarial principles but also embeds...</code>（人文+技术）
 - 稳健性一句话：<code>despite changes in..., the trend of... continues to...</code>（敏感度收尾）</p>
 <p><strong>图表配方</strong>：地理热力（空间分异）→ 双段时序（历史+预测）→ 三情景对照（干预证据）→ 雷达图（多因子区间）→ 消融对照（稳健性）——五张图覆盖 E 类题的完整论证链。</p>
 <hr>
-<p>建议对照：模式卡片（01_卡片_2024E_Soochow.html）（本篇的结构化速查版）、E_可持续（../03_题型打法/E_可持续.html）（题型打法）、05_论文拆解方法论（00_拆解方法论.html）（schema 与纪律）。</p>
+<p>建议对照：<a href="01_%E5%8D%A1%E7%89%87_2024E_Soochow.html">模式卡片</a>（本篇的结构化速查版）、<a href="../03_%E9%A2%98%E5%9E%8B%E6%89%93%E6%B3%95/E_%E5%8F%AF%E6%8C%81%E7%BB%AD.html">E_可持续</a>（题型打法）、<a href="00_%E6%8B%86%E8%A7%A3%E6%96%B9%E6%B3%95%E8%AE%BA.html">05_论文拆解方法论</a>（schema 与纪律）。</p>
 </div>
 <footer>MCM/ICM 2027 备赛知识库 · 2027-01-28 开赛 · 数据只存本浏览器</footer>
 <script>window.UPC_UI_ROOT="../../";</script>
 <script defer src="../../_vendor/katex/katex.min.js"></script>
 <script defer src="../../_vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="../../_vendor/mermaid/mermaid.min.js"></script>
 <script>window.addEventListener('DOMContentLoaded',function(){
 if(window.renderMathInElement){renderMathInElement(document.body,
-{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});</script>
+{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}
+if(window.mermaid){mermaid.initialize({startOnLoad:false,theme:'neutral'});mermaid.run({querySelector:'code.language-mermaid'});}});</script>
 <script src="../../global-ui.js" defer></script>
 <script>
 var EV_START=1801173600000,EV_END=1801530000000;

@@ -406,8 +406,8 @@ function flip(){
   var c = CARDS[deck[cur]];
   var back = document.createElement('div');
   back.className = 'back';
-  back.innerHTML = c[2] + '<br><a href="../docs/02_'+encodeURIComponent('知识模块')+'/'+encodeURIComponent(c[3])+'.html" ' +
-    'style="font-size:12px">→ 出处：' + c[3] + '</a>';
+  back.innerHTML = c[2] + '<br><a href="../docs/' + c[3] + '.html" ' +
+    'style="font-size:12px">→ 出处：' + c[3].split('/').pop() + '</a>';
   document.getElementById('card').appendChild(back);
   katexify(back);
   shown = true; seen++;

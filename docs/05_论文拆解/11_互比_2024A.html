@@ -48,7 +48,7 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</sty
 <div class="wrap">
 <h1 class="pt">五 O 互比 · 2024 MCM A · 同题五支 Outstanding 队的路线谱系</h1>
 <blockquote>
-<p>2024 A《Resource Availability and Sex Ratios》（七鳃鳗性别比）共有六支 O 队（官方册），本站拆解五支。五张卡片：Wuhan 2400996（06_卡片_2024A_Wuhan.html）（INFORMS）、西交 YW 2405424（09_卡片_2024A_XJTU_YW.html）、北理工 2407093（08_卡片_2024A_BIT.html）（AMS）、西交 LC 2424371（07_卡片_2024A_XJTU_LC.html）（SIAM）、武理工 2425397（10_卡片_2024A_WUT.html）。全部队伍号经官方 Results 册验证（2026-11-22）。本页是五张卡的对照综合，细节以各卡为准。</p>
+<p>2024 A《Resource Availability and Sex Ratios》（七鳃鳗性别比）共有六支 O 队（官方册），本站拆解五支。五张卡片：<a href="06_%E5%8D%A1%E7%89%87_2024A_Wuhan.html">Wuhan 2400996</a>（INFORMS）、<a href="09_%E5%8D%A1%E7%89%87_2024A_XJTU_YW.html">西交 YW 2405424</a>、<a href="08_%E5%8D%A1%E7%89%87_2024A_BIT.html">北理工 2407093</a>（AMS）、<a href="07_%E5%8D%A1%E7%89%87_2024A_XJTU_LC.html">西交 LC 2424371</a>（SIAM）、<a href="10_%E5%8D%A1%E7%89%87_2024A_WUT.html">武理工 2425397</a>。全部队伍号经官方 Results 册验证（2026-11-22）。本页是五张卡的对照综合，细节以各卡为准。</p>
 </blockquote>
 <h2>一、路线谱系总表</h2>
 <table>
@@ -104,7 +104,7 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</sty
 <li><strong>范式光谱宽得惊人</strong>：同一道连续题，五支 O 队给出五种互不相同的建模骨架——个体级蒙特卡洛、三模型阶梯、库室差分、PDE 空间场、七舱差分。<strong>没有任何一种是"标准答案"</strong>；评奖看的是各自路线内的完整性与自洽性。</li>
 <li><strong>resistance 方向三例证相反</strong>：BIT 增 / Wuhan 减 / 武理工亦出现方向差异（各卡 O-O 对比）——<strong>指标口径决定结论方向</strong>。"adaptive sex 提高还是降低 resistance"在没有统一定义时是无意义的问题；论文必须先给指标口径（三队各自定义了不同口径且自洽）。</li>
 <li><strong>参数报账是普遍短板</strong>：五队中至少三队有参数无账问题（WUT 的 ε1-ε4、西交 YW 的 k/b̄/γ/φi/ai-bi-pi-μi、LC 十几个参数值未报）。<strong>"O 论文也有参数无账"是五卡对照坐实的普遍现象</strong>——普通队做一张完整参数表就能在这一维度超过多数 O 队。</li>
-<li><strong>摘要策略三种写法都可承重</strong>：数字锚点（Wuhan 3 个百分数）、零数字粗体断言（YW/BIT/LC）、结果对照（WUT）——07_写作模块（../02_知识模块/07_写作与SummarySheet.html） 的"数字优先"纪律应精确为：<strong>纯工作量计数不可承重；数字锚点与可命名机理发现皆可</strong>（修订自单卡时期的初判）。</li>
+<li><strong>摘要策略三种写法都可承重</strong>：数字锚点（Wuhan 3 个百分数）、零数字粗体断言（YW/BIT/LC）、结果对照（WUT）——<a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/07_%E5%86%99%E4%BD%9C%E4%B8%8ESummarySheet.html">07_写作模块</a> 的"数字优先"纪律应精确为：<strong>纯工作量计数不可承重；数字锚点与可命名机理发现皆可</strong>（修订自单卡时期的初判）。</li>
 <li><strong>检验"选对路线而非全做"三例证</strong>：Wuhan 的开关对照实验、LC 的崩溃阈值发现、武理工的先证周期——各选一条主线做深，而非平均用力堆检验清单（2020 D 精读的"自由参数瞄准"同构）。</li>
 </ol>
 <h2>三、给备赛者的三句收束</h2>
@@ -118,9 +118,11 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</sty
 <script>window.UPC_UI_ROOT="../../";</script>
 <script defer src="../../_vendor/katex/katex.min.js"></script>
 <script defer src="../../_vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="../../_vendor/mermaid/mermaid.min.js"></script>
 <script>window.addEventListener('DOMContentLoaded',function(){
 if(window.renderMathInElement){renderMathInElement(document.body,
-{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});</script>
+{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}
+if(window.mermaid){mermaid.initialize({startOnLoad:false,theme:'neutral'});mermaid.run({querySelector:'code.language-mermaid'});}});</script>
 <script src="../../global-ui.js" defer></script>
 <script>
 var EV_START=1801173600000,EV_END=1801530000000;

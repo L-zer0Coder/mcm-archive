@@ -51,8 +51,8 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</sty
 <p><strong>身份验证链</strong>：论文 PDF（队伍号 2209812，正文匿名 Team Control Number）→ 官方 <code>2022_A_Results.pdf</code> 交叉验证（本站）：<strong>Huazhong University of Science and Technology / 顾问 Jia Liu / 2022 A Outstanding Winner</strong>（验证记录：00_语料库总览（00_语料库总览.html） L22 "2022 A 六支 O 队全验（含 2209812 华中科技'自行车曲线'名篇）"，核查 2026-11-22）。本篇即蔡汉霖绘图教程引用的"自行车曲线"名篇。
 <strong>页码纪律</strong>：本卡页码 = PDF 页码 = 印刷页码（页脚 "Page X of 24"，p.1 为 Summary Sheet，Memo 止于 p.24）。
 <strong>版权纪律</strong>：PDF 存本地学习目录（不进公开仓库）；本页只放本站原创分析与 ≤25 词短引注。
-<strong>教程对照登记</strong>：蔡汉霖《How to draw awesome figures?》第三版本地无全文（07_资源导航（../07_资源导航/00_资源导航.html） L75 仅存元数据与两大类型框架：<strong>数据图=展现模型效果 / 框架图=解释模型本身</strong>）。教程引用本文曲线图的逐字理由<strong>读不出，留空</strong>；本卡第 2 节按该框架 + 图面设计事实（高清渲染核对）分析。
-论文经拆解代理逐页深读 + 站内 A_连续（../../03_题型打法/A_连续.html）、02_微分方程与动力学（../02_知识模块/02_微分方程与动力学.html） 交叉对照。</p>
+<strong>教程对照登记</strong>：蔡汉霖《How to draw awesome figures?》第三版本地无全文（<a href="../07_%E8%B5%84%E6%BA%90%E5%AF%BC%E8%88%AA/00_%E8%B5%84%E6%BA%90%E5%AF%BC%E8%88%AA.html">07_资源导航</a> L75 仅存元数据与两大类型框架：<strong>数据图=展现模型效果 / 框架图=解释模型本身</strong>）。教程引用本文曲线图的逐字理由<strong>读不出，留空</strong>；本卡第 2 节按该框架 + 图面设计事实（高清渲染核对）分析。
+论文经拆解代理逐页深读 + 站内 A_连续（../../03_题型打法/A_连续.html）、<a href="../02_%E7%9F%A5%E8%AF%86%E6%A8%A1%E5%9D%97/02_%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E4%B8%8E%E5%8A%A8%E5%8A%9B%E5%AD%A6.html">02_微分方程与动力学</a> 交叉对照。</p>
 </blockquote>
 <h2>1. 模式卡片</h2>
 <pre><code class="language-json">{
@@ -227,9 +227,11 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 20px}</sty
 <script>window.UPC_UI_ROOT="../../";</script>
 <script defer src="../../_vendor/katex/katex.min.js"></script>
 <script defer src="../../_vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="../../_vendor/mermaid/mermaid.min.js"></script>
 <script>window.addEventListener('DOMContentLoaded',function(){
 if(window.renderMathInElement){renderMathInElement(document.body,
-{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});</script>
+{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}
+if(window.mermaid){mermaid.initialize({startOnLoad:false,theme:'neutral'});mermaid.run({querySelector:'code.language-mermaid'});}});</script>
 <script src="../../global-ui.js" defer></script>
 <script>
 var EV_START=1801173600000,EV_END=1801530000000;

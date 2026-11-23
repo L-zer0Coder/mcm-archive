@@ -51,6 +51,13 @@ def render_docs():
                         return "[{}]({}{})".format(
                             label, link_to(os.path.join(OUT_DOCS, *t_rel.split("/"))), frag)
                     return "[{}]({}{})".format(label, link_to(abs_t), frag)
+                # .html 目标降级修复：源码树无 .html，映射回 .md 再解析
+                if tgt_clean.lower().endswith(".html"):
+                    md_alt = abs_t[:-5] + ".md"
+                    if os.path.exists(md_alt):
+                        t_rel = os.path.relpath(md_alt, ROOT).replace(os.sep, "/")[:-3] + ".html"
+                        return "[{}]({}{})".format(
+                            label, link_to(os.path.join(OUT_DOCS, *t_rel.split("/"))), frag)
                 return label + (("（" + tgt + "）") if tgt != label else "")  # 死目标：纯文本，不残留链接语法
             text = re.sub(r"\[([^\]]*)\]\(([^)\s]+)\)", sub, text)
             # 数学隔离：公式先抽走再转 markdown，防 $x_{ij}$ 被斜体/转义破坏（代码围栏不动）
