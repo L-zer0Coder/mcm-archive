@@ -129,7 +129,7 @@ def render_index(built_docs):
                     ("06_赛时工具/prompts.html", "提示词包", "AI 协作 12 条"),
                     ("06_赛时工具/assembler.html", "论文组装机", "LaTeX 骨架生成"),
                     ("06_赛时工具/selector.html", "选型助手", "题型匹配度自测"),
-                    ("06_赛时工具/flashcards.html", "闪卡库", "43 张概念自测"),
+                    ("06_赛时工具/flashcards.html", "闪卡库", "方法族概念自测"),
                 ]) + '</div>'
         '<h2 style="font-family:var(--serif);margin-top:26px">全站导航</h2>'
         '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-top:10px">' +
@@ -416,7 +416,7 @@ def gen_search_index():
     for u, nm, d in [("06_赛时工具/selector.html", "选型助手", "题型匹配度自测问卷"),
                      ("06_赛时工具/budget.html", "页数预算器", "25 页逐节对账"),
                      ("06_赛时工具/warroom.html", "96h 作战室", "阶段轴 checklist"),
-                     ("06_赛时工具/flashcards.html", "闪卡库", "43 张概念自测"),
+                     ("06_赛时工具/flashcards.html", "闪卡库", "方法族概念自测"),
                      ("06_赛时工具/prompts.html", "提示词包", "AI 协作 12 条"),
                      ("06_赛时工具/assembler.html", "论文组装机", "LaTeX 骨架生成")]:
         idx.append({"u": u, "t": nm, "d": d})
